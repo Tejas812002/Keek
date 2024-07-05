@@ -35,8 +35,8 @@ const RoiComponent = () => {
   return (
   
 <div className='max-h-[328px] bg-white  mt-6 rounded-xl h-96 '>
-<div class="bg-card p-2 rounded-lg shadow-md">
-  <div class="flex justify-between items-center mb-4">
+<div class="bg-card p-2 jusitfy-between rounded-lg shadow-md">
+  <div class="flex justify-between items-center mb-10">
     <h2 class="text-lg font-bold pl-4 text-card-foreground">ROI Report</h2>
     <div class="flex mr-8">
       <select class="bg-secondary mr-4 text-secondary-foreground p-2 rounded-lg border border-border">
@@ -46,7 +46,7 @@ const RoiComponent = () => {
       <button className="bg-primary text-primary-foreground p-2 rounded-lg border border-border hover:bg-primary/80">Export PDF</button>
     </div>
   </div>
-  <div className='top-20' style={{ width: "100%", height: 189 , top:"78px" }}>
+  <div style={{ width: "100%", height: 229 , top:"78px" }}>
       <ResponsiveContainer>
         <AreaChart
           data={data}
