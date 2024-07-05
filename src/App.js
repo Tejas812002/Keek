@@ -1,6 +1,7 @@
 import "./App.css";
 import Dashboard from "./Components/Dashboard/Dashboard";
-import NavBar from "./Components/NavigationBar/Navbar/Navbar";
+import NavigationBar from "./Components/NavigationBar/Navbar/NavigationBar";
+
 import SideBar, {
   SidebarItem,
   SidebarContext,
@@ -55,7 +56,7 @@ function App() {
         </SideBar>
       </div>
       <div className="flex-row">
-        <NavBar />
+        <NavigationBar/>
         <Dashboard />
       </div>
     </div>
