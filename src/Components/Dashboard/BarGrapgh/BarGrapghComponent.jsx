@@ -25,8 +25,8 @@ const BarGrapghComponent = () => {
 
       
     return (
-    <div className='min-h-[296px] bg-white  mt-1'>
-    <div class="bg-card p-2 rounded-lg shadow-md">
+    <div className='min-h-[296px] bg-white rounded-lg mt-1'>
+    <div class="bg-card p-2  shadow-md">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-lg font-bold pl-4 text-card-foreground">Performance Measure</h2>
         <div class="flex mr-8">

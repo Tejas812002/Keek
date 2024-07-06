@@ -15,7 +15,7 @@ const SideBar = ({ children }) => {
   return (
     <div>
       <aside className={`fixed h-screen max-w-[340px] z-10`}>
-        <nav className={`h-full flex flex-col bg-white text-left border-r shadow-sm ${expanded ? "w-[311px]" : "w-20"}`}>
+        <nav className={`h-full flex flex-col bg-white text-left border-r shadow-sm ${expanded ? "w-[315px]" : "w-20"}`}>
           <div className='p-4 pb-2 flex items-center'>
             <div className={`relative flex-shrink-0 overflow-hidden transition-all ${expanded ? "w-6" : "w-6"}`}>
               <img src={logo} className={'block w-full h-auto'} alt="Logo" />

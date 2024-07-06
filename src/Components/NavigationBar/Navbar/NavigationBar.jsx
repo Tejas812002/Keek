@@ -8,7 +8,7 @@ import trophyIcon from '../../../Assets/trophy.png';
 const NavigationBar = () => {
   return (
 
-    <div className="fixed z-10 top-0 left-[310px] w-[calc(100%-315px)] bg-white h-24 flex items-center justify-between bg-background  px-4">
+    <div className="fixed z-10 top-0 left-[311px] w-[calc(100%-315px)] bg-white h-24 flex items-center justify-between bg-background  px-4">
   
     <div className="relative flex items-center w-8/12"> 
       <img src={SearchIcon} alt="magnifier" className="absolute left-2 top-1/2 transform -translate-y-1/2" />
