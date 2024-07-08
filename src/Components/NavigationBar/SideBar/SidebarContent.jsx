@@ -5,7 +5,7 @@ import { Home, LayoutGrid, UserRoundSearch, Crown, HardDrive, CalendarDays, Book
 const SidebarContent = () => {
   return (
    <div className='max-w-[340px] '>
-     <SideBar>
+     <SideBar >
       <SidebarItem icon={<Home size={20}  />} text="Home"  />
       <SidebarItem icon={<LayoutGrid size={20} />} text="Admin Panel">
         <SidebarItem text="ROI Report" customClass="text-gray-400" />
