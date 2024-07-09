@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { MoreVertical, AlignJustify, EllipsisVertical } from 'lucide-react';
+import { MoreVertical, AlignJustify, EllipsisVertical, ChevronDown, ChevronUp } from 'lucide-react';
 import logo from "../../../Assets/Logo.jpg";
 import white from "../../../Assets/white.jpg";
 import profile from "../../../Assets/intersect.jpg";
@@ -8,10 +8,8 @@ import menu from '../../../Assets/menu2.png'
 export const SidebarContext = createContext();
 
 const SideBar = ({ children }) => {
-   const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
-
-
 
   return (
     <div>
@@ -20,7 +18,7 @@ const SideBar = ({ children }) => {
           <div className='p-4 pb-2 flex items-center'>
             <div className={`relative flex-shrink-0 overflow-hidden transition-all ${expanded ? "w-6" : "w-6"}`}>
               <img src={logo} className={'block w-full h-auto'} alt="Logo" />
-              <img src={white} className='absolute inset-0 m-auto' style={{ height: '50%', width: '50%' }} alt="White Logo" />
+              <img src={white} className='absolute rounded-full inset-0 m-auto' style={{ height: '50%', width: '50%' }} alt="White Logo" />
             </div>
             <p className={`ml-2 font-bold overflow-hidden transition-all ${expanded ? "w-9" : "w-0"}`}>Keek</p>
             <button onClick={() => setExpanded(curr => !curr)} className='ml-auto rounded-lg bg-gray-50 hover:bg-gray-100'>
@@ -68,11 +66,18 @@ export function SidebarItem({ icon, text, alert, children, customClass }) {
           ${isSelected ? "bg-indigo-200 text-indigo-900" : "hover:bg-indigo-50 text-gray-600"} ${expanded ? "" : "h-10"} ${customClass}`}
         style={{ padding: expanded ? '0.25rem 0.5rem' : '0.25rem', width: expanded ? 'auto' : 'max-content' }}
       >
-        <div className={`flex items-center ${expanded ? '' : 'p-0 m-0'}`}>
-          {icon}
+        <div className='flex items-center'>
+          <div className='flex-shrink-0' style={{ width: '20px' }}>
+            {icon}
+          </div>
           <span className={`overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0 p-0 m-0"}`}>{text}</span>
           {alert && (
             <span className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${expanded ? "" : "top-2"}`}></span>
+          )}
+          {expanded && text === "Admin Panel" && (
+            <div className="ml-auto">
+              {dropdownOpen ? <ChevronUp /> : <ChevronDown />}
+            </div>
           )}
         </div>
         {!expanded && (
@@ -82,7 +87,7 @@ export function SidebarItem({ icon, text, alert, children, customClass }) {
         )}
       </li>
       {dropdownOpen && expanded && (
-        <ul className="pl-5">
+        <ul className="pl-5 space-y-2">
           {children}
         </ul>
       )}
