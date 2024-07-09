@@ -3,6 +3,7 @@ import { MoreVertical, AlignJustify, EllipsisVertical } from 'lucide-react';
 import logo from "../../../Assets/Logo.jpg";
 import white from "../../../Assets/white.jpg";
 import profile from "../../../Assets/intersect.jpg";
+import menu from '../../../Assets/menu2.png'
 
 export const SidebarContext = createContext();
 
@@ -23,11 +24,11 @@ const SideBar = ({ children }) => {
             </div>
             <p className={`ml-2 font-bold overflow-hidden transition-all ${expanded ? "w-9" : "w-0"}`}>Keek</p>
             <button onClick={() => setExpanded(curr => !curr)} className='ml-auto rounded-lg bg-gray-50 hover:bg-gray-100'>
-              {expanded ? <AlignJustify /> : <EllipsisVertical />}
+              {expanded ? <img src={menu} className={'block w-full h-auto'} alt="menuLogo" /> : <EllipsisVertical />}
             </button>
           </div>
           <SidebarContext.Provider value={{ expanded, selectedItem, setSelectedItem }}>
-            <ul className='flex-1 px-3'>{children}</ul>
+            <ul className='flex-1 mt-10 px-3'>{children}</ul>
           </SidebarContext.Provider>
 
           <div className='border-t flex p-3'>

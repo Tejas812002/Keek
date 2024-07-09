@@ -7,7 +7,7 @@ const SidebarContent = () => {
    <div className='max-w-[340px] '>
      <SideBar>
       <SidebarItem icon={<Home size={20}  />} text="Home"  />
-      <SidebarItem icon={<LayoutGrid size={20} />} text="Admin Panel">
+      <SidebarItem icon={<LayoutGrid size={20}  />} text="Admin Panel">
         <SidebarItem text="ROI Report" customClass="text-gray-400" />
         <SidebarItem text="Audience Insights" customClass="text-gray-400" />
         <SidebarItem text="Manage Influencers" customClass="text-gray-400" />

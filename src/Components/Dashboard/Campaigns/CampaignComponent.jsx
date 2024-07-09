@@ -16,11 +16,11 @@ const CampaignComponent = () => {
   return (
     <div className=" max-h-[296px]" >
     
-    <div class="flex flex-col justify-between bg-green-100 p-4 min-h-[138px] min-w-72 rounded-lg">
+    <div class="flex flex-col justify-between bg-[#CFF38D] p-4 min-h-[138px] min-w-72 rounded-lg">
 
-  <div class="flex justify-between items-center ">
+  <div class="flex justify-between items-center pl-4 mt-2">
     <div>
-      <p class="text-base text-[#57595A]-700">ACTIVE CAMPAIGNS</p>
+      <p class="text-base font-semibold text-[#57595A]  tracking-widest">ACTIVE CAMPAIGNS</p>
       <p class="text-3xl font-bold">{activeCampaignsCount}</p>
     </div>
   </div>
@@ -34,11 +34,11 @@ const CampaignComponent = () => {
 </div>
 
 
-    <div class="flex flex-col justify-between bg-red-100 p-4 min-h-[138px] min-w-72 mt-4 rounded-lg">
+    <div class="flex flex-col justify-between bg-[#EA8389] mb-4 p-4 min-h-[138px] min-w-72 mt-4 rounded-lg">
 
-  <div class="flex justify-between items-center mb-4">
+  <div class="flex justify-between items-center   pl-4 mt-2">
     <div>
-      <p class="text-base  text-[#57595A]-700">PAST CAMPAIGNS</p>
+      <p class="text-base font-semibold  text-[#57595A]   tracking-widest">PAST CAMPAIGNS</p>
       <p class="text-3xl font-bold">{pastCampaignsCount}</p>
     </div>
   </div>
