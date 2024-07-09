@@ -87,7 +87,7 @@ export function SidebarItem({ icon, text, alert, children, customClass }) {
         )}
       </li>
       {dropdownOpen && expanded && (
-        <ul className="pl-5 space-y-2">
+        <ul className="pl-2 ">
           {children}
         </ul>
       )}
