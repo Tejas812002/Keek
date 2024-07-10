@@ -5,6 +5,9 @@ module.exports = {
   theme: {
     extend: {
    
+      fontFamily: {
+        body: ["Open Sans", "sans-serif", "Arial", "Helvetica Neue", "Inter"],
+      },
     },
   },
   plugins: [],

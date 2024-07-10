@@ -47,7 +47,7 @@ const PieChartComponent = () => {
     const { name, value } = data[activeIndex];
 
     return (
-      <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fontSize="16" fill="#333">
+      <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fontSize="14" fill="#333">
         {`${name} (${value})`}
       </text>
     );
@@ -55,7 +55,7 @@ const PieChartComponent = () => {
 
   return (
     <div className="bg-white mt-8 w-[284px] h-[475px] rounded-xl p-5">
-      <h1 className="text-gray-900 font-bold text-2xl mb-5">Audience Insights</h1>
+      <h1 className="text-gray-900 font-body font-bold text-2xl mb-5">Audience Insights</h1>
       <PieChart width={300} height={400} onMouseLeave={onPieLeave} style={{left: "-85px",
               top: "-88px"}}>
         <Pie
@@ -78,7 +78,7 @@ const PieChartComponent = () => {
         {/* <Tooltip /> */}
    
       </PieChart>
-      <div className="flex flex-wrap ml-4" style={{ marginTop: '-150px' }}>
+      <div className="flex flex-wrap ml-4 font-body" style={{ marginTop: '-150px' }}>
         {data.map((entry, index) => (
           <div key={`legend-${index}`} className="flex items-center mb-2 mr-4">
             <span className="mr-2 text-sm" style={{ color: COLORS[index % COLORS.length] }}>●</span>
