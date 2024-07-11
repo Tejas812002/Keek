@@ -6,7 +6,7 @@ import { CgUserList } from "react-icons/cg"
 import { CgCrown } from "react-icons/cg";
 import { CgDatabase } from "react-icons/cg";
 import { MdAttachMoney } from "react-icons/md";
-import { CiHeart } from "react-icons/ci";
+import { FaRegHeart } from "react-icons/fa";
 
 const SidebarContent = ({expanded, setExpanded}) => {
   return (
@@ -22,7 +22,7 @@ const SidebarContent = ({expanded, setExpanded}) => {
       <SidebarItem icon={<CgCrown size={20} />} text="Manage Campaign" />
       <SidebarItem icon={<CalendarDays size={20} />} text="Calendar" />
       <SidebarItem icon={<MdAttachMoney size={20} />} text="Payments" />
-      <SidebarItem icon={<CiHeart size={20} />} text="Favorites" />
+      <SidebarItem icon={<FaRegHeart size={20} />} text="Favorites" />
       <SidebarItem icon={<CgDatabase  size={18} />} text="Influencers Base" />
 
       <SidebarContext.Consumer>
