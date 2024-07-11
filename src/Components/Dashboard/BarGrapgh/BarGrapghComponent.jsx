@@ -57,7 +57,7 @@ const BarGrapghComponent = ({expanded}) => {
              value={selectedOption}
              onChange={handleOptionChange}
           >
-            <option>Years</option>
+            <option>Weeks</option>
             <option>Months</option>
           </select>
           <button className='bg-blue-600 text-white p-2 font-semibold rounded-lg border border-gray-500 hover:bg-primary/80 flex items-center'>
