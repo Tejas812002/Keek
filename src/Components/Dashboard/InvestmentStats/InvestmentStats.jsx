@@ -6,11 +6,11 @@ const InvestmentStats = () => {
     <div class="flex items-center rounded-xl justify-around bg-white  p-8 mt-6 min-h-[100px]">
     <div class="text-center">
       <p class="text-sm mb-2 text-muted-foreground">Total Target</p>
-      <p class="text-lg font-bold">$200,000</p>
+      <p class="text-lg font-bold">200,000</p>
     </div>
     <div class="text-center">
       <p class="text-sm mb-2 text-muted-foreground">Current Target</p>
-      <p class="text-lg font-bold">$250,000</p>
+      <p class="text-lg font-bold">250,000</p>
     </div>
     <div class="text-center">
       <p class="text-sm mb-2 text-muted-foreground">Total Returns</p>
