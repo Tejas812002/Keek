@@ -1,6 +1,6 @@
 import React from 'react';
 import SideBar, { SidebarItem, SidebarContext } from './SideBar';
-import { Home, LayoutGrid, UserRoundSearch, Crown, DollarSign,Server, CalendarDays, Bookmark, Settings, Headphones } from 'lucide-react';
+import { CalendarDays, Bookmark, Settings, Headphones } from 'lucide-react';
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { CgUserList } from "react-icons/cg"
 import { CgCrown } from "react-icons/cg";

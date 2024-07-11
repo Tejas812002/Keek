@@ -3,10 +3,10 @@ import {
   AreaChart,
   Area,
   XAxis,
-  YAxis,
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
+import { HiOutlineDocumentDownload } from "react-icons/hi";
 
 const RoiComponent = () => {
   const [selectedOption, setSelectedOption] = useState('Months'); // Default option is Months
@@ -61,9 +61,10 @@ const RoiComponent = () => {
               <option value='Weeks'>Weeks</option>
               <option value='Months'>Months</option>
             </select>
-            <button className='bg-primary text-primary-foreground p-2 rounded-lg border border-gray-500 hover:bg-primary/80'>
-              Export PDF
-            </button>
+            <button className='bg-blue-600 text-white p-2 font-semibold rounded-lg border border-gray-500 hover:bg-primary/80 flex items-center'>
+      <HiOutlineDocumentDownload className="mr-2 size-6 " />
+      Export PDF
+    </button>
           </div>
         </div>
         <div style={{ width: '100%', height: 229 }}>

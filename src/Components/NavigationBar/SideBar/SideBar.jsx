@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
-import { MoreVertical, AlignJustify, EllipsisVertical, ChevronDown, ChevronUp } from 'lucide-react';
+import { MoreVertical, EllipsisVertical, ChevronDown, ChevronUp } from 'lucide-react';
 import logo from "../../../Assets/Logo.jpg";
 import white from "../../../Assets/white.jpg";
 import profile from "../../../Assets/intersect.jpg";
-import menu from '../../../Assets/menu2.png'
 import { TbMenuDeep } from "react-icons/tb";
 
 export const SidebarContext = createContext();

@@ -1,13 +1,11 @@
 import React ,  {useState} from 'react'
+import { HiOutlineDocumentDownload } from "react-icons/hi";
 import {
     BarChart,
     Bar,
     XAxis,
     YAxis,
-    CartesianGrid,
     Tooltip,
-    Legend,
-    Rectangle,
   } from "recharts";
   import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
@@ -59,10 +57,13 @@ const BarGrapghComponent = ({expanded}) => {
              value={selectedOption}
              onChange={handleOptionChange}
           >
-            <option>Weeks</option>
+            <option>Years</option>
             <option>Months</option>
           </select>
-          <button class="bg-primary text-primary-foreground p-2 rounded-lg border border-border border-gray-500 hover:bg-primary/80">Export PDF</button>
+          <button className='bg-blue-600 text-white p-2 font-semibold rounded-lg border border-gray-500 hover:bg-primary/80 flex items-center'>
+      <HiOutlineDocumentDownload className="mr-2 size-6 " />
+      Export PDF
+    </button>
         </div>
       </div>
      <div className='flex flex-row justify-between'>
