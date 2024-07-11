@@ -1,8 +1,5 @@
 import React from 'react';
-import SearchIcon from '../../../Assets/SearchIcon.png';
-import Bellicon from '../../../Assets/bell.png';
-import messageIcon from '../../../Assets/message-outline.png';
-import trophyIcon from '../../../Assets/trophy.png';
+
 import { CiSearch } from "react-icons/ci";
 import { CgBell, CgTrophy } from "react-icons/cg";
 import { FiMessageSquare } from "react-icons/fi";
