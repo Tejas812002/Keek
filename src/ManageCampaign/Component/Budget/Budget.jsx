@@ -364,7 +364,7 @@ const Budget = () => {
                   <div className="custom-input-range mt-6">
                     <InputRange
                       maxValue={100000}
-                      minValue={0}
+                      minValue={10}
                       value={amount}
                       onChange={handleAmountChange}
                       formatLabel={(value) => `$${value}`}

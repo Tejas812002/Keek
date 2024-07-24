@@ -169,7 +169,7 @@ const CampaignSummary = ({ isModalVisible, setIsModalVisible }) => {
                     {data.payment && data.product && <br />}
 
                     {data.payment && data.fixed && "Fixed"}
-                    {data.payment && data.nagotiable && "Nagotiable"}
+                    {data.payment && data.nagotiable && "Negotiable"}
                     <br />
                     {data.payment && data.fixed && `Amount : ${data.fixedAmt}`}
                     {data.payment && data.nagotiable && `Min : ${data.min} | `}
