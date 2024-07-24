@@ -27,15 +27,15 @@ const CampaignSummary = ({ isModalVisible, setIsModalVisible }) => {
   };
 
   return (
-    <div>
+    <div className='w-full h-auto'>
       {isModalVisible && (
         <div
           id="popup-modal"
-          className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-gray-500 bg-opacity-50"
+          className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-auto bg-gray-500 bg-opacity-50"
           tabIndex="-1"
         >
           <div className="relative p-4 max-w-md max-h-full">
-            <div className="relative w-[514px] h-[629px] bg-white space-y-4 p-8 rounded-[14px] shadow ">
+            <div className="relative w-[514px] h-auto bg-white space-y-4 p-8 rounded-[14px] shadow ">
               <button
                 type="button"
                 className="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
