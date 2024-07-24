@@ -4,10 +4,13 @@ import logo from "../../../Assets/Logo.jpg";
 import white from "../../../Assets/white.jpg";
 import profile from "../../../Assets/intersect.jpg";
 import { TbMenuDeep } from "react-icons/tb";
-
+import {Mycontext} from '../../../utils/Context'
 export const SidebarContext = createContext();
 
-const SideBar = ({ children, expanded, setExpanded }) => {
+const SideBar = ({ children }) => {
+  const contextState = useContext(Mycontext);
+  const expanded = contextState.expanded;
+  const setExpanded = contextState.setExpanded;
   // const [expanded, setExpanded] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -88,7 +91,7 @@ export function SidebarItem({ icon, text, alert, children, customClass }) {
         )}
       </li>
       {dropdownOpen && expanded && (
-        <ul className="pl-2 ">
+        <ul className="pl-2">
           {children}
         </ul>
       )}

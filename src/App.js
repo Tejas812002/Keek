@@ -4,7 +4,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="max-h-[950px] " >
+    <div className="max-h-full " >
      <AdminPanel/>
     
     </div>

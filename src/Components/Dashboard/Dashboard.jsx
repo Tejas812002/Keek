@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import CampaignComponent from './Campaigns/CampaignComponent'
 import PieChartComponent from './PieChart/PieChartComponent'
 import RoiComponent from './ROI/RoiComponent'
 import BarGrapghComponent from './BarGrapgh/BarGrapghComponent'
 import InvestmentStats from './InvestmentStats/InvestmentStats'
+import { Mycontext } from '../../utils/Context'
 
 
-const Dashboard = ({ expanded }) => {
-
+const Dashboard = () => {
+const contextState = useContext(Mycontext);
+const expanded = contextState.expanded;
   return (
     <div class={` flex relative top-20 ${
       !expanded

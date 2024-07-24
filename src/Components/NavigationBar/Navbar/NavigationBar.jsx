@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { CiSearch } from "react-icons/ci";
 import { CgBell, CgTrophy } from "react-icons/cg";
 import { FiMessageSquare } from "react-icons/fi";
+import { Mycontext } from '../../../utils/Context';
 
 
-const NavigationBar = ({ expanded }) => {
+const NavigationBar = () => {
+
+  const contextState = useContext(Mycontext);
+  const expanded = contextState.expanded;
+
   return (
 
     <div   className={`fixed z-10 top-0 ${!expanded && "left-[78px] w-[calc(100%-65px)]"} left-[311px] w-[calc(100%-311px)] bg-white h-24 flex items-center justify-between bg-background  px-4`}>

@@ -1,70 +1,164 @@
-import React, { useState } from 'react';
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  Tooltip,
-  ResponsiveContainer
-} from 'recharts';
-import { HiOutlineDocumentDownload } from "react-icons/hi";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { HiOutlineDocumentDownload } from 'react-icons/hi';
 
 const RoiComponent = () => {
-  const [selectedOption, setSelectedOption] = useState('Months'); // Default option is Months
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedMonth, setSelectedMonth] = useState('Jan');
+  const [selectedWeek, setSelectedWeek] = useState('Week 1');
+  const [selectedPeriod, setSelectedPeriod] = useState('Years');
+  const [dataToDisplay, setDataToDisplay] = useState([]);
+  const [metrics, setMetrics] = useState({});
 
-  const months = ['Jan',
-    'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 
+  const years = Array.from({ length: 10 }, (_, i) => 2020 + i);
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+    'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
   ];
+  const weeks = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-  const weekData = [
-    { name: 'Mon', amt: 300 },
-    { name: 'Tue', amt: 410 },
-    { name: 'Wed', amt: 690 },
-    { name: 'Thu', amt: 500 },
-    { name: 'Fri', amt: 181 },
-    { name: 'Sat', amt: 680 },
-    { name: 'Sun', amt: 210 },
-  ];
+  useEffect(() => {
+    fetchData();
+  }, [selectedYear, selectedMonth, selectedWeek, selectedPeriod]);
 
-  const monthData = [
-    { name: 'Jan', amt: 2200 },
-    { name: 'Feb', amt: 400 },
-    { name: 'Mar', amt: 900 },
-    { name: 'Apr', amt: 1400 },
-    { name: 'May', amt: 2400 },
-    { name: 'Jun', amt: 800 },
-    { name: 'Jul', amt: 1200 },
-    { name: 'Aug', amt: 700 },
-    { name: 'Sep', amt: 400 },
-    { name: 'Oct', amt: 1100 },
-    { name: 'Nov', amt: 1100 },
-    { name: 'Dec', amt: 1600 },
-  
-  ].sort((a, b) => months.indexOf(a.name) - months.indexOf(b.name));
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:5001/api/roi', {
+        params: {
+          year: selectedYear,
+          month: selectedPeriod !== 'Years' ? selectedMonth : undefined,
+          week: selectedPeriod === 'Weeks' ? selectedWeek : undefined,
+        },
+      });
 
-  const dataToDisplay = selectedOption === 'Weeks' ? weekData : monthData;
+      // Process data to ensure unique months
+      const processedData = processChartData(response.data.data, selectedPeriod);
+      setDataToDisplay(processedData);
+      setMetrics(response.data.metrics);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  const processChartData = (data, period) => {
+    if (period === 'Years') {
+      const uniqueMonths = new Map();
+      return data.filter(item => {
+        if (!uniqueMonths.has(item.month)) {
+          uniqueMonths.set(item.month, true);
+          return true;
+        }
+        return false;
+      });
+    }
+    return data;
+  };
+
+  const handlePeriodChange = (event) => {
+    setSelectedPeriod(event.target.value);
+    setSelectedMonth(months[0]);
+    setSelectedWeek(weeks[0]);
+  };
+
+  const handleYearChange = (event) => {
+    setSelectedYear(event.target.value);
+  };
+
+  const handleMonthChange = (event) => {
+    setSelectedMonth(event.target.value);
+  };
+
+  const handleWeekChange = (event) => {
+    setSelectedWeek(event.target.value);
   };
 
   return (
-    <div className='bg-white mt-6 rounded-xl max-h-[328px]'>
-      <div className='bg-card max-h-[328px] p-4 justify-between rounded-lg shadow-md'>
-        <div className='flex justify-between items-center mb-10'>
-          <h2 className='text-lg font-bold pl-4 text-card-foreground'>ROI Report</h2>
-          <div className='flex mr-8 '>
+    <div className="bg-white mt-6 rounded-xl max-h-[328px]">
+      <div className="bg-card max-h-[328px] p-4 justify-between rounded-lg shadow-md">
+        <div className="flex justify-between items-center mb-10">
+          <h2 className="text-lg font-bold pl-4 text-card-foreground">
+            ROI Report
+          </h2>
+          <div className="flex mr-8">
             <select
-              className='bg-secondary mr-4 text-secondary-foreground p-2 rounded-lg border border-gray-500'
-              value={selectedOption}
-              onChange={handleOptionChange}
+              className="bg-secondary mr-4 text-secondary-foreground p-2 rounded-lg border border-gray-500"
+              value={selectedPeriod}
+              onChange={handlePeriodChange}
             >
-              <option value='Weeks'>Weeks</option>
-              <option value='Months'>Months</option>
+              <option value="Years">Years</option>
+              {/* <option value="Months">Months</option> */}
+              <option value="Weeks">Weeks</option>
             </select>
-            <button className='bg-blue-600 text-white p-2 font-semibold rounded-lg border border-gray-500 hover:bg-primary/80 flex items-center'>
-      <HiOutlineDocumentDownload className="mr-2 size-6 " />
-      Export PDF
-    </button>
+            {selectedPeriod === 'Years' && (
+              <select
+                className="bg-secondary mr-4 text-secondary-foreground p-2 rounded-lg border border-gray-500"
+                value={selectedYear}
+                onChange={handleYearChange}
+              >
+                {years.map((year, index) => (
+                  <option key={index} value={year}>{year}</option>
+                ))}
+              </select>
+            )}
+            {selectedPeriod === 'Months' && (
+              <>
+                <select
+                  className="bg-secondary mr-4 text-secondary-foreground p-2 rounded-lg border border-gray-500"
+                  value={selectedYear}
+                  onChange={handleYearChange}
+                >
+                  {years.map((year, index) => (
+                    <option key={index} value={year}>{year}</option>
+                  ))}
+                </select>
+                <select
+                  className="bg-secondary mr-4 text-secondary-foreground p-2 rounded-lg border border-gray-500"
+                  value={selectedMonth}
+                  onChange={handleMonthChange}
+                >
+                  {months.map((month, index) => (
+                    <option key={index} value={month}>{month}</option>
+                  ))}
+                </select>
+              </>
+            )}
+            {selectedPeriod === 'Weeks' && (
+              <>
+                <select
+                  className="bg-secondary mr-4 text-secondary-foreground p-2 rounded-lg border border-gray-500"
+                  value={selectedYear}
+                  onChange={handleYearChange}
+                >
+                  {years.map((year, index) => (
+                    <option key={index} value={year}>{year}</option>
+                  ))}
+                </select>
+                <select
+                  className="bg-secondary mr-4 text-secondary-foreground p-2 rounded-lg border border-gray-500"
+                  value={selectedMonth}
+                  onChange={handleMonthChange}
+                >
+                  {months.map((month, index) => (
+                    <option key={index} value={month}>{month}</option>
+                  ))}
+                </select>
+                <select
+                  className="bg-secondary mr-4 text-secondary-foreground p-2 rounded-lg border border-gray-500"
+                  value={selectedWeek}
+                  onChange={handleWeekChange}
+                >
+                  {weeks.map((week, index) => (
+                    <option key={index} value={week}>{week}</option>
+                  ))}
+                </select>
+              </>
+            )}
+            <button className="bg-blue-600 text-white p-2 font-semibold rounded-lg border border-gray-500 hover:bg-primary/80 flex items-center">
+              <HiOutlineDocumentDownload className="mr-2 size-6" />
+              Export PDF
+            </button>
           </div>
         </div>
         <div style={{ width: '100%', height: 229 }}>
@@ -75,18 +169,30 @@ const RoiComponent = () => {
                 top: 10,
                 right: 20,
                 left: 20,
-                bottom: 0
+                bottom: 0,
               }}
             >
-              {/* <CartesianGrid strokeDasharray="3 3" /> */}
-              <XAxis dataKey='name' />
-              {/* <YAxis /> */}
+              <XAxis dataKey={selectedPeriod === 'Years' ? 'month' : 'day'} />
               <Tooltip />
               <Area
-                type='monotone'
-                dataKey='amt'
-                stroke='#8884d8'
-                fill='#4F46E5'
+                type="monotone"
+                dataKey="views"
+                stroke="#8884d8"
+                fill="#4F46E5"
+                opacity={0.2}
+              />
+              <Area
+                type="monotone"
+                dataKey="likes"
+                stroke="#82ca9d"
+                fill="#1FCACF"
+                opacity={0.2}
+              />
+              <Area
+                type="monotone"
+                dataKey="amt"
+                stroke="#FFBB28"
+                fill="#FFBB28"
                 opacity={0.2}
               />
             </AreaChart>
