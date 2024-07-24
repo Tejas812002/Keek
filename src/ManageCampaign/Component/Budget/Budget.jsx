@@ -112,6 +112,7 @@ const Budget = () => {
     setAmount(value);
     setMinAmount(value.min.toString());
     setMaxAmount(value.max.toString());
+    setData({ ...data, min: value.min, max: value.max }); //update 1
     clearValidationError(); // Clear error message on slider change
   };
 
@@ -120,6 +121,7 @@ const Budget = () => {
     if (!isNaN(value)) {
       setMinAmount(value.toString());
       setAmount({ ...amount, min: value });
+      setData({ ...data, min: value }); // update 2
       clearValidationError(); // Clear error message on input change
     } else {
       setMinAmount("");
@@ -131,6 +133,7 @@ const Budget = () => {
     if (!isNaN(value)) {
       setMaxAmount(value.toString());
       setAmount({ ...amount, max: value });
+      setData({ ...data, max: value }); // update 2
       clearValidationError(); // Clear error message on input change
     } else {
       setMaxAmount("");
