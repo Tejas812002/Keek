@@ -165,7 +165,7 @@ const CampaignSummary = ({ isModalVisible, setIsModalVisible }) => {
                     {data.payment && !data.product && "Payment / "}
                     {!data.payment && data.product && "Product "}
 
-                    {data.payment && data.product && "payment and Product"}
+                    {data.payment && data.product && "Payment and Product"}
                     {data.payment && data.product && <br />}
 
                     {data.payment && data.fixed && "Fixed"}
