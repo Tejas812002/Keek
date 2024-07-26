@@ -64,7 +64,7 @@ const DiscoverInfluencer = () => {
     "1000000+",
   ];
   const AgeData = [
-    "12-17 years",
+  
     "18- 24 years",
     "25- 34 years",
     "35- 44 years",
