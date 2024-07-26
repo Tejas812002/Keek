@@ -8,7 +8,6 @@ import { MdIosShare } from "react-icons/md";
 import { TfiVideoClapper } from "react-icons/tfi";
 import { RiGalleryLine } from "react-icons/ri";
 import { CiVideoOn } from "react-icons/ci";
-import profileDemoPic from '../../../Assets/intersect.jpg'
 
 const ActiveCampaign = () => {
   const contextState = useContext(Mycontext);
@@ -47,14 +46,14 @@ const ActiveCampaign = () => {
   ];
 
   const cardData = [
-    { title: "Media Analyst", imgSrc: profileDemoPic },
-    { title: "Media Analyst", imgSrc: profileDemoPic },
-    { title: "Media Analyst", imgSrc: profileDemoPic },
-    { title: "Media Analyst", imgSrc: profileDemoPic },
-    { title: "Media Analyst", imgSrc: profileDemoPic },
-    { title: "Media Analyst", imgSrc: profileDemoPic },
-    { title: "Media Analyst", imgSrc: profileDemoPic },
-    { title: "Media Analyst", imgSrc: profileDemoPic },
+    { title: "Media Analyst", imgSrc: "https://placehold.co/48x48" },
+    { title: "Media Analyst", imgSrc: "https://placehold.co/48x48" },
+    { title: "Media Analyst", imgSrc: "https://placehold.co/48x48" },
+    { title: "Media Analyst", imgSrc: "https://placehold.co/48x48" },
+    { title: "Media Analyst", imgSrc: "https://placehold.co/48x48" },
+    { title: "Media Analyst", imgSrc: "https://placehold.co/48x48" },
+    { title: "Media Analyst", imgSrc: "https://placehold.co/48x48" },
+    { title: "Media Analyst", imgSrc: "https://placehold.co/48x48" },
   ];
   const visibleCards = expanded ? cardData.slice(0, 6) : cardData;
 

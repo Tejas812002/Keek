@@ -41,8 +41,11 @@ const SidebarContent = () => {
         <Link to={"/payments"}>
           <SidebarItem icon={<MdAttachMoney size={20} />} text="Payments" />
         </Link>
-        <Link to={"/favorites"}>
+        <Link to={"/viewFavourites"}>
           <SidebarItem icon={<FaRegHeart size={20} />} text="Favorites" />
+        </Link>
+        <Link to={"/viewProfile"}>
+          <SidebarItem icon={<Headphones size={20} />} text="view Profile" />
         </Link>
         <Link to={"/influencersBase"}>
           <SidebarItem
@@ -66,6 +69,7 @@ const SidebarContent = () => {
         <Link to={"/liveSupport"}>
           <SidebarItem icon={<Headphones size={20} />} text="Live Support" />
         </Link>
+       
       </SideBar>
     </div>
   );
