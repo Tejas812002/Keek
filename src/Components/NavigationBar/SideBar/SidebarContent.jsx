@@ -44,9 +44,7 @@ const SidebarContent = () => {
         <Link to={"/viewFavourites"}>
           <SidebarItem icon={<FaRegHeart size={20} />} text="Favorites" />
         </Link>
-        <Link to={"/viewProfile"}>
-          <SidebarItem icon={<Headphones size={20} />} text="view Profile" />
-        </Link>
+      
         <Link to={"/influencersBase"}>
           <SidebarItem
             icon={<CgDatabase size={18} />}

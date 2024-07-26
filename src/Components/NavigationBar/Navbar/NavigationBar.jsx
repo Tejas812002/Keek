@@ -13,7 +13,7 @@ const NavigationBar = () => {
 
   return (
 
-    <div   className={`fixed z-10 top-0 ${!expanded && "left-[78px] w-[calc(100%-65px)]"} left-[311px] w-[calc(100%-311px)] bg-white h-24 flex items-center justify-between bg-background  px-4`}>
+    <div   className={`fixed z-50 top-0 ${!expanded && "left-[78px] w-[calc(100%-65px)]"} left-[311px] w-[calc(100%-311px)] bg-white h-24 flex items-center justify-between bg-background  px-4`}>
   
     <div className="relative flex items-center left-8 w-8/12"> 
       <CiSearch className="absolute left-8 text-gray-500 top-1/2 transform -translate-y-1/2 size-5" />

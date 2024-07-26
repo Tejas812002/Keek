@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Mycontext } from "../utils/Context";
 import Img4 from "../Assets/Img4.jpg";
 import Img3 from "../Assets/Img3.jpg";
@@ -11,10 +11,14 @@ import I3 from "../Assets/I3.jpg";
 import I4 from "../Assets/I4.jpg";
 import I5 from "../Assets/I5.jpg";
 import { Link, useLocation } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
 const ViewProfile = () => {
   const contextState = useContext(Mycontext);
   const expanded = contextState.expanded;
+
+  const [favorites, setFavorites] = useState(false);
+
   const socialSitesData = [
     { name: "Instgram", logo: I5, followers: "1M" },
     { name: "Facebook", logo: I3, followers: "1.2M" },
@@ -24,6 +28,10 @@ const ViewProfile = () => {
   ];
   const location = useLocation();
   const currentPath = location.pathname;
+  const  handleHeartIcon = () => {
+  setFavorites(!favorites)
+  /// Aslo need to add this profile to savedlist 
+  }
   return (
     <div
       className={`flex relative top-[131px] ${
@@ -75,16 +83,25 @@ const ViewProfile = () => {
                   alt="Profile"
                 />
                 <div class="flex flex-col bg-white rounded-lg py-[16px] pl-[54px]">
-                  <h1 className="flex flex-row text-[19px]  font-semibold">
+                 <div className="flex flex-row justify-between items-center">
+                  <div className=" flex flex-row">
+                 <h1 className="flex text-[19px]  font-semibold">
                     {" "}
                     Gautam Sachdeva
-                    <div className="flex w-[135px] h-[30px] pl-[30px] ">
-                      <button className="text-white text-xs  px-[12.55px] py-[7.84px] justify-center rounded-md font-bold bg-gradient-to-r from-[#1E3BDD] to-[#1D9ED5] items-center">
+                    </h1>
+                    <div className="flex  h-[30px] pl-[30px] justify-between items-center ">
+                      <button className="text-white w-[135px] text-xs  px-[12.55px] py-[7.84px] justify-center rounded-md font-bold bg-gradient-to-r from-[#1E3BDD] to-[#1D9ED5] items-center">
                         Colloboration
                       </button>
+                      
                     </div>
-                  </h1>
-                  <p className="flex text-[14px] font-semibold text-[#818181] pt-[22px]">
+                    </div>
+                 
+                  <div className="mr-6" onClick={handleHeartIcon}>
+                   {!favorites ? <FaHeart className=" text-red-500 text-3xl justify-end" /> : <FaHeart className="text-gray-300 text-3xl justify-end" />}
+                   </div>
+                 </div>
+                  <p className="flex text-[14px] mr-6 font-semibold text-[#818181] pt-[22px]">
                     Worem ipsum dolor sit amet, consectetur adipiscing elit.
                     Nunc vulputate libero et velit interdum, ac aliquet odio
                     mattis. Class aptent taciti sociosqu ad litora torquent per

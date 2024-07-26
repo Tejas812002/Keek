@@ -6,7 +6,7 @@ import { FaHeart } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 
 const tableData = [
-  {name: "Media Analyst",imageUrl: logo,category: "Travel, Tourism, Fashion",workSuccessRatio: "90%",},
+  {name: "Media Analyst",imageUrl: logo,category: "Travel, Tourism, Fashion",workSuccessRatio: "90%"},
   {name: "Media Analyst",imageUrl: logo, category: "Travel, Tourism, Fashion",workSuccessRatio: "90%", },
   {name: "Media Analyst",imageUrl: logo, category: "Travel, Tourism, Fashion",workSuccessRatio: "90%", },
   {name: "Media Analyst",imageUrl: logo, category: "Travel, Tourism, Fashion",workSuccessRatio: "90%", },
@@ -34,7 +34,7 @@ const MusicList = () => {
 
 const [currentPage, setCurrentPage] = useState(1);
 
-const [favorites, setFavorites] = useState(Array(tableData.length).fill(false));
+const [favorites, setFavorites] = useState(Array(tableData.length).fill(true));
 const recordsPerPage = 7;
 
 const lastIndex = currentPage * recordsPerPage;

@@ -68,14 +68,14 @@ const ImageComp = ({ gridColumns}) => {
             <img
               src={crown}
               alt="crown"
-              className="absolute top-[-20px] right-[-20px] w-[40px] h-[40px] z-10"
+              className="absolute top-[-20px] right-[-20px] w-[40px] h-[40px]  z-10"
             />
           )}
-          <div className="relative w-full h-[160px] group">
+          <div className="relative w-full h-[160px] group object-cover">
             <img
               src={src}
               alt={`placeholder ${index}`}
-              className={`w-full h-full ${selectedImage === index ? 'border-2 border-yellow-500' : ''} object-cover transition duration-500 ease-in-out group-hover:grayscale`}
+              className={`w-full h-full ${selectedImage === index ? 'border-2 border-yellow-500' : ''} object-cover transition duration-500 ease-in-out group-hover:backdrop-blur`}
             />
             <div className="absolute inset-0 bg-black opacity-0 border-3 border-blue-500 group-hover:opacity-50 transition duration-500 ease-in-out"></div>
           </div>
@@ -87,7 +87,7 @@ const ImageComp = ({ gridColumns}) => {
            </Link>
           </div>
           <div className="flex items-center space-x-2 p-2 bg-white">
-            <p className="text-[16px] font-semibold font-body">{Data[index]?.name}</p>
+            <p className="text-sm font-semibold font-body">{Data[index]?.name}</p>
             <img src={correct} className="h-[12px] w-[12px]" />
           </div>
           <div className="flex justify-start space-x-2 p-2 bg-white">
