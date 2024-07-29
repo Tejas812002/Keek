@@ -52,6 +52,15 @@ const SidebarContent = () => {
           />
         </Link>
 
+        <Link to={"/ratingAndFeedback"}>
+          <SidebarItem
+            icon={<CgDatabase size={18} />}
+            text="Rating & Feedback"
+          />
+        </Link>
+
+        
+
         <SidebarContext.Consumer>
           {({ expanded }) =>
             expanded ? (

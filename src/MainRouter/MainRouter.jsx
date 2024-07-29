@@ -10,6 +10,8 @@ import DiscoverInfluencer from "../DiscoverInfluencer/DiscoverInfluencer";
 import Favourites from '../Favourites/Favourites';
 import Profile from '../ProfileComponent/Profile';
 import MusicList from "../Favourites/MusicList";
+import FeedbackComponent from "../FeedbackComponent/FeedbackComponent";
+import CalendarComponent from "../Calendar&Component/Calendar/CalendarComponent";
 
 
 const MainRouter = () => {
@@ -103,7 +105,11 @@ const MainRouter = () => {
           path="/musicList"
           element={<MusicList/>}
         />
-
+         <Route
+          path="/ratingAndFeedback"
+          element={<FeedbackComponent/>}
+        />
+        
 
 
       </Routes>
