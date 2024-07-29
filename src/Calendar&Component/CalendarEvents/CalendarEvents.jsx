@@ -12,7 +12,8 @@ const expanded = contextState.expanded;
         : "left-[350px] w-[calc(100%-360px)]"
     }  overflow-y-auto  bg-[#F5F5F5] space-y-4 p-4 `}>
       
-      CalendarEvents</div>
+      Calendar Events
+      </div>
   )
 }
 

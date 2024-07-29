@@ -11,7 +11,8 @@ import Favourites from '../Favourites/Favourites';
 import Profile from '../ProfileComponent/Profile';
 import MusicList from "../Favourites/MusicList";
 import FeedbackComponent from "../FeedbackComponent/FeedbackComponent";
-import CalendarComponent from "../Calendar&Component/Calendar/CalendarComponent";
+import CalendarEvents from "../Calendar&Component/CalendarEvents/CalendarEvents";
+
 
 
 const MainRouter = () => {
@@ -108,6 +109,11 @@ const MainRouter = () => {
          <Route
           path="/ratingAndFeedback"
           element={<FeedbackComponent/>}
+        />
+
+<Route
+          path="/CalendarEvent"
+          element={<CalendarEvents/>}
         />
         
 

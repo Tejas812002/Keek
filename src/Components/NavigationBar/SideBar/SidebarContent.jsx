@@ -59,7 +59,12 @@ const SidebarContent = () => {
           />
         </Link>
 
-        
+        <Link to={"/CalendarEvent"}>
+          <SidebarItem
+            icon={<CgDatabase size={18} />}
+            text="Calendar Events Output"
+          />
+        </Link>
 
         <SidebarContext.Consumer>
           {({ expanded }) =>
