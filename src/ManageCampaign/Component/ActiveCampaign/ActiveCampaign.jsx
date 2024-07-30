@@ -8,6 +8,8 @@ import { MdIosShare } from "react-icons/md";
 import { TfiVideoClapper } from "react-icons/tfi";
 import { RiGalleryLine } from "react-icons/ri";
 import { CiVideoOn } from "react-icons/ci";
+import { Link, useLocation } from "react-router-dom";
+import { MdChevronRight } from "react-icons/md";
 
 const ActiveCampaign = () => {
   const contextState = useContext(Mycontext);
@@ -56,7 +58,8 @@ const ActiveCampaign = () => {
     { title: "Media Analyst", imgSrc: "https://placehold.co/48x48" },
   ];
   const visibleCards = expanded ? cardData.slice(0, 6) : cardData;
-
+  const location = useLocation();
+  const currentPath = location.pathname;
   return (
    <div className={`flex relative top-20 ${
     !expanded
@@ -64,25 +67,36 @@ const ActiveCampaign = () => {
       : "left-[350px] w-[calc(100%-360px)]"
   }  overflow-y-auto  bg-[#F5F5F5] space-y-4`}>
      <div className="w-full mt-[49px]">
-      <div className="">
-        <div className="h-[71.42px] pl-[31.4px] mr-10 bg-white flex items-center">
-          <nav className="text-sm pt-[27.42] text-muted-foreground">
-            <a href="#" className="hover:text-primary text-base font-normal mr-1">
-              Manage Campaigns{" "}
-            </a>
-            &gt;&nbsp;
-            <a href="#" className="hover:text-primary text-base font-normal mr-1">
-              {" "}
-              Active Campaigns{" "}
-            </a>
-            &gt;&nbsp;
-            <span className="text-primary text-blue-500 text-base font-semibold">
+     <div className="">
+      <div className="h-[71.42px] pl-[31.4px] mr-10 bg-white flex items-center">
+        <nav className="text-muted-foreground flex items-center">
+          <Link
+            to="/manageCampaign"
+            className={`hover:text-primary text-[16px] font-normall mr-1 flex items-center ${
+              currentPath === '/manageCampaign' ? 'text-blue-500' : ''
+            }`}
+          >
+            Manage Campaigns
+            <MdChevronRight className="m-1 items-center" size={"15.7px"} />
+          </Link>
+   
+          <Link
+            to="/ActiveCampaign"
+            className={`hover:text-primary text-[16px] font-normal mr-1 flex items-center ${
+              currentPath === '/ActiveCampaign' ? '' : ''
+            }`}
+          >
+            Active Campaigns
+            <MdChevronRight className="m-1 items-center" size={"15.7px"} />
+          </Link>
+      
+          <span className="text-primary text-blue-500 text-base font-semibold">
               {" "}
               Campaign Name{" "}
             </span>
-          </nav>
-        </div>
+        </nav>
       </div>
+    </div>
 
       <div className="grid grid-cols-1 mt-[29px] md:grid-cols-4 mr-10 gap-20 mb-8">
         <div

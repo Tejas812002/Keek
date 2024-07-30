@@ -12,12 +12,29 @@ import I4 from "../Assets/I4.jpg";
 import I5 from "../Assets/I5.jpg";
 import { Link, useLocation } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
+import { GoDotFill } from "react-icons/go";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+
+const data = [
+  { name: "USA", value: 30000 },
+  { name: "India", value: 40000 },
+  { name: "Canada", value: 20000 },
+  { name: "Singapure", value: 10000 },
+  { name: "Dubai", value: 30000 },
+];
+const COLORS = ["#C9EEFF", "#A3E1FF", "#5BB2DD", "#0575AD", "#033D5A"];
+const totalValue = data.reduce((acc, entry) => acc + entry.value, 0);
+
+const name = data.map((entry) => entry.name);
+const value = data.map((entry) =>
+  ((entry.value / totalValue) * 100).toFixed(1)
+);
 
 const ViewProfile = () => {
   const contextState = useContext(Mycontext);
   const expanded = contextState.expanded;
 
-  const [favorites, setFavorites] = useState(false);
+  const [favorites, setFavorites] = useState(true);
 
   const socialSitesData = [
     { name: "Instgram", logo: I5, followers: "1M" },
@@ -28,10 +45,10 @@ const ViewProfile = () => {
   ];
   const location = useLocation();
   const currentPath = location.pathname;
-  const  handleHeartIcon = () => {
-  setFavorites(!favorites)
-  /// Aslo need to add this profile to savedlist 
-  }
+  const handleHeartIcon = () => {
+    setFavorites(!favorites);
+    /// Aslo need to add this profile to savedlist
+  };
   return (
     <div
       className={`flex relative top-[131px] ${
@@ -42,37 +59,51 @@ const ViewProfile = () => {
     >
       <div className="w-full ">
         <div>
-        <div className="h-[72px] pl-8 mr-[37px] bg-white content-center flex items-center">
-  <Link
-    to="/discoverInfluencers"
-    className={`bg-white rounded-lg flex flex-row font-semibold font-body text-base justify-center items-center ${
-      currentPath === '/discover' ? 'text-[#2463eb]' : 'text-[#384EDD]'
-    }`}
-  >
-    <p className={`font-body ${currentPath === '/discover' ? 'text-[#2463eb]' : 'text-black'}`}>Discover</p>
-    <svg
-      width="17"
-      height="17"
-      viewBox="0 0 17 17"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="ml-1"
-    >
-      <g id="arrows/chevron-right">
-        <path
-          id="Icon"
-          d="M6.91225 12.5824C6.65685 12.327 6.65685 11.9129 6.91225 11.6575L10.3737 8.19603L6.91225 4.73455C6.65685 4.47915 6.65685 4.06507 6.91225 3.80968C7.16765 3.55428 7.58173 3.55428 7.83713 3.80968L11.761 7.73359C12.0164 7.98899 12.0164 8.40307 11.761 8.65846L7.83713 12.5824C7.58173 12.8378 7.16765 12.8378 6.91225 12.5824Z"
-          fill="#202024"
-        />
-      </g>
-    </svg>
-  </Link>
-  <Link to={"/viewProfile"}>
-  
-    <span className={`ml-1 ${currentPath === '/discover' ? 'text-[#2463eb]' : 'text-[#384EDD]'}`}>View Profile</span>
-  </Link>
-</div>
-
+          <div className="h-[72px] pl-8 mr-[37px] bg-white content-center flex items-center">
+            <Link
+              to="/discoverInfluencers"
+              className={`bg-white rounded-lg flex flex-row font-semibold font-body text-base justify-center items-center ${
+                currentPath === "/discover"
+                  ? "text-[#2463eb]"
+                  : "text-[#384EDD]"
+              }`}
+            >
+              <p
+                className={`font-body ${
+                  currentPath === "/discover" ? "text-[#2463eb]" : "text-black"
+                }`}
+              >
+                Discover
+              </p>
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 17 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="ml-1"
+              >
+                <g id="arrows/chevron-right">
+                  <path
+                    id="Icon"
+                    d="M6.91225 12.5824C6.65685 12.327 6.65685 11.9129 6.91225 11.6575L10.3737 8.19603L6.91225 4.73455C6.65685 4.47915 6.65685 4.06507 6.91225 3.80968C7.16765 3.55428 7.58173 3.55428 7.83713 3.80968L11.761 7.73359C12.0164 7.98899 12.0164 8.40307 11.761 8.65846L7.83713 12.5824C7.58173 12.8378 7.16765 12.8378 6.91225 12.5824Z"
+                    fill="#202024"
+                  />
+                </g>
+              </svg>
+            </Link>
+            <Link to={"/viewProfile"}>
+              <span
+                className={`ml-1 ${
+                  currentPath === "/discover"
+                    ? "text-[#2463eb]"
+                    : "text-[#384EDD]"
+                }`}
+              >
+                View Profile
+              </span>
+            </Link>
+          </div>
 
           <div className="flex items-center pl-8 bg-white h-[206px]  content-center mr-[37px] mt-6">
             <div className="flex justify-center  item-center">
@@ -83,24 +114,27 @@ const ViewProfile = () => {
                   alt="Profile"
                 />
                 <div class="flex flex-col bg-white rounded-lg py-[16px] pl-[54px]">
-                 <div className="flex flex-row justify-between items-center">
-                  <div className=" flex flex-row">
-                 <h1 className="flex text-[19px]  font-semibold">
-                    {" "}
-                    Gautam Sachdeva
-                    </h1>
-                    <div className="flex  h-[30px] pl-[30px] justify-between items-center ">
-                      <button className="text-white w-[135px] text-xs  px-[12.55px] py-[7.84px] justify-center rounded-md font-bold bg-gradient-to-r from-[#1E3BDD] to-[#1D9ED5] items-center">
-                        Colloboration
-                      </button>
-                      
+                  <div className="flex flex-row justify-between items-center">
+                    <div className=" flex flex-row">
+                      <h1 className="flex text-[19px]  font-semibold">
+                        {" "}
+                        Gautam Sachdeva
+                      </h1>
+                      <div className="flex  h-[30px] pl-[30px] justify-between items-center ">
+                        <button className="text-white w-[135px] text-xs  px-[12.55px] py-[7.84px] justify-center rounded-md font-bold bg-gradient-to-r from-[#1E3BDD] to-[#1D9ED5] items-center">
+                          Colloboration
+                        </button>
+                      </div>
                     </div>
+
+                    <div className="mr-6" onClick={handleHeartIcon}>
+                      {!favorites ? (
+                        <FaHeart className=" text-red-500 text-3xl justify-end" />
+                      ) : (
+                        <FaHeart className="text-gray-300 text-3xl justify-end" />
+                      )}
                     </div>
-                 
-                  <div className="mr-6" onClick={handleHeartIcon}>
-                   {!favorites ? <FaHeart className=" text-red-500 text-3xl justify-end" /> : <FaHeart className="text-gray-300 text-3xl justify-end" />}
-                   </div>
-                 </div>
+                  </div>
                   <p className="flex text-[14px] mr-6 font-semibold text-[#818181] pt-[22px]">
                     Worem ipsum dolor sit amet, consectetur adipiscing elit.
                     Nunc vulputate libero et velit interdum, ac aliquet odio
@@ -138,7 +172,7 @@ const ViewProfile = () => {
           </div>
 
           <div className="w-full mt-[14px]">
-            <div class="box-border w-full inline-flex items-center gap-[12px] place-content-evenly px-4">
+            <div class="box-border w-full inline-flex items-center gap-[12px] place-content-evenly ">
               {socialSitesData.map((platform, index) => (
                 <div
                   key={index}
@@ -169,32 +203,109 @@ const ViewProfile = () => {
           <div className="flex items-center pt-[24px]">
             <div className="flex flex-col mr-[37px]">
               <div className="space-y-6">
-                <div className="flex items-center content-center h-[70px] px-[33px] bg-white">
-                  <div className=" mt-2 font-semibold text-lg text-[#384EDD]">
-                    Work Success Ratio
-                    <p1 className="text-[#22C55E] text-lg pl-[24px]">87%</p1>
-                  </div>
-                </div>
-
-                <div className="flex items-center content-center h-[90px] px-[40px] bg-white ">
-                  <div>
-                    <div className=" text-lg mt-2 text-[#384EDD] font-semibold">
-                      Influencer Category
+                <div className="flex flex-row gap-4 w-full">
+                  <div className={`flex flex-col space-y-6 w-1/2`}>
+                    <div className="flex items-center content-center rounded-lg h-[70px] px-[33px] bg-white">
+                      <div className=" mt-2 font-semibold text-lg text-[#384EDD]">
+                        Work Success Ratio
+                        <p1 className="text-[#22C55E] text-lg pl-[24px]">
+                          87%
+                        </p1>
+                      </div>
                     </div>
-                    <p className=" text-lg text-[#818181]">
-                      Travel, Food, Fashion, Gaming.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-center content-center h-[90px] px-[40px]  bg-white ">
-                  <div>
-                    <div className="text-lg mt-2   font-semibold text-[#384EDD]">
-                      Brand Collaboration
+                    <div className="flex items-center rounded-lg content-center h-[90px] px-[40px] bg-white ">
+                      <div>
+                        <div className=" text-lg mt-2 text-[#384EDD] font-semibold">
+                          Influencer Category
+                        </div>
+                        <p className=" text-lg text-[#818181]">
+                          Travel, Food, Fashion, Gaming.
+                        </p>
+                      </div>
                     </div>
-                    <p className=" text-lg text-[#818181]">
-                      Gucci, Zara, Channel, Sony, Netflix , H&M.
-                    </p>
+
+                    <div className="flex items-center rounded-lg content-center h-[90px] px-[40px]  bg-white ">
+                      <div>
+                        <div className="text-lg mt-2   font-semibold text-[#384EDD]">
+                          Brand Collaboration
+                        </div>
+                        <p className=" text-lg text-[#818181]">
+                          Gucci, Zara, Channel, Sony, Netflix , H&M.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-1/2 ">
+                    <div
+                      className={`py-4 px-6 rounded-[10px]  h-[299px] bg-white ${
+                        !expanded ? "w-[680px]" : "w-full"
+                      } `}
+                    >
+                      <h5 className=" text-gray-900 font-bold text-base">
+                        Audience Demographics
+                      </h5>
+                      <div className="flex flex-row h-full relative ">
+                        <div className="w-1/2 ml-4 mr-4">
+                          <ResponsiveContainer>
+                            <PieChart
+                              width={200}
+                              height={200}
+                              style={{ left: "-25px", top: "-10px" }}
+                            >
+                              <Pie
+                                data={data}
+                                cx={120}
+                                // cy={200}
+                                innerRadius={60}
+                                outerRadius={90}
+                                fill="#8884d8"
+                                paddingAngle={3}
+                                dataKey="value"
+                              >
+                                {data.map((entry, index) => (
+                                  <Cell
+                                    key={`cell-${index}`}
+                                    fill={COLORS[index % COLORS.length]}
+                                  />
+                                ))}
+                              </Pie>
+                              <Tooltip />
+                            </PieChart>
+                          </ResponsiveContainer>
+                        </div>
+                        <div className="w-[208px] h-full mt-10">
+                          {data.map((entry, index) => (
+                            <div
+                              key={`legend-${index}`}
+                              className=" flex border-b border-[#E4E4E4] justify-between py-1 px-2"
+                            >
+                              <div className="flex  items-center">
+                                <span
+                                  className="mr-2 text-sm "
+                                  style={{
+                                    color: COLORS[index % COLORS.length],
+                                  }}
+                                >
+                                  <GoDotFill />
+                                </span>
+                                <span className="text-sm font-semibold text-black">
+                                  {entry.name}
+                                </span>
+                              </div>
+                              <div>
+                                <span className="text-sm font-normal text-black ">
+                                  {((entry.value / totalValue) * 100).toFixed(
+                                    1
+                                  )}
+                                  %
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
