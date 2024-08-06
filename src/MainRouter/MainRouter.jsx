@@ -1,6 +1,9 @@
 import Dashboard from "../ManageCampaign/Components/Dashboard/Dashboard";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import LiveCampaign from "../ManageCampaign/Components/LiveCampaign/LiveCampaign";
+import PastCampaign from "../ManageCampaign/Components/PastCampaign/PastCampaign";
+import DraftCampaign from "../ManageCampaign/Components/DraftCampaign/DraftCampaign";
 
 
 
@@ -88,15 +91,19 @@ const MainRouter = () => {
           }
         />
         
-        {/* <Route
-          path="/AddCampaign"
-          element={<AddCampaign/>}
+        <Route
+          path="/LiveCampaign"
+          element={<LiveCampaign/>}
+        />
+        <Route
+          path="/PastCampaign"
+          element={<PastCampaign/>}
         />
          <Route
-          path="/budget"
-          element={<Budget/>}
+          path="/DraftCampaign"
+          element={<DraftCampaign/> }
         />
-         <Route
+         {/* <Route
           path="/CampaignSummary"
           element={<CampaignSummary/>}
         />
@@ -118,8 +125,8 @@ const MainRouter = () => {
           path="/Calendar"
           element={<CalendarEvents/>}
         />
-        
- */}
+         */}
+
 
       </Routes>
       
