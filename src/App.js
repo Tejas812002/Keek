@@ -1,11 +1,11 @@
-import AdminPanel from "./AdminPanel/AdminPanel";
 import "./App.css";
+import ManageCampaign from "./ManageCampaign/ManageCampaign";
 
 
 function App() {
   return (
     <div className="max-h-full " >
-     <AdminPanel/>
+    <ManageCampaign/>
     
     </div>
   );

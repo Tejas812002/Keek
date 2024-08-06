@@ -1,20 +1,18 @@
-import React, { useContext } from 'react'
-import { Mycontext } from '../utils/Context';
-import CampaignBoard from '../ManageCampaign/Component/CampaignBoard/CampaignBoard'
-
+import React from 'react'
+import SidebarContent from '../ManageCampaign/Components/NavigationBar/SideBar/SidebarContent'
+import Dashboard from '../ManageCampaign/Components/Dashboard/Dashboard'
 
 const ManageCampaign = () => {
-    const contextState = useContext(Mycontext);
-const expanded = contextState.expanded;
   return (
-    <div className={`flex relative top-20 ${
-        !expanded
-          ? "left-[100px] w-[calc(100%-110px)]"
-          : "left-[350px] w-[calc(100%-360px)]"
-      }  overflow-y-auto  bg-[#F5F5F5] space-y-4`}>
-   
-       <CampaignBoard/>
-    
+    <div className="flex max-h-full bg-[#F5F5F5] font-body flex-col ">
+      <div >
+       <SidebarContent/>
+      
+      </div>
+      <div className="flex-row ">
+         <Dashboard  />
+      
+      </div>
     </div>
   )
 }

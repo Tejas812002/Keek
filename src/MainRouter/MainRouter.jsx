@@ -1,17 +1,7 @@
 import Dashboard from "../Components/Dashboard/Dashboard";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import ManageCampaign from "../ManageCampaign/ManageCampaign";
-import Budget from "../ManageCampaign/Component/Budget/Budget";
-import CampaignSummary from "../ManageCampaign/Component/AddCampaign/CampaignSummary";
-import AddCampaign from "../ManageCampaign/Component/AddCampaign/AddCampaign";
-import ActiveCampaign from "../ManageCampaign/Component/ActiveCampaign/ActiveCampaign";
-import DiscoverInfluencer from "../DiscoverInfluencer/DiscoverInfluencer";
-import Favourites from '../Favourites/Favourites';
-import Profile from '../ProfileComponent/Profile';
-import MusicList from "../Favourites/MusicList";
-import FeedbackComponent from "../FeedbackComponent/FeedbackComponent";
-import CalendarEvents from "../Calendar&Component/CalendarEvents/CalendarEvents";
+
 
 
 
@@ -19,26 +9,29 @@ const MainRouter = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" 
+        element={<Dashboard />} 
+        />
+
         <Route
           path="/discoverInfluencers"
-          element={<DiscoverInfluencer/>}
+            element={
+            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+              {" "}
+              Influencers Base
+            </div>
+          }
         />
         <Route
           path="/manageCampaign"
           element={
-          <ManageCampaign/>
-        }
-        />
-        <Route
-          path="/calendar"
-          element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              Calendar
+              Influencers Base
             </div>
           }
         />
+       
         <Route
           path="/payments"
           element={
@@ -50,11 +43,21 @@ const MainRouter = () => {
         />
           <Route
           path="/viewFavourites"
-          element={<Favourites/>}
+          element={
+            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+              {" "}
+              Influencers Base
+            </div>
+          }
         />
          <Route
           path="/viewProfile"
-          element={<Profile/>}
+          element={
+            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+              {" "}
+              Influencers Base
+            </div>
+          }
         />
       
         <Route
@@ -85,7 +88,7 @@ const MainRouter = () => {
           }
         />
         
-        <Route
+        {/* <Route
           path="/AddCampaign"
           element={<AddCampaign/>}
         />
@@ -112,11 +115,11 @@ const MainRouter = () => {
         />
 
 <Route
-          path="/CalendarEvent"
+          path="/Calendar"
           element={<CalendarEvents/>}
         />
         
-
+ */}
 
       </Routes>
       

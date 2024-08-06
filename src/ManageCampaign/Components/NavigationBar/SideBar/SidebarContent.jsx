@@ -4,10 +4,13 @@ import { CalendarDays, Settings, Headphones } from 'lucide-react';
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { CgUserList } from "react-icons/cg"
 import { CgCrown } from "react-icons/cg";
-import { CgDatabase } from "react-icons/cg";
+import { FiUser } from "react-icons/fi";
 import { MdAttachMoney } from "react-icons/md";
-import { FaRegHeart } from "react-icons/fa";
+
 import { Link } from 'react-router-dom';
+import { AiOutlineLike } from "react-icons/ai";
+import { LuPieChart } from "react-icons/lu";
+import { IoPaperPlaneOutline } from "react-icons/io5";
 
 const SidebarContent = () => {
   return (
@@ -16,53 +19,49 @@ const SidebarContent = () => {
         <Link to={"/"}>
           <SidebarItem
             icon={<MdOutlineDashboardCustomize size={20} />}
-            text="Admin Panel"
+            text="Dashboard"
           >
-            <SidebarItem text="ROI Report" customClass="text-gray-600" />
+            {/* <SidebarItem text="ROI Report" customClass="text-gray-600" />
             <SidebarItem text="Audience Insights" customClass="text-gray-600" />
             <SidebarItem
               text="Manage Influencers"
               customClass="text-gray-600"
-            />
+            /> */}
           </SidebarItem>
         </Link>
+
+        <Link to={"/Profile"}>
+          <SidebarItem
+            icon={<FiUser size={20} />}
+            text="Profile"
+          />
+        </Link>
+
+        <Link to={"/manageCampaign"}>
+          <SidebarItem icon={<CgCrown size={20} />} text="Manage Campaign" />
+        </Link>
+
+
         <Link to={"/discoverInfluencers"}>
           <SidebarItem
             icon={<CgUserList size={20} />}
             text="Discover Influencers"
           />
         </Link>
-        <Link to={"/manageCampaign"}>
-          <SidebarItem icon={<CgCrown size={20} />} text="Manage Campaign" />
-        </Link>
-        <Link to={"/calendar"}>
-          <SidebarItem icon={<CalendarDays size={20} />} text="Calendar" />
+        <Link to={"/Messages"}>
+          <SidebarItem icon={<IoPaperPlaneOutline size={20} />} text="Messages" />
         </Link>
         <Link to={"/payments"}>
           <SidebarItem icon={<MdAttachMoney size={20} />} text="Payments" />
         </Link>
-        <Link to={"/viewFavourites"}>
-          <SidebarItem icon={<FaRegHeart size={20} />} text="Favorites" />
+        <Link to={"/Analytics"}>
+          <SidebarItem icon={<LuPieChart size={20} />} text="Analytics" />
         </Link>
       
-        <Link to={"/influencersBase"}>
-          <SidebarItem
-            icon={<CgDatabase size={18} />}
-            text="Influencers Base"
-          />
-        </Link>
-
         <Link to={"/ratingAndFeedback"}>
           <SidebarItem
-            icon={<CgDatabase size={18} />}
+            icon={<AiOutlineLike size={20} />}
             text="Rating & Feedback"
-          />
-        </Link>
-
-        <Link to={"/CalendarEvent"}>
-          <SidebarItem
-            icon={<CgDatabase size={18} />}
-            text="Calendar Events Output"
           />
         </Link>
 
@@ -79,7 +78,7 @@ const SidebarContent = () => {
           <SidebarItem icon={<Settings size={20} />} text="Settings" />
         </Link>
         <Link to={"/liveSupport"}>
-          <SidebarItem icon={<Headphones size={20} />} text="Live Support" />
+          <SidebarItem icon={<Headphones size={20} />} text="Support" />
         </Link>
        
       </SideBar>

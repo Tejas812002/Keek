@@ -1,19 +1,25 @@
 import React, { createContext, useContext, useState } from 'react';
 import { MoreVertical, EllipsisVertical, ChevronDown, ChevronUp } from 'lucide-react';
-import logo from "../../../Assets/Logo.jpg";
-import white from "../../../Assets/white.jpg";
-import profile from "../../../Assets/intersect.jpg";
+import logo from "../../../../Assets/Logo.jpg";
+import white from "../../../../Assets/white.jpg";
+import profile from "../../../../Assets/intersect.jpg";
 import { TbMenuDeep } from "react-icons/tb";
-import {Mycontext} from '../../../utils/Context'
+import {Mycontext} from '../../../../utils/Context'
 export const SidebarContext = createContext();
 
-const SideBar = ({ children }) => {
+const SideBar = ({ children  }) => {   
+
   const contextState = useContext(Mycontext);
   const expanded = contextState.expanded;
   const setExpanded = contextState.setExpanded;
   // const [expanded, setExpanded] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
 
+  // this user info will comne from backend so make sure it comes from props
+  const User = {
+  "name": "XYZ",
+  "role": "Media Anaylst" 
+}
   return (
     <div>
       <aside className={`fixed h-screen max-w-[340px] z-10 transition-all duration-100 ease-in`}>
@@ -30,15 +36,15 @@ const SideBar = ({ children }) => {
             </button>
           </div>
           <SidebarContext.Provider value={{ expanded, selectedItem, setSelectedItem }}>
-            <ul className='flex-1 space-y-2 mt-10 px-3'>{children}</ul>
+            <ul className='flex-1 space-y-2 mt-10  px-3'>{children}</ul>
           </SidebarContext.Provider>
 
           <div className='border-t flex p-3'>
             <img src={profile} alt='' className={`w-10 h-10 rounded-md transition-all ${expanded ? "w-10 " : "w-0 ml-2"}`} />
             <div className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}`}>
               <div className='leading-4'>
-                <h4 className='font-semibold '>John Doe</h4>
-                <span className='text-xs text-gray-600'>johnDoe@gmail.com</span>
+                <h4 className='font-semibold '>{User.name}</h4>
+                <span className='text-xs font-semibold text-gray-600'>{User.role}</span>
               </div>
               <MoreVertical size={20} />
             </div>
@@ -78,7 +84,7 @@ export function SidebarItem({ icon, text, alert, children, customClass }) {
           {alert && (
             <span className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${expanded ? "" : "top-2"}`}></span>
           )}
-          {expanded && text === "Admin Panel" && (
+          {expanded && text === "Dashboard" && (
             <div className="ml-auto">
               {dropdownOpen ? <ChevronUp /> : <ChevronDown />}
             </div>
