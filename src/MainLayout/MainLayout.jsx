@@ -1,20 +1,19 @@
 import React from 'react'
 import SidebarContent from '../ManageCampaign/Components/NavigationBar/SideBar/SidebarContent'
-import Dashboard from '../ManageCampaign/Components/Dashboard/Dashboard'
+import MainRouter from '../MainRouter/MainRouter'
 
-const ManageCampaign = () => {
+const MainLayout = () => {
   return (
+    
     <div className="flex max-h-full bg-[#F5F5F5] font-body flex-col ">
       <div >
-       <SidebarContent/>
-      
+       <SidebarContent/>     
       </div>
       <div className="flex-row ">
-         <Dashboard  />
-      
+         <MainRouter/>     
       </div>
     </div>
   )
 }
 
-export default ManageCampaign
+export default MainLayout

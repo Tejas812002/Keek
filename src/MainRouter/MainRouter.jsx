@@ -1,4 +1,4 @@
-import Dashboard from "../Components/Dashboard/Dashboard";
+import Dashboard from "../ManageCampaign/Components/Dashboard/Dashboard";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -10,7 +10,7 @@ const MainRouter = () => {
     <>
       <Routes>
         <Route path="/" 
-        element={<Dashboard />} 
+        element={<Dashboard/>} 
         />
 
         <Route
@@ -18,7 +18,7 @@ const MainRouter = () => {
             element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              Influencers Base
+              discoverInfluencers
             </div>
           }
         />
@@ -27,7 +27,7 @@ const MainRouter = () => {
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              Influencers Base
+              manageCampaign
             </div>
           }
         />
@@ -46,7 +46,7 @@ const MainRouter = () => {
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              Influencers Base
+              viewFavourites
             </div>
           }
         />
@@ -55,7 +55,7 @@ const MainRouter = () => {
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              Influencers Base
+              viewProfile
             </div>
           }
         />
@@ -65,7 +65,7 @@ const MainRouter = () => {
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              Influencers Base
+              influencersBase
             </div>
           }
         />

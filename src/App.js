@@ -1,11 +1,11 @@
 import "./App.css";
-import ManageCampaign from "./ManageCampaign/ManageCampaign";
+import MainLayout from "./MainLayout/MainLayout";
 
 
 function App() {
   return (
     <div className="max-h-full " >
-    <ManageCampaign/>
+   <MainLayout/>
     
     </div>
   );
