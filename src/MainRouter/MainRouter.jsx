@@ -1,9 +1,9 @@
-import Dashboard from "../ManageCampaign/Components/Dashboard/Dashboard";
+
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import LiveCampaign from "../ManageCampaign/Components/LiveCampaign/LiveCampaign";
-import PastCampaign from "../ManageCampaign/Components/PastCampaign/PastCampaign";
-import DraftCampaign from "../ManageCampaign/Components/DraftCampaign/DraftCampaign";
+import LiveCampaign from "../ManageCampaign/LiveCampaign/LiveCampaign";
+import PastCampaign from "../ManageCampaign/PastCampaign/PastCampaign";
+import DraftCampaign from "../ManageCampaign/DraftCampaign/DraftCampaign";
 
 
 
@@ -13,7 +13,12 @@ const MainRouter = () => {
     <>
       <Routes>
         <Route path="/" 
-        element={<Dashboard/>} 
+        element={
+          <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+          {" "}
+             Di
+        </div>
+        } 
         />
 
         <Route
@@ -28,10 +33,7 @@ const MainRouter = () => {
         <Route
           path="/manageCampaign"
           element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              manageCampaign
-            </div>
+            <LiveCampaign/>
           }
         />
        
@@ -91,10 +93,7 @@ const MainRouter = () => {
           }
         />
         
-        <Route
-          path="/LiveCampaign"
-          element={<LiveCampaign/>}
-        />
+       
         <Route
           path="/PastCampaign"
           element={<PastCampaign/>}
