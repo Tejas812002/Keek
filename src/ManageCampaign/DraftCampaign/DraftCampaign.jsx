@@ -104,7 +104,7 @@ const DraftCampaign = () => {
         </div>
         <div class="flex border-b border-border">
           <div className="flex space-x-4">
-            <Link to="/LiveCampaign">
+            <Link to="/manageCampaign">
               <button
                 className={`py-2 px-4 text-primary  ${location.pathname === '/LiveCampaign'
                     ? ' font-semibold border-b-2 border-blue-500'
