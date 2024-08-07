@@ -1,12 +1,10 @@
 
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import LiveCampaign from "../ManageCampaign/LiveCampaign/LiveCampaign";
-import PastCampaign from "../ManageCampaign/PastCampaign/PastCampaign";
-import DraftCampaign from "../ManageCampaign/DraftCampaign/DraftCampaign";
-
-
-
+import LiveCampaign from "../Manage/ManageCampaign/LiveCampaign/LiveCampaign";
+import PastCampaign from "../Manage/ManageCampaign/LiveCampaign/LiveCampaign";
+import DraftCampaign from "../Manage/ManageCampaign/DraftCampaign/DraftCampaign";
+import AddCampaign from "../Manage/ManageCampaign/AddCampaign/AddCampaign";
 
 const MainRouter = () => {
   return (
@@ -16,7 +14,7 @@ const MainRouter = () => {
         element={
           <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
           {" "}
-             Di
+             Dashboard
         </div>
         } 
         />
@@ -47,51 +45,43 @@ const MainRouter = () => {
           }
         />
           <Route
-          path="/viewFavourites"
+          path="/profile"
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              viewFavourites
+              profile
             </div>
           }
         />
          <Route
-          path="/viewProfile"
+          path="/messages"
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              viewProfile
+              messages
             </div>
           }
         />
       
         <Route
-          path="/influencersBase"
+          path="/Analytics"
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              influencersBase
+              Analytics
             </div>
           }
         />
         <Route
-          path="/settings"
+          path="/ratingAndFeedback"
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              Settings
+              RatingFeedback
             </div>
           }
         />
-        <Route
-          path="/liveSupport"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              Live Support
-            </div>
-          }
-        />
+      
         
        
         <Route
@@ -102,10 +92,13 @@ const MainRouter = () => {
           path="/DraftCampaign"
           element={<DraftCampaign/> }
         />
-         {/* <Route
-          path="/CampaignSummary"
-          element={<CampaignSummary/>}
+
+        <Route
+          path="/AddCampaign"
+          element={<AddCampaign/> }
         />
+          
+         {/*  
         <Route
           path="/ActiveCampaign"
           element={<ActiveCampaign/>}

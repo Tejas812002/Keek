@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Mycontext } from "../../../utils/Context";
 import { Link, useLocation } from "react-router-dom";
-import LiveCampaign from "../LiveCampaign/LiveCampaign";
+
 
 const Dashboard = () => {
   const contextState = useContext(Mycontext);
@@ -23,19 +23,27 @@ const Dashboard = () => {
     >
       <div className="bg-white h-[897px] w-full">
         <div class="flex w-full justify-between items-center p-4 bg-white border-border">
+          
+
+        </div>
+        <div class="flex border-b border-border">
+        <div className="flex w-full justify-between items-center p-4 bg-white border-border">
           <div>
-            <h1 class="text-2xl font-bold text-foreground">Manage Campaign</h1>
-            <p class="text-muted-foreground text-sm">
+            <h1 className="text-2xl font-bold text-foreground">
+              Manage Campaign
+            </h1>
+            <p className="text-muted-foreground text-sm">
               Easily create new campaign, keep track of live & past campaigns.
             </p>
           </div>
-          <Link to={""}>
-            <button class="bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg ">
+          <Link to="/AddCampaign">
+          <button class={`bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
+            ${
+              location.pathname === '/AddCampaign' }`}>
               <span class="mr-2 text-3xl">+</span> Add Campaign
             </button>
           </Link>
         </div>
-        <div class="flex border-b border-border">
           <div className="flex space-x-4">
             <Link to="/LiveCampaign">
               <button

@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { Mycontext } from '../../utils/Context';
+import { Mycontext } from '../../../utils/Context';
 import { Link, useLocation } from 'react-router-dom';
 import { CiSearch } from "react-icons/ci";
 import { LuFilter } from "react-icons/lu";
-import CampaignFilterOptions from "../Filter/CampaignFilterOptions";
+import CampaignFilterOptions from "../../ManageCampgain/Filter/CampaignFilterOptions";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import Instagram from "../../Assets/instagram.png";
-import X from "../../Assets/X.png";
-import Facebook from "../../Assets/Facebook.png";
-import YT from "../../Assets/yt.png";
+import Instagram from '../../Assets/instagram.png';
+import X from '../../Assets/X.png';
+import Facebook from '../../Assets/Facebook.png';
+import YT from '../../Assets/yt.png';
+
 import { FaCircleDot } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from 'react-icons/io';
@@ -132,11 +133,13 @@ const PastCampaign = () => {
             Easily create new campaign, keep track of live & past campaigns.
           </p>
         </div>
-        <Link to={""}>
-        <button class="bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg ">
+        <Link to="/AddCampaign">
+          <button class={`bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
+            ${
+              location.pathname === '/AddCampaign' }`}>
               <span class="mr-2 text-3xl">+</span> Add Campaign
             </button>
-        </Link>
+          </Link>
 
       </div>
         <div class="flex border-b border-border">

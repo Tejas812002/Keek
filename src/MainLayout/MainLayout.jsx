@@ -1,6 +1,6 @@
-import React from 'react'
-import SidebarContent from '../ManageCampaign/NavigationBar/SideBar/SidebarContent'
-import MainRouter from '../MainRouter/MainRouter'
+import React from 'react';
+import SidebarContent from '../Manage/NavigationBar/SideBar/SidebarContent';
+import MainRouter from '../MainRouter/MainRouter';
 
 const MainLayout = () => {
   return (
