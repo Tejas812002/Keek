@@ -39,7 +39,7 @@ const SidebarContent = () => {
         </Link> */}
 
         <Link to={"/manageCampaign"}>
-          <SidebarItem icon={<CgCrown size={20} />} text="Manage Campaign" />
+          <SidebarItem icon={<CgCrown size={20} />} text="Campaign Management" />
         </Link>
 
 

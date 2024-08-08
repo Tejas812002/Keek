@@ -2,7 +2,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import LiveCampaign from "../Manage/ManageCampaign/LiveCampaign/LiveCampaign";
-import PastCampaign from "../Manage/ManageCampaign/LiveCampaign/LiveCampaign";
+import PastCampaign from "../Manage/ManageCampaign/PastCampaign/PastCampaign";
 import DraftCampaign from "../Manage/ManageCampaign/DraftCampaign/DraftCampaign";
 import AddCampaign from "../Manage/ManageCampaign/AddCampaign/AddCampaign";
 
