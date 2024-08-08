@@ -15,7 +15,7 @@ const AddCampaign = () => {
           : "left-[320px] w-[calc(100%-390px)]"
       } rounded-xl drop-shadow-md`}
     >
-      <div className="bg-white top-28 my-4 left-[311px] w-full rounded-xl">
+      <div className="bg-white w-screen h-screen top-28 my-4 left-[311px] w-full rounded-xl">
      campaign
       </div>
     </div>
