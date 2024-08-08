@@ -26,7 +26,7 @@ const DraftCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Draft",
-      platform: "Instagram +2",
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24"
     },
@@ -34,7 +34,7 @@ const DraftCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Draft",
-      platform: "Instagram +2",
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24"
     },
@@ -42,7 +42,7 @@ const DraftCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Draft",
-      platform: "Instagram +2",
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24"
     },
@@ -50,7 +50,7 @@ const DraftCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Draft",
-      platform: "Instagram +2",
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24"
     },
@@ -58,7 +58,7 @@ const DraftCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Draft",
-      platform: "Instagram +2",
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24"
     },
@@ -67,17 +67,27 @@ const DraftCampaign = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   
-  const totalPages = 10;
-  const handlePrevClick = () => {
-    if (currentPage > 1) {
+  const recordsPerPage = 5;
+
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = campaigns.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(campaigns.length / recordsPerPage);
+  const prePage = () => {
+    if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
     }
   };
-  const handleNextClick = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+
+  const changePage = (id) => {
+    setCurrentPage(id);
   };
+
+  const nextPage = () => {
+    if (currentPage !== npage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
 
@@ -87,11 +97,11 @@ const DraftCampaign = () => {
           : "left-[320px] w-[calc(100%-320px)]"
         }  overflow-y-auto  bg-white space-y-4 p-4 `}
     >
-      <div className="bg-white h-[897px] w-full">
+      <div className="bg-white w-full">
         <div class="flex w-full justify-between items-center p-4 bg-white border-border">
           <div>
             <h1 class="text-2xl font-bold text-foreground">Manage Campaign</h1>
-            <p class="text-muted-foreground">
+            <p class="text-muted-foreground text-sm">
               Easily create new campaign, keep track of live & past campaigns.
             </p>
           </div>
@@ -106,9 +116,9 @@ const DraftCampaign = () => {
         </div>
         <div class="flex border-b border-border">
           <div className="flex space-x-4">
-            <Link to="/manageCampaign">
+            <Link to="/CampaignManagement">
               <button
-                className={`py-2 px-4 text-primary  ${location.pathname === '/LiveCampaign'
+                className={`py-2 px-4 text-primary  ${location.pathname === '/CampaignManagement'
                     ? ' font-semibold border-b-2 border-blue-500'
                     : ''
                   }`}
@@ -193,16 +203,20 @@ const DraftCampaign = () => {
               </tr>
             </thead>
             <tbody >
-              {campaigns.map((campaign, index) => (
+              {records.map((campaign, index) => (
                 <tr key={index} className="border-b-2 h-[91px] ">
                   <td className="border-zinc-300 text-[16px] font-normal font-body p-2">{campaign.id}</td>
                   <td className="border-zinc-300 text-[16px] font-normal font-body p-2">{campaign.name}</td>
                   <td className="border-zinc-300 text-[16px] font-normal p-2">
-                    <span className={`font-body bg-[#FFEAB0]  justify-center items-center p-1 gap-1 flex rounded-full ${campaign.status === "Draft" ? "text-[#363939]" : ""}`}>
-                      <FaCircleDot className='text-[#FACC15]' /> {campaign.status}
-                    </span>
+                  <span className={`font-body bg-[#FFEAB0] w-[68px] text-[14px] p-1  items-center flex gap-1 rounded-full text-black `}>
+                        <FaCircleDot className="w-[10px] ml-1 h-[14px] text-[#FACC15]" /> {campaign.status}
+                      </span>
                   </td>
-                  <td className="border-zinc-300 text-[16px] font-normal font-body p-2">{campaign.platform}</td>
+                  <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+  {campaign.platform.length > 1 
+    ? `${campaign.platform[0]} +${campaign.platform.length - 1}` 
+    : campaign.platform[0]}
+</td>
                   <td className="border-zinc-300 text-[16px] font-normal font-body p-2">{campaign.startDate}</td>
                   <td className="border-zinc-300 text-[16px] font-normal font-body p-2">{campaign.endDate}</td>
                   <td className="border-zinc-300 p-2">
@@ -214,34 +228,37 @@ const DraftCampaign = () => {
           </table>
         </div>
 
-        {/* pagination */}
-        {/* <div className="my-4 mt-10 flex  justify-end ">
-          <div className='flex items-center gap-4'>
-          <span> <IoIosArrowBack className='text-[#797A7B]' /></span>
-            <text className="text-[14px] font-normal items-center font-body "> Page 1 <span className='text-[#797A7B]'>of 10 </span></text>
-            <span><IoIosArrowForward /></span>
-            </div>
-        </div> */}
-
-        <div className="flex mt-6 items-center justify-end space-x-4 p-4">
-          <button
-            onClick={handlePrevClick}
+        <nav className=" flex mt-6 items-center justify-end space-x-4 p-4">
+              <ul className="pagination flex space-x-2">
+                <li className="page-item">
+                  <button
+            onClick={prePage}
             className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg"
           >
-            <span> <IoIosArrowBack className='text-[#797A7B]' /></span>
+            <span>
+              {" "}
+              <IoIosArrowBack className="text-[#797A7B]" />
+            </span>
           </button>
-          <span className="text-muted-foreground">
-            Page <span>{currentPage}</span> of <span>{totalPages}</span>
-          </span>
-          <button
-            onClick={handleNextClick}
+                </li>
+                <span className="mt-1">
+              {currentPage} of {npage}
+              </span>
+        
+              
+                <li className="page-item">
+                 
+                  <button
+            onClick={nextPage}
             className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg"
           >
-            <span><IoIosArrowForward /></span>
+            <span>
+              <IoIosArrowForward />
+            </span>
           </button>
-        </div>
-
-
+                </li>
+              </ul>
+            </nav>
       </div>
     </div>
 

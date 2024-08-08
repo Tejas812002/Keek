@@ -1,41 +1,40 @@
-
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import LiveCampaign from "../Manage/ManageCampaign/LiveCampaign/LiveCampaign";
-import PastCampaign from "../Manage/ManageCampaign/PastCampaign/PastCampaign";
-import DraftCampaign from "../Manage/ManageCampaign/DraftCampaign/DraftCampaign";
-import AddCampaign from "../Manage/ManageCampaign/AddCampaign/AddCampaign";
-
+import LiveCampaign from "../Manage/CampaignManagement/LiveCampaign/LiveCampaign"
+import PastCampaign from "../Manage/CampaignManagement/PastCampaign/PastCampaign";
+import DraftCampaign from "../Manage/CampaignManagement/DraftCampaign/DraftCampaign";
+import AddCampaign from "../Manage/CampaignManagement/AddCampaign/AddCampaign";
+import ManageCampaign from "../Manage/CampaignManagement/ManageCampaign/ManageCampaign";
+import ShortlistedPage from "../Manage/CampaignManagement/ManageCampaign/ManageCampaignPages/ShortlistedPage";
+import ApprovedPage from "../Manage/CampaignManagement/ManageCampaign/ManageCampaignPages/ApprovedPage";
+import RejectedPage from "../Manage/CampaignManagement/ManageCampaign/ManageCampaignPages/RejectedPage";
+import AIRecommendPage from "../Manage/CampaignManagement/ManageCampaign/ManageCampaignPages/AIRecommendPage";
 
 const MainRouter = () => {
   return (
     <>
       <Routes>
-        <Route path="/" 
-        element={
-          <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-          {" "}
-             Dashboard
-        </div>
-        } 
+        <Route
+          path="/"
+          element={
+            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+              {" "}
+              Dashboard
+            </div>
+          }
         />
 
         <Route
           path="/discoverInfluencers"
-            element={
+          element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
               discoverInfluencers
             </div>
           }
         />
-        <Route
-          path="/manageCampaign"
-          element={
-            <LiveCampaign/>
-          }
-        />
-       
+        <Route path="/CampaignManagement" element={<LiveCampaign />} />
+
         <Route
           path="/payments"
           element={
@@ -45,26 +44,55 @@ const MainRouter = () => {
             </div>
           }
         />
-          {/* <Route
-          path="/profile"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              profile
-            </div>
-          }
-        /> */}
-         {/* <Route
-          path="/messages"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              messages
-            </div>
-          }
-        /> */}
-      
         <Route
+          path="/viewFavourites"
+          element={
+            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+              {" "}
+              viewFavourites
+            </div>
+          }
+        />
+        <Route path="/manageCampaign" element={<ManageCampaign />}>
+        
+        <Route path="Shortlisted" element={<ShortlistedPage />} />
+
+        <Route path="Approved" element={<ApprovedPage />} />
+        <Route path="Rejected" element={<RejectedPage />} />
+
+        <Route path="AIRecommended" element={<AIRecommendPage />} />
+        
+        </Route>
+
+        <Route
+          path="/influencersBase"
+          element={
+            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+              {" "}
+              influencersBase
+            </div>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+              {" "}
+              Settings
+            </div>
+          }
+        />
+        <Route
+          path="/liveSupport"
+          element={
+            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+              {" "}
+              Live Support
+            </div>
+          }
+        />
+
+<Route
           path="/Analytics"
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
@@ -73,74 +101,17 @@ const MainRouter = () => {
             </div>
           }
         />
-        <Route
-          path="/ratingAndFeedback"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              RatingFeedback
-            </div>
-          }
-        />
-      
+
       <Route
-          path="/settings"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              settings
-            </div>
-          }
-        />
-
-        <Route
-          path="/Support"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              Help & Support
-            </div>
-          }
-        />
-       
-        <Route
-          path="/PastCampaign"
-          element={<PastCampaign/>}
-        />
-         <Route
-          path="/DraftCampaign"
-          element={<DraftCampaign/> }
-        />
-
-        <Route
           path="/AddCampaign"
           element={<AddCampaign/> }
         />
-          
-         {/*  
-        <Route
-          path="/ActiveCampaign"
-          element={<ActiveCampaign/>}
-        />
-        
-        <Route
-          path="/musicList"
-          element={<MusicList/>}
-        />
-         <Route
-          path="/ratingAndFeedback"
-          element={<FeedbackComponent/>}
-        />
 
-<Route
-          path="/Calendar"
-          element={<CalendarEvents/>}
-        />
-         */}
+        <Route path="/PastCampaign" element={<PastCampaign />} />
+        <Route path="/DraftCampaign" element={<DraftCampaign />} />
 
-
+       
       </Routes>
-      
     </>
   );
 };

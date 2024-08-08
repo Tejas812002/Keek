@@ -5,7 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { LuFilter } from "react-icons/lu";
 import CampaignFilterOptions from "../Filter/CampaignFilterOptions";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import Instagram from "../../../Assets/instagram.png"
+import Instagram from "../../../Assets/instagram.png";
 import X from "../../../Assets/X.png";
 import Facebook from "../../../Assets/Facebook.png";
 import YT from "../../../Assets/yt.png";
@@ -35,7 +35,7 @@ const PastCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Completed",
-      platform: "Instagram +2",
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24"
     },
@@ -44,7 +44,7 @@ const PastCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Completed",
-      platform: "Instagram +2",
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24"
     },
@@ -52,7 +52,7 @@ const PastCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Completed",
-      platform: "Instagram +2",
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24"
     },
@@ -60,7 +60,7 @@ const PastCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Completed",
-      platform: "Instagram +2",
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24"
     },
@@ -68,7 +68,7 @@ const PastCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Completed",
-      platform: "Instagram +2",
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24"
     },
@@ -76,13 +76,13 @@ const PastCampaign = () => {
   ];
 
   const campaignDetails = {
-    about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio.",
-    compensation: "Product/Money",
-    targetAudience: "Men, Women / 18-25 years old",
-    participants: "50/",
-    location: "New Delhi, India"
+    about:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio.",
+    compensation: ["Product", "Money"], // Array of compensation types
+    targetAudience: ["Men", "Women"], // Array of target audiences
+    participants: 10, // Number of participants
+    location: ["New Delhi, India", "New Delhi, India", "New Delhi, India"],
   };
-
   const platforms = [
     {
       name: "Instagram",
@@ -108,23 +108,33 @@ const PastCampaign = () => {
 
   
 
-  const totalPages = 10;
-  const handlePrevClick = () => {
-    if (currentPage > 1) {
+  const recordsPerPage = 5;
+
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = campaigns.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(campaigns.length / recordsPerPage);
+  const prePage = () => {
+    if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
     }
   };
-  const handleNextClick = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+
+  const changePage = (id) => {
+    setCurrentPage(id);
   };
+
+  const nextPage = () => {
+    if (currentPage !== npage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div
       className={`flex relative ${!expanded ? "left-[100px] w-[calc(100%-110px)]" : "left-[320px] w-[calc(100%-320px)]"} overflow-y-auto bg-white space-y-4 p-4`}
     >
-      <div className="bg-white h-[897px] w-full">
+      <div className="bg-white w-full">
       <div class="flex w-full justify-between items-center p-4 bg-white border-border">
         <div>
           <h1 class="text-2xl font-bold text-foreground">Manage Campaign</h1>
@@ -132,19 +142,21 @@ const PastCampaign = () => {
             Easily create new campaign, keep track of live & past campaigns.
           </p>
         </div>
-        <Link to={""}>
-        <button class="bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg ">
+        <Link to="/AddCampaign">
+          <button class={`bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
+            ${
+              location.pathname === '/AddCampaign' }`}>
               <span class="mr-2 text-3xl">+</span> Add Campaign
             </button>
-        </Link>
+          </Link>
 
       </div>
         <div class="flex border-b border-border">
         <div className="flex space-x-4">
-        <Link to="/manageCampaign">
+        <Link to="/CampaignManagement">
               <button
                  className={`py-2 px-4 ${
-                  location.pathname === '/manageCampaign'
+                  location.pathname === '/CampaignManagement'
                     ? 'text-primary border-b-2 border-blue-500 font-semibold'
                     : 'text-muted hover:text-muted-foreground'
                 }`}
@@ -225,17 +237,21 @@ const PastCampaign = () => {
               </tr>
             </thead>
             <tbody>
-              {campaigns.map((campaign, index) => (
+              {records.map((campaign, index) => (
                 <React.Fragment key={index}>
                   <tr className="border-b-2 h-[91px]">
                     <td className="border-zinc-300 text-[16px] font-normal font-body p-2">{campaign.id}</td>
                     <td className="border-zinc-300 text-[16px] font-normal font-body p-2">{campaign.name}</td>
-                    <td className="border-zinc-300 text-[16px] font-normal p-2">
-                      <span className={`font-body bg-[#E8FFF0] justify-center items-center flex p-1 gap-1 rounded-full ${campaign.status === "Completed" ? "text-green-500" : ""}`}>
-                        <FaCircleDot className="w-[14px] h-[14px] text-[#22C55E]" /> {campaign.status}
+                    <td className="border-zinc-300 text-[16px] font-normal">
+                      <span className={`font-body bg-[#E8FFF0] w-[106px] text-[14px] p-1  items-center flex gap-1 rounded-full text-black`}>
+                        <FaCircleDot className="w-[10px] ml-1 h-[14px] text-[#22C55E]" /> {campaign.status}
                       </span>
                     </td>
-                    <td className="border-zinc-300 text-[16px] font-normal font-body p-2">{campaign.platform}</td>
+                    <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+  {campaign.platform.length > 1 
+    ? `${campaign.platform[0]} +${campaign.platform.length - 1}` 
+    : campaign.platform[0]}
+</td>
                     <td className="border-zinc-300 text-[16px] font-normal font-body p-2">{campaign.startDate}</td>
                     <td className="border-zinc-300 text-[16px] font-normal font-body p-2">{campaign.endDate}</td>
                     <td className="border-zinc-300 p-2">
@@ -266,29 +282,48 @@ const PastCampaign = () => {
                             </div>
                           </div>
                           <div className="flex flex-col md:flex-row gap-6 md:w-1/3">
-                            <div className="space-y-10">
+                            <div className="space-y-10 ml-4">
                               <div>
                                 <span className="font-body text-[#797A7B] text-[12px] font-normal">COMPENSATION:</span>
-                                <p className="font-body text-[16px] font-normal">{campaignDetails.compensation}</p>
+                                <p className="font-body text-[16px] font-normal">
+  {campaignDetails.compensation.join(', ')}
+</p>
                               </div>
                               <div>
                                 <span className="font-body text-[#797A7B] text-[12px] font-normal">TARGET AUDIENCE:</span>
-                                <p className="font-body text-[16px] font-normal">{campaignDetails.targetAudience}</p>
+                                <p className="font-body text-[16px] font-normal">
+  {campaignDetails.targetAudience.join(', ')}
+</p>
                               </div>
                             </div>
-                            <div className="space-y-10">
+                            <div className="space-y-10 ml-16">
                               <div>
                                 <span className="font-body text-[#797A7B] text-[12px] font-normal">PARTICIPANTS:</span>
-                                <p className="font-body text-[16px] font-normal"><span className="text-[#22C55E]">{campaignDetails.participants}</span>100</p>
+                                <p className="font-body text-[16px] font-normal">
+                                  <span className="text-[#22C55E]">
+                                    {campaignDetails.participants}/
+                                  </span>
+                                  100
+                                </p>
                               </div>
                               <div>
                                 <span className="font-body text-[#797A7B] text-[12px] font-normal">LOCATION:</span>
-                                <p className="font-body text-[16px] font-normal">{campaignDetails.location}</p>
+                                {campaignDetails.location.map((loc, index) => (
+                  <p key={index} className="font-body text-[16px] font-normal">
+                    {loc}
+                  </p>
+                ))}
                               </div>
                             </div>
                           </div>
-                          <div className=" flex items-center border-l-2 border-[#D2D3D3] ">
-                            <button className="text-[#0066FF] font-body text-[16px] ml-3 font-normal">Manage campaign</button>
+                          <div className=" flex items-center border-l-2 p-6 border-[#D2D3D3] ">
+                          <Link to={"/manageCampaign"}>
+                              <div>
+                                <button className="text-[#0066FF] font-body  text-[16px] font-normal">
+                                  Manage campaign
+                                </button>
+                              </div>
+                            </Link>
                           </div>
                         </div>
                       </td>
@@ -300,26 +335,38 @@ const PastCampaign = () => {
           </table>
         </div>
 
-     {/* pagination */}
-      
+
+        <nav className=" flex mt-6 items-center justify-end space-x-4 p-4">
+              <ul className="pagination flex space-x-2">
+                <li className="page-item">
+                  <button
+            onClick={prePage}
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg"
+          >
+            <span>
+              {" "}
+              <IoIosArrowBack className="text-[#797A7B]" />
+            </span>
+          </button>
+                </li>
+                <span className="mt-1">
+              {currentPage} of {npage}
+              </span>
         
-        <div className="flex mt-6 items-center justify-end space-x-4 p-4">
-      <button
-        onClick={handlePrevClick}
-        className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg"
-      >
-        <span> <IoIosArrowBack className='text-[#797A7B]' /></span>
-      </button>
-      <span className="text-muted-foreground">
-        Page <span>{currentPage}</span> of <span>{totalPages}</span>
-      </span>
-      <button
-        onClick={handleNextClick}
-        className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg"
-      >
-        <span><IoIosArrowForward /></span>
-      </button>
-    </div>
+              
+                <li className="page-item">
+                 
+                  <button
+            onClick={nextPage}
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg"
+          >
+            <span>
+              <IoIosArrowForward />
+            </span>
+          </button>
+                </li>
+              </ul>
+            </nav>
 
       </div>
     </div>
