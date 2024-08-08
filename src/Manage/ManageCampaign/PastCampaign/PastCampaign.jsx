@@ -5,10 +5,10 @@ import { CiSearch } from "react-icons/ci";
 import { LuFilter } from "react-icons/lu";
 import CampaignFilterOptions from "../Filter/CampaignFilterOptions";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import Instagram from "../../Assets/instagram.png";
-import X from "../../Assets/X.png";
-import Facebook from "../../Assets/Facebook.png";
-import YT from "../../Assets/yt.png";
+import Instagram from "../../../Assets/instagram.png"
+import X from "../../../Assets/X.png";
+import Facebook from "../../../Assets/Facebook.png";
+import YT from "../../../Assets/yt.png";
 import { FaCircleDot } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from 'react-icons/io';
