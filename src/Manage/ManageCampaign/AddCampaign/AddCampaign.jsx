@@ -663,7 +663,7 @@ const AddCampaign = () => {
             <div className=" mt-3  ">
               <h1 className="text-[18px] font-normal">Upload Brand Assets<sup className="text-[#2463eb]">*</sup></h1>
               <p className="mt-3 text-[14px] font-body text-[#57595A]">Upload your Brands assets like logo, graphics & much more. These can be used by Influencers for better marketing!</p>
-              <div className="flex  gap-2">
+              <div className="flex flex-wrap gap-2">
                   {uploadedFiles.map((file) => (
                     <div
                       key={file.name}
@@ -686,14 +686,7 @@ const AddCampaign = () => {
                         className="absolute right-3 cursor-pointer"
                         onClick={() => handleRemoveUpload(file.name)}
                       />
-                      <div className="absolute w-20 bottom-4  right-20 h-1 bg-gray-200">
-                        <div
-                          className="h-full bg-green-600"
-                          style={{
-                            width: `${uploadProgress[file.name] || 0}%`,
-                          }}
-                        ></div>
-                      </div>
+                     
                     </div>
                   ))}
                 </div>
@@ -723,18 +716,18 @@ const AddCampaign = () => {
              {/* additional information */}
             <div className="mt-6">
     <h1 className="text-[18px] font-body font-normal">
-    Additional Information <sup className="text-[#2463eb]">*</sup>
+    Additional Information
     </h1>
      <p className="mt-3 text-[#57595A]">Add any special requests or any additional information you might want to add</p>
     <textarea
-      className={`border-[0.7px] mt-3 h-[120px] border-[#363939] rounded-lg w-full px-[19px] p-4 gap-2.5 focus:outline-none focus:border-[#384edd] ${errors.addDescription ? 'border-red-500' : ''}`}
+      className={`border-[0.7px] mt-3 h-[120px] border-[#363939] rounded-lg w-full px-[19px] p-4 gap-2.5 focus:outline-none focus:border-[#384edd] `}
       name="addDescription"
       id="addDescription"
       placeholder="Write Additional information"
       value={formData.addDescription || ''}
       onChange={handleChange}
     />
-    {errors.addDescription && <p className="text-red-500 text-sm">{errors.addDescription}</p>}
+    
   </div>
 
 
