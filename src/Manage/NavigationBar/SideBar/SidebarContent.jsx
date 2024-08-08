@@ -1,16 +1,17 @@
 import React from 'react';
 import SideBar, { SidebarItem, SidebarContext } from './SideBar';
-import { CalendarDays, Settings, Headphones } from 'lucide-react';
+import {  Settings, Headphones } from 'lucide-react';
+// import { CalendarDays} from 'lucide-react';
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { CgUserList } from "react-icons/cg"
 import { CgCrown } from "react-icons/cg";
-import { FiUser } from "react-icons/fi";
+// import { FiUser } from "react-icons/fi";
 import { MdAttachMoney } from "react-icons/md";
 
 import { Link } from 'react-router-dom';
-import { AiOutlineLike } from "react-icons/ai";
+// import { AiOutlineLike } from "react-icons/ai";
 import { LuPieChart } from "react-icons/lu";
-import { IoPaperPlaneOutline } from "react-icons/io5";
+// import { IoPaperPlaneOutline } from "react-icons/io5";
 
 const SidebarContent = () => {
   return (
@@ -30,12 +31,12 @@ const SidebarContent = () => {
           </SidebarItem>
         </Link>
 
-        <Link to={"/Profile"}>
+        {/* <Link to={"/Profile"}>
           <SidebarItem
             icon={<FiUser size={20} />}
             text="Profile"
           />
-        </Link>
+        </Link> */}
 
         <Link to={"/manageCampaign"}>
           <SidebarItem icon={<CgCrown size={20} />} text="Manage Campaign" />
@@ -48,9 +49,9 @@ const SidebarContent = () => {
             text="Discover Influencers"
           />
         </Link>
-        <Link to={"/Messages"}>
+        {/* <Link to={"/Messages"}>
           <SidebarItem icon={<IoPaperPlaneOutline size={20} />} text="Messages" />
-        </Link>
+        </Link> */}
         <Link to={"/payments"}>
           <SidebarItem icon={<MdAttachMoney size={20} />} text="Payments" />
         </Link>
@@ -58,12 +59,12 @@ const SidebarContent = () => {
           <SidebarItem icon={<LuPieChart size={20} />} text="Analytics" />
         </Link>
       
-        <Link to={"/ratingAndFeedback"}>
+        {/* <Link to={"/ratingAndFeedback"}>
           <SidebarItem
             icon={<AiOutlineLike size={20} />}
             text="Rating & Feedback"
           />
-        </Link>
+        </Link> */}
 
         <SidebarContext.Consumer>
           {({ expanded }) =>
@@ -77,8 +78,8 @@ const SidebarContent = () => {
         <Link to={"/settings"}>
           <SidebarItem icon={<Settings size={20} />} text="Settings" />
         </Link>
-        <Link to={"/liveSupport"}>
-          <SidebarItem icon={<Headphones size={20} />} text="Support" />
+        <Link to={"/Support"}>
+          <SidebarItem icon={<Headphones size={20} />} text=" Help & Support" />
         </Link>
        
       </SideBar>

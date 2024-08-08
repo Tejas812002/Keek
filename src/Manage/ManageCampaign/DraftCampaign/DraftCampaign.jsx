@@ -3,7 +3,7 @@ import { Mycontext } from '../../../utils/Context';
 import { Link, useLocation } from 'react-router-dom';
 import { CiSearch } from "react-icons/ci";
 import { LuFilter } from "react-icons/lu";
-import CampaignFilterOptions from "../../ManageCampaign/Filter/CampaignFilterOptions";
+import CampaignFilterOptions from "../Filter/CampaignFilterOptions";
 import { FaCircleDot } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from 'react-icons/io';
@@ -96,7 +96,7 @@ const DraftCampaign = () => {
             </p>
           </div>
           <Link to="/AddCampaign">
-          <button class={`bg-[#060F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
+          <button class={`bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
             ${
               location.pathname === '/AddCampaign' }`}>
               <span class="mr-2 text-3xl">+</span> Add Campaign

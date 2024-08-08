@@ -6,6 +6,7 @@ import PastCampaign from "../Manage/ManageCampaign/LiveCampaign/LiveCampaign";
 import DraftCampaign from "../Manage/ManageCampaign/DraftCampaign/DraftCampaign";
 import AddCampaign from "../Manage/ManageCampaign/AddCampaign/AddCampaign";
 
+
 const MainRouter = () => {
   return (
     <>
@@ -44,7 +45,7 @@ const MainRouter = () => {
             </div>
           }
         />
-          <Route
+          {/* <Route
           path="/profile"
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
@@ -52,8 +53,8 @@ const MainRouter = () => {
               profile
             </div>
           }
-        />
-         <Route
+        /> */}
+         {/* <Route
           path="/messages"
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
@@ -61,7 +62,7 @@ const MainRouter = () => {
               messages
             </div>
           }
-        />
+        /> */}
       
         <Route
           path="/Analytics"
@@ -82,7 +83,25 @@ const MainRouter = () => {
           }
         />
       
-        
+      <Route
+          path="/settings"
+          element={
+            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+              {" "}
+              settings
+            </div>
+          }
+        />
+
+        <Route
+          path="/Support"
+          element={
+            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
+              {" "}
+              Help & Support
+            </div>
+          }
+        />
        
         <Route
           path="/PastCampaign"
