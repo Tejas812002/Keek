@@ -20,7 +20,7 @@ const MainRouter = () => {
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              Di
+              Dashboard
             </div>
           }
         />
@@ -46,11 +46,11 @@ const MainRouter = () => {
           }
         />
         <Route
-          path="/viewFavourites"
+          path="/Analytics"
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              viewFavourites
+              Analytics
             </div>
           }
         />
@@ -83,11 +83,11 @@ const MainRouter = () => {
           }
         />
         <Route
-          path="/liveSupport"
+          path="/Support"
           element={
             <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
               {" "}
-              Live Support
+              Support
             </div>
           }
         />
