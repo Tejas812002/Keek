@@ -380,9 +380,9 @@ const AddCampaign = () => {
           <div className="h-[64.85px]  border-b">
             <div className="flex flex-row p-6 px-[40px] items-center gap-[3.14px]">
               <Link
-                to="/manageCampaign"
+                to="/CampaignManagement"
                 className={`text-[16px] font-normal font-body flex flex-row ${
-                  currentPath === "/manageCampaign" ? "text-[#2463eb]" : ""
+                  currentPath === "/CampaignManagement" ? "text-[#2463eb]" : ""
                 }`}
               >
                 Manage Campaigns
