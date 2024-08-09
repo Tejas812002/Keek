@@ -1,22 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Mycontext } from "../../../utils/Context";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { PiImageBold } from "react-icons/pi";
 
 const CampaignSummary = ({ isModalVisible, setIsModalVisible }) => {
-  const { campData } = useContext(Mycontext);
+  const { campData, setCampData } = useContext(Mycontext);
+  // const [selectedFiles, setSelectedFiles] = useState([]);
+
+  // const handleFileChange = (event) => {
+  //   const files = Array.from(event.target.files);
+  //   setSelectedFiles(files);
+  //   setCampData({ ...campData, uploadData: [...campData.uploadData, ...files] });
+  // };
+
+  const handleRemoveAsset = (index) => {
+    const newUploadData = campData.uploadData.filter((_, i) => i !== index);
+    setCampData({ ...campData, uploadData: newUploadData });
+  };
 
   const handleSaveDraft = () => {
-    // Save campData to localStorage
     localStorage.setItem('campaignDraft', JSON.stringify(campData));
     alert('Draft saved successfully!');
   };
 
   const handleLaunchCampaign = () => {
-    // Save campData to localStorage or any other persistence mechanism
     localStorage.setItem('campaignData', JSON.stringify(campData));
     alert('Campaign launched successfully!');
-    // Close the modal
     setIsModalVisible(false);
   };
 
@@ -27,9 +36,8 @@ const CampaignSummary = ({ isModalVisible, setIsModalVisible }) => {
   return (
     <>
       {isModalVisible && (
-        <div className="fixed inset-0 max-h-[1060px]   z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white absolute top-[5%] w-[500px] p-4 rounded-md">
-            
+        <div className="fixed inset-0 h-[1600px] top-6 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white absolute top-[5%] w-[550px] p-4 rounded-md">
             <div className="flex gap-2 items-center cursor-pointer" onClick={closeModal}>
               <IoMdArrowRoundBack />
               <span className="text-[14px] font-normal font-body">Campaign Preview</span>
@@ -107,16 +115,29 @@ const CampaignSummary = ({ isModalVisible, setIsModalVisible }) => {
               <div className="py-2">
                 <h1 className="text-[14px] font-body font-normal text-[#1F2223]">Brand Assets:</h1>
                 {/* Show brand assets if any */}
-                {campData.uploadData && (
-                  <div className="mt-3 bg-[#f9f9f9]  border-[1px] border-[#363939] flex items-center justify-between px-3 gap-2 p-1 w-[200px] rounded-[10px]">
-                    <div className="flex items-center gap-2">
-                      <PiImageBold className="text-[#384EDD] text-xl" />
-                      {campData.uploadData}
-                    </div>
-                    <button className="text-xl font-bold" onClick={() => {/* Add functionality to remove the asset */}}>
-                      &times;
-                    </button>
+               
+                {Array.isArray(campData.uploadData) && campData.uploadData.length > 0 ? (
+                  <div className="mt-3 flex gap-2 flex-wrap">
+                    {campData.uploadData.map((asset, index) => (
+                      <div
+                        key={index}
+                        className="bg-[#f9f9f9] mr-2 border-[1px] border-[#363939] flex items-center justify-between px-3 gap-2 p-1 w-[216.5px] rounded-[10px] mt-2"
+                      >
+                        <div className="flex items-center gap-2">
+                          <PiImageBold className="text-[#384EDD] text-xl" />
+                          <span>{asset.name}</span>
+                        </div>
+                        <button
+                          className="text-xl font-bold"
+                          onClick={() => handleRemoveAsset(index)}
+                        >
+                          &times;
+                        </button>
+                      </div>
+                    ))}
                   </div>
+                ) : (
+                  <p className="text-[12px] font-body font-normal text-[#797A7B]">No brand assets uploaded</p>
                 )}
               </div>
 
