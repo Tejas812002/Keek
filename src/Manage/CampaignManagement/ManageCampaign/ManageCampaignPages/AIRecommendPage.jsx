@@ -17,12 +17,11 @@ const AIRecommendPage = () => {
   const campaignDetails = {
     about:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio.",
-    compensation: "Product/Money",
-    targetAudience: "Men, Women / 18-25 years old",
-    participants: "10/",
+    compensation: ["Product", "Money"], // Array of compensation types
+    targetAudience: ["Men", "Women"], // Array of target audiences
+    participants: 10, // Number of participants
     location: ["New Delhi, India", "New Delhi, India", "New Delhi, India"],
   };
-
   const platforms = [
     {
       name: "Instagram",
@@ -45,6 +44,9 @@ const AIRecommendPage = () => {
       bgColor: "#FFE4E1",
     },
   ];
+  
+
+
   return (
     <div
       class={` flex relative ${
@@ -54,10 +56,106 @@ const AIRecommendPage = () => {
       }  overflow-y-auto  bg-white space-y-4 p-4 `}
     >
       <div className="flex flex-col">
- 
+        <div className="flex flex-row p-6 items-center  border-b-2 gap-[3.14px]">
+          <Link
+            to="/CampaignManagement"
+            className={`text-[16px] font-normal flex flex-row ${
+              currentPath === "/CampaignManagement"
+                ? "text-blue-700"
+                : "text-black"
+            }`}
+          >
+            Campaign Management
+            <MdChevronRight className="m-1 items-center" size={"15.7px"} />
+          </Link>
+          <Link
+           
+            className={`text-[16px] font-semibold text-[#2463eb] gap-x-2`}
+          >
+            Manage Campaign
+          </Link>
+        </div>
+
+        <div className="flex flex-col md:flex-row rounded-lg p-2 overflow-hidden">
+          <div className="p-2 space-y-4 h-auto w-full md:w-1/2">
+            <div>
+              <h2 className="font-body text-[#797A7B] text-[12px] font-normal">
+                ABOUT CAMPAIGN
+              </h2>
+              <p className="font-body text-[16px] font-normal">
+                <ReadMore text={campaignDetails.about} maxLength={100} />
+              </p>
+            </div>
+            <div className="mt-2">
+              <h3 className="font-body text-[#797A7B] text-[12px] font-normal">
+                PLATFORMS:
+              </h3>
+              <div className="flex gap-2 flex-wrap">
+                {platforms.map((platform, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center rounded-md px-1"
+                    style={{ backgroundColor: platform.bgColor }}
+                  >
+                    <img src={platform.icon} alt={platform.name} />
+                    <span className="px-2 py-1 rounded-full font-body text-[16px] font-normal">
+                      {platform.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row gap-3 md:w-1/3">
+            <div className="space-y-10 ml-4">
+              <div>
+                <span className="font-body text-[#797A7B] text-[12px] font-normal">
+                  PARTICIPANTS:
+                </span>
+                <p className="font-body text-xl font-normal">
+                                  <span className="text-[#0062F5]">
+                                    {campaignDetails.participants} {""}/
+                                  </span>{" "}
+                                  100
+                                </p>
+              </div>
+
+              <div>
+                <span className="font-body text-[#797A7B] text-[12px] font-normal">
+                  COMPENSATION:
+                </span>
+                <p className="font-body text-[16px] font-normal">
+  {campaignDetails.compensation.join(', ')}
+</p>
+              </div>
+            </div>
+            <div className="space-y-10">
+              <div className="ml-16">
+                <span className="font-body text-[#797A7B] text-xs font-normal">
+                  LOCATION:
+                </span>
+                {campaignDetails.location.map((loc, index) => (
+                  <p key={index} className="font-body text-[16px] font-normal">
+                    {loc}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div
+            className="mt-6 pl-6 flex items-center justify-center border-l-2 border-[#D2D3D3]"
+            style={{ height: "100%" }}
+          >
+            <div>
+              <button className="text-[#FA6A5E] font-body text-[16px] font-normal">
+                Stop campaign
+              </button>
+            </div>
+          </div>
+        </div>
 
         <div className="flex border-b border-border">
-        <div className="flex space-x-4">
+          <div className="flex space-x-4">
             <Link to="/manageCampaign">
               <button
                 className={`py-2 px-4 ${
@@ -69,10 +167,10 @@ const AIRecommendPage = () => {
                Interest Received
               </button>
             </Link>
-            <Link to="/manageCampaign/Shortlisted">
+            <Link to="/Shortlisted">
               <button
                 className={`py-2 px-4 ${
-                  location.pathname === "/manageCampaign/Shortlisted"
+                  location.pathname === "/Shortlisted"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
                 }`}
@@ -80,7 +178,7 @@ const AIRecommendPage = () => {
                 Shortlisted
               </button>
             </Link>
-            <Link to="/manageCampaign/Approved">
+            <Link to="/Approved">
               <button
                 className={`py-2 px-4 ${
                   location.pathname === "/manageCampaign/Approved"
@@ -91,7 +189,7 @@ const AIRecommendPage = () => {
                Approved
               </button>
             </Link>
-            <Link to="/manageCampaign/Rejected">
+            <Link to="/Rejected">
               <button
                 className={`py-2 px-4 ${
                   location.pathname === "/manageCampaign/Rejected"
@@ -102,10 +200,10 @@ const AIRecommendPage = () => {
                Rejected
               </button>
             </Link>
-            <Link to="/manageCampaign/AIRecommended">
+            <Link to="/AIRecommended">
               <button
                 className={`py-2 px-4 ${
-                  location.pathname === "/manageCampaign/AIRecommended"
+                  location.pathname === "/AIRecommended"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
                 }`}
@@ -119,6 +217,9 @@ const AIRecommendPage = () => {
             <span className="absolute top-0 left-0 transform translate-x-1/2 -translate-y-1/2 bg-destructive rounded-full w-2.5 h-2.5"></span>
           </div>
         </div>
+        screen is in progress
+      
+
       </div>
     </div>
   );

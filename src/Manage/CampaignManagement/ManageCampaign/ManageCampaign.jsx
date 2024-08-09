@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Instagram from "../../../Assets/instagram.png";
 import Facebook from "../../../Assets/Facebook.png";
 import X from "../../../Assets/X.png";
@@ -7,6 +7,8 @@ import { Mycontext } from "../../../utils/Context";
 import { Link, useLocation } from "react-router-dom";
 import { MdChevronRight } from "react-icons/md";
 import ReadMore from "../Components/ReadMoreComponent";
+import { FiArrowUpRight } from "react-icons/fi";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 const ManageCampaign = () => {
   const contextState = useContext(Mycontext);
@@ -44,7 +46,93 @@ const ManageCampaign = () => {
       bgColor: "#FFE4E1",
     },
   ];
-  
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  const influencers = [
+    {
+      name: "Gautam Sachdeva",
+      niche: ["Travel", "Fashion","hhjk","uuuss"],
+      platforms: {
+        instagram: "Instagram",
+        facebook: "Facebook",
+        youtube: "Youtube",
+        linkedin: "LinkedIn",
+      },
+    },
+    {
+      name: "Gautam Sachdeva",
+      niche: ["Travel", "Fashion","hhjk"],
+      platforms: {
+        instagram: "Instagram",
+        facebook: "Facebook",
+        youtube: "Youtube",
+        linkedin: "LinkedIn",
+      },
+    },
+    {
+      name: "Gautam Sachdeva",
+      niche: ["Travel", "Fashion","Travel", "Fashion"],
+      platforms: {
+        instagram: "Instagram",
+        facebook: "Facebook",
+        youtube: "Youtube",
+        linkedin: "LinkedIn",
+      },
+    },
+    {
+      name: "Gautam Sachdeva",
+      niche: ["Travel", "Fashion"],
+      platforms: {
+        instagram: "Instagram",
+        facebook: "Facebook",
+        youtube: "Youtube",
+        linkedin: "LinkedIn",
+      },
+    },
+    {
+      name: "Gautam Sachdeva",
+      niche: ["Travel", "Fashion","Travel", "Fashion"],
+      platforms: {
+        instagram: "Instagram",
+        facebook: "Facebook",
+        youtube: "Youtube",
+        linkedin: "LinkedIn",
+      },
+    },
+    
+    // Add more influencers here as needed
+  ];
+
+  const recordsPerPage = 4;
+
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = influencers.slice(firstIndex, lastIndex);
+  const totalPages = Math.ceil(influencers.length / recordsPerPage);
+  const itemsPerPage = 4; // Number of influencers to display per page
+ 
+  const handlePrevClick = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const selectedInfluencers = influencers.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   return (
     <div
@@ -111,7 +199,7 @@ const ManageCampaign = () => {
                 <span className="font-body text-[#797A7B] text-[12px] font-normal">
                   PARTICIPANTS:
                 </span>
-                <p className="font-body text-[16px] font-normal">
+                <p className="font-body text-xl font-normal">
                                   <span className="text-[#0062F5]">
                                     {campaignDetails.participants} {""}/
                                   </span>{" "}
@@ -166,10 +254,10 @@ const ManageCampaign = () => {
                Interest Received
               </button>
             </Link>
-            <Link to="/manageCampaign/Shortlisted">
+            <Link to="/Shortlisted">
               <button
                 className={`py-2 px-4 ${
-                  location.pathname === "/manageCampaign/Shortlisted"
+                  location.pathname === "/Shortlisted"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
                 }`}
@@ -177,10 +265,10 @@ const ManageCampaign = () => {
                 Shortlisted
               </button>
             </Link>
-            <Link to="/manageCampaign/Approved">
+            <Link to="/Approved">
               <button
                 className={`py-2 px-4 ${
-                  location.pathname === "/manageCampaign/Approved"
+                  location.pathname === "/Approved"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
                 }`}
@@ -188,10 +276,10 @@ const ManageCampaign = () => {
                Approved
               </button>
             </Link>
-            <Link to="/manageCampaign/Rejected">
+            <Link to="/Rejected">
               <button
                 className={`py-2 px-4 ${
-                  location.pathname === "/manageCampaign/Rejected"
+                  location.pathname === "/Rejected"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
                 }`}
@@ -199,10 +287,10 @@ const ManageCampaign = () => {
                Rejected
               </button>
             </Link>
-            <Link to="/manageCampaign/AIRecommended">
+            <Link to="/AIRecommended">
               <button
                 className={`py-2 px-4 ${
-                  location.pathname === "/manageCampaign/AIRecommended"
+                  location.pathname === "/AIRecommended"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
                 }`}
@@ -217,6 +305,93 @@ const ManageCampaign = () => {
           </div>
         </div>
 
+        <div class="">
+          <table class="min-w-full  bg-white ">
+          <thead>
+              <tr class=" border-b  uppercase " style={{ height: "80px" }}>
+                <th class="py-3 px-6 text-left text-[#797A7B] text-[12px] font-body font-semibold">Influencer Name</th>
+                <th class="py-3 px-6 text-left text-[#797A7B] text-[12px] font-body font-semibold">Niche</th>
+                <th class="py-3 px-6 text-left text-[#797A7B] text-[12px] font-body font-semibold">Instagram</th>
+                <th class="py-3 px-6 text-left text-[#797A7B] text-[12px] font-body font-semibold">Facebook</th>
+                <th class="py-3 px-6 text-left text-[#797A7B] text-[12px] font-body font-semibold">Youtube</th>
+                <th class="py-3 px-6 text-left text-[#797A7B] text-[12px] font-body font-semibold">LinkedIn</th>
+
+              </tr>
+            </thead>
+            <tbody class=" "  >
+              {records.map((influencer, index) => (
+                <tr className="border-b" key={index} style={{ height: "85px" }}>
+                  <td className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal">{influencer.name}</td>
+                  <td className="py-3 px-4 text-[#191D23] text-[16px] font-body font-normal">
+                    {influencer.niche.length > 2
+                      ? `${influencer.niche.slice(0, 2).join(', ')} +${influencer.niche.length - 2}`
+                      : influencer.niche.join(', ')}
+                  </td>
+                  <td className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal">
+                    <a className="flex items-center" href={influencer.platforms.instagram}>
+                    Instagram 
+                      <FiArrowUpRight className="ml-1  text-[#0066ff]" />
+
+                    </a>
+                  </td>
+                  <td className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal">
+                    <a className="flex items-center" href={influencer.platforms.facebook}>
+                    facebook
+                      <FiArrowUpRight className="ml-1  text-[#0066ff]" />
+
+                    </a>                  </td>
+                  <td className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal">
+                    <a className="flex items-center" href={influencer.platforms.youtube}>
+                    youtube
+                      <FiArrowUpRight className="ml-1  text-[#0066ff]" />
+
+                    </a>                  </td>
+                  <td className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal">
+                    <a className="flex items-center" href={influencer.platforms.linkedin}>
+                    linkedin
+                      <FiArrowUpRight className="ml-1  text-[#0066ff]" />
+
+                    </a>                  </td>
+                  <td className="py-3 px-6 text-[14px] font-body font-semibold">
+                    <Link>
+                       <button className="bg-[#0066FF] text-[#FFFFFF] py-2 px-3 rounded-lg">Proof of Work</button>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+        <div className="mt-8">
+          <div className="mt-auto flex justify-end p-8">
+            <div className="flex items-center gap-1 text-sm font-normal">
+              <button
+                onClick={handlePrevClick}
+                disabled={currentPage === 1}
+                className={`p-2 ${currentPage === 1 ? 'text-gray-400' : 'text-black'}`}
+              >
+                <FaAngleLeft />
+              </button>
+              <span className="text-[#1f2223]">
+                Page {currentPage}
+              </span>
+              <span className="text-[#797a7b] leading-tight">
+                of {totalPages}
+              </span>
+              <button
+                onClick={handleNextClick}
+                disabled={currentPage === totalPages}
+                className={`p-2 ${currentPage === totalPages ? 'text-gray-400' : 'text-black'}`}
+              >
+                <FaAngleRight />
+              </button>
+            </div>
+          </div>
+        </div>
 
       
 
