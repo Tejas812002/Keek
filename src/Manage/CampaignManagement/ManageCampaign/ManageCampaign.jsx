@@ -353,9 +353,16 @@ const ManageCampaign = () => {
 
                     </a>                  </td>
                   <td className="py-3 px-6 text-[14px] font-body font-semibold">
-                    <Link>
-                       <button className="bg-[#0066FF] text-[#FFFFFF] py-2 px-3 rounded-lg">Proof of Work</button>
-                    </Link>
+                  <button className="text-[#e32828] w-[10px]">
+      Reject
+    </button>
+                    
+                  </td>
+                  <td className="py-3 px-6 text-[14px] font-body font-semibold">
+                  <button className="bg-[#0066FF] text-[#FFFFFF] w-[100px] h-[35px] px-4 rounded-lg border border-[#384edd] font-semibold font-['Open Sans'] text-sm leading-[14px]">
+      Shortlist
+    </button>
+                    
                   </td>
                 </tr>
               ))}
