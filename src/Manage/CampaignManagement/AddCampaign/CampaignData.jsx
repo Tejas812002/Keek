@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Mycontext } from "../../../utils/Context";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { PiImageBold } from "react-icons/pi";
@@ -99,10 +99,27 @@ const CampaignSummary = ({ isModalVisible, setIsModalVisible }) => {
                 </div>
 
                 {/* Compensation */}
-                <div className="flex justify-between py-2">
+                {/* <div className="flex justify-between py-2">
                   <div className="text-[12px] font-body font-normal text-[#797A7B]">Compensation:</div>
                   <div className="text-[14px] font-body font-normal text-[#000000]">Payment / ${campData.amount}</div>
-                </div>
+                </div> */}
+
+<div className="flex justify-between py-2">
+  <div className="text-[12px] font-body font-normal text-[#797A7B]">Compensation:</div>
+
+  <div className="text-[14px] font-body  gap-3 font-normal text-[#000000]">
+  <span>{campData.payment && `Payment / $${campData.amount}`}</span>
+
+    <span>  {campData.product && `Product / ${campData.productDescription}`} </span>
+    <span>{campData.others && `Other / ${campData.otherDescription}`} </span>
+  </div>
+</div>
+
+
+
+
+
+                
               </div>
 
               <div>
