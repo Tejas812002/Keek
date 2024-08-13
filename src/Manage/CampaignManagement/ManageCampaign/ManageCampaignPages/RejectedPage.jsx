@@ -1,7 +1,7 @@
 import React, { useContext , useState } from "react";
 import Instagram from "../../../../Assets/instagram.png";
 import Facebook from "../../../../Assets/Facebook.png";
-import X from "../../../../Assets/X.png";
+// import X from "../../../../Assets/X.png";
 import YT from "../../../../Assets/yt.png";
 import { Link, useLocation } from "react-router-dom";
 import { Mycontext } from "../../../../utils/Context";
@@ -33,11 +33,11 @@ const RejectedPage = () => {
       icon: Instagram,
       bgColor: "#FFEDED",
     },
-    {
-      name: "X",
-      icon: X,
-      bgColor: "#E3E3E3",
-    },
+    // {
+    //   name: "X",
+    //   icon: X,
+    //   bgColor: "#E3E3E3",
+    // },
     {
       name: "Facebook",
       icon: Facebook,

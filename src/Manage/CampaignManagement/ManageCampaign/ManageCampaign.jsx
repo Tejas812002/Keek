@@ -30,11 +30,11 @@ const ManageCampaign = () => {
       icon: Instagram,
       bgColor: "#FFEDED",
     },
-    {
-      name: "X",
-      icon: X,
-      bgColor: "#E3E3E3",
-    },
+    // {
+    //   name: "X",
+    //   icon: X,
+    //   bgColor: "#E3E3E3",
+    // },
     {
       name: "Facebook",
       icon: Facebook,

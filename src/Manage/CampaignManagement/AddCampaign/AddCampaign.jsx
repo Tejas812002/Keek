@@ -9,10 +9,12 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Mycontext } from "../../../utils/Context";
 import { IoIosCheckmark } from "react-icons/io";
+// import { IoCloseSharp } from "react-icons/io5";
 import fileImg from "../../../Assets/fileImg.svg";
 import { LuCreditCard } from "react-icons/lu";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import CampaignSummary from "./CampaignData";
+// import { Payment } from "@mui/icons-material";
 
 const AddCampaign = () => {
   const contextState = useContext(Mycontext);
@@ -371,13 +373,13 @@ const AddCampaign = () => {
   return (
     <>
       <div
-        className={`relative max-h-[1855px] mx-6 bg-white  ${
+        className={`relative max-h-[1855px]   mx-6 bg-white  ${
           !expanded
             ? "left-[90px] w-[calc(100%-150px)]"
-            : "left-[320px] w-[calc(100%-350px)]"
-        } rounded-xl drop-shadow-md`}
+            : "left-[320px] w-[calc(100%-1088px)]"
+        } rounded-xl drop-shadow-md   `}
       >
-        <div className={`bg-white top-28 my-4 left-[311px]  rounded-xl  `}>
+        <div className={`bg-white pt-[29.75px] top-28 my-4 left-[311px] h-fit rounded-xl ${expanded ? 'w-[1088px] ':' w-full'}  `}>
           <div className="h-[64.85px]  border-b">
             <div className="flex flex-row p-6 px-[40px] items-center gap-[3.14px]">
               <Link
@@ -406,7 +408,7 @@ const AddCampaign = () => {
                   Campaign Name <sup className="text-[#2463eb]">*</sup>
                 </label>
                 <input
-                  className={`border-[0.7px] mt-2  rounded-lg w-full px-[19px] py-5 gap-2.5 my-2 focus:outline-none focus:border-[#0066FF] ${
+                  className={`border-[0.7px] mt-2  rounded-lg w-full px-[20px] py-[19px] gap-2.5 my-2 focus:outline-none focus:border-[#0066FF] ${
                     errors.campaignName ? "border-red-500" : "border-[#363939]"
                   }`}
                   type="text"
@@ -431,7 +433,7 @@ const AddCampaign = () => {
                   Campaign Description <sup className="text-[#2463eb]">*</sup>
                 </label>
                 <textarea
-                  className={`border-[0.7px] mt-2 h-[120px]  rounded-lg w-full px-[19px] py-[20px] resize-none gap-2.5 focus:outline-none focus:border-[#0066FF] ${
+                  className={`border-[0.7px] mt-2 h-[120px]  rounded-lg w-full px-[20px] py-[19px] resize-none gap-2.5 focus:outline-none focus:border-[#0066FF] ${
                     errors.description ? "border-red-500" : "border-[#363939]"
                   }`}
                   name="description"
@@ -616,7 +618,7 @@ const AddCampaign = () => {
                     id="startDate"
                     value={formData.startDate}
                     onChange={handlechangeDate}
-                    className={`shadow appearance-none mt-3 w-full px-[19px] py-[20px] border-[#363939]  border rounded-md text-[#B1B2B2] focus:outline-none focus:border-[#0066FF] ${
+                    className={`shadow appearance-none mt-3 w-full px-[20px] py-[19px] border-[#363939]  border rounded-md text-[#B1B2B2] focus:outline-none focus:border-[#0066FF] ${
                       errors.startDate ? "border-red-500" : ""
                     }`}
                   />
@@ -646,7 +648,7 @@ const AddCampaign = () => {
                     id="endDate"
                     value={formData.endDate}
                     onChange={handlechangeDate}
-                    className={`shadow appearance-none mt-3 w-full px-[19px] py-[20px] border-[#363939]  border rounded-md text-[#B1B2B2] focus:outline-none  focus:border-[#0066FF] ${
+                    className={`shadow appearance-none mt-3 w-full px-[20px] py-[19px] border-[#363939]  border rounded-md text-[#B1B2B2] focus:outline-none  focus:border-[#0066FF] ${
                       errors.endDate ? "border-red-500" : ""
                     }`}
                   />
@@ -1025,7 +1027,7 @@ const AddCampaign = () => {
                   might want to add
                 </p>
                 <textarea
-                  className={`border-[0.7px] mt-3 h-[120px] resize-none border-[#363939] rounded-lg w-full px-[19px] p-4 gap-2.5 focus:outline-none focus:border-[#0066FF] `}
+                  className={`border-[0.7px] mt-3 h-[120px] resize-none border-[#363939] rounded-lg w-full px-[20px] py-[19px] gap-2.5 focus:outline-none focus:border-[#0066FF] `}
                   name="addDescription"
                   id="addDescription"
                   placeholder="Write Additional information"

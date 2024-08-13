@@ -123,6 +123,7 @@ const PastCampaign = () => {
     setCurrentPage(id);
   };
 
+  
   const nextPage = () => {
     if (currentPage !== npage) {
       setCurrentPage(currentPage + 1);
