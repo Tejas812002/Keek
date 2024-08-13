@@ -56,7 +56,7 @@ const ManageCampaign = () => {
   const influencers = [
     {
       name: "Gautam Sachdeva",
-      niche: ["Travel", "Fashion","hhjk","uuuss"],
+      niche: ["Travel", "Fashion", "hhjk", "uuuss"],
       platforms: {
         instagram: "Instagram",
         facebook: "Facebook",
@@ -66,7 +66,7 @@ const ManageCampaign = () => {
     },
     {
       name: "Gautam Sachdeva",
-      niche: ["Travel", "Fashion","hhjk"],
+      niche: ["Travel", "Fashion", "hhjk"],
       platforms: {
         instagram: "Instagram",
         facebook: "Facebook",
@@ -76,7 +76,7 @@ const ManageCampaign = () => {
     },
     {
       name: "Gautam Sachdeva",
-      niche: ["Travel", "Fashion","Travel", "Fashion"],
+      niche: ["Travel", "Fashion", "Travel", "Fashion"],
       platforms: {
         instagram: "Instagram",
         facebook: "Facebook",
@@ -96,7 +96,7 @@ const ManageCampaign = () => {
     },
     {
       name: "Gautam Sachdeva",
-      niche: ["Travel", "Fashion","Travel", "Fashion"],
+      niche: ["Travel", "Fashion", "Travel", "Fashion"],
       platforms: {
         instagram: "Instagram",
         facebook: "Facebook",
@@ -104,7 +104,7 @@ const ManageCampaign = () => {
         linkedin: "LinkedIn",
       },
     },
-    
+
     // Add more influencers here as needed
   ];
 
@@ -115,7 +115,7 @@ const ManageCampaign = () => {
   const records = influencers.slice(firstIndex, lastIndex);
   const totalPages = Math.ceil(influencers.length / recordsPerPage);
   const itemsPerPage = 4; // Number of influencers to display per page
- 
+
   const handlePrevClick = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -136,28 +136,26 @@ const ManageCampaign = () => {
 
   return (
     <div
-      class={` flex relative ${
-        !expanded
+      class={` flex relative ${!expanded
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[320px] w-[calc(100%-320px)]"
-      }  overflow-y-auto  bg-white space-y-4 p-4 `}
+        }  overflow-y-auto  bg-white space-y-4 p-4 `}
     >
       <div className="flex flex-col">
-        <div className="flex flex-row p-6 items-center  border-b-2 gap-[3.14px]">
+        <div className="flex flex-row w-[1086px] h-[86px] p-5 items-center  border-b-2 gap-[3.14px]">
           <Link
             to="/CampaignManagement"
-            className={`text-[16px] font-normal flex flex-row ${
-              currentPath === "/CampaignManagement"
-                ? "text-blue-700"
+            className={`text-[16px] font-normal font-body flex flex-row ${currentPath === "/CampaignManagement"
+                ? "text-[#2463EB]"
                 : "text-black"
-            }`}
+              }`}
           >
             Campaign Management
             <MdChevronRight className="m-1 items-center" size={"15.7px"} />
           </Link>
           <Link
-           
-            className={`text-[16px] font-semibold text-[#2463eb] gap-x-2`}
+
+            className={`text-[16px] font-semibold font-body text-[#2463eb] gap-x-2`}
           >
             Manage Campaign
           </Link>
@@ -200,11 +198,11 @@ const ManageCampaign = () => {
                   PARTICIPANTS:
                 </span>
                 <p className="font-body text-xl font-normal">
-                                  <span className="text-[#0062F5]">
-                                    {campaignDetails.participants} {""}/
-                                  </span>{" "}
-                                  100
-                                </p>
+                  <span className="text-[#0062F5]">
+                    {campaignDetails.participants} {""}/
+                  </span>{" "}
+                  100
+                </p>
               </div>
 
               <div>
@@ -212,8 +210,8 @@ const ManageCampaign = () => {
                   COMPENSATION:
                 </span>
                 <p className="font-body text-[16px] font-normal">
-  {campaignDetails.compensation.join(', ')}
-</p>
+                  {campaignDetails.compensation.join(', ')}
+                </p>
               </div>
             </div>
             <div className="space-y-10">
@@ -245,60 +243,55 @@ const ManageCampaign = () => {
           <div className="flex space-x-4">
             <Link to="/manageCampaign">
               <button
-                className={`py-2 px-4 ${
-                  location.pathname === "/manageCampaign"
+                className={`py-2 px-4 ${location.pathname === "/manageCampaign"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                }`}
+                  }`}
               >
-               Interest Received
+                Interest Received
               </button>
             </Link>
             <Link to="/Shortlisted">
               <button
-                className={`py-2 px-4 ${
-                  location.pathname === "/Shortlisted"
+                className={`py-2 px-4 ${location.pathname === "/Shortlisted"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                }`}
+                  }`}
               >
                 Shortlisted
               </button>
             </Link>
             <Link to="/Approved">
               <button
-                className={`py-2 px-4 ${
-                  location.pathname === "/Approved"
+                className={`py-2 px-4 ${location.pathname === "/Approved"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                }`}
+                  }`}
               >
-               Approved
+                Approved
               </button>
             </Link>
             <Link to="/Rejected">
               <button
-                className={`py-2 px-4 ${
-                  location.pathname === "/Rejected"
+                className={`py-2 px-4 ${location.pathname === "/Rejected"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                }`}
+                  }`}
               >
-               Rejected
+                Rejected
               </button>
             </Link>
             <Link to="/AIRecommended">
               <button
-                className={`py-2 px-4 ${
-                  location.pathname === "/AIRecommended"
+                className={`py-2 px-4 ${location.pathname === "/AIRecommended"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                }`}
+                  }`}
               >
-              AI Recommended
+                AI Recommended
               </button>
             </Link>
-          
+
           </div>
           <div className="relative">
             <span className="absolute top-0 left-0 transform translate-x-1/2 -translate-y-1/2 bg-destructive rounded-full w-2.5 h-2.5"></span>
@@ -307,7 +300,7 @@ const ManageCampaign = () => {
 
         <div class="">
           <table class="min-w-full  bg-white ">
-          <thead>
+            <thead>
               <tr class=" border-b  uppercase " style={{ height: "80px" }}>
                 <th class="py-3 px-6 text-left text-[#797A7B] text-[12px] font-body font-semibold">Influencer Name</th>
                 <th class="py-3 px-6 text-left text-[#797A7B] text-[12px] font-body font-semibold">Niche</th>
@@ -329,40 +322,40 @@ const ManageCampaign = () => {
                   </td>
                   <td className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal">
                     <a className="flex items-center" href={influencer.platforms.instagram}>
-                    Instagram 
+                      Instagram
                       <FiArrowUpRight className="ml-1  text-[#0066ff]" />
 
                     </a>
                   </td>
                   <td className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal">
                     <a className="flex items-center" href={influencer.platforms.facebook}>
-                    facebook
+                      facebook
                       <FiArrowUpRight className="ml-1  text-[#0066ff]" />
 
                     </a>                  </td>
                   <td className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal">
                     <a className="flex items-center" href={influencer.platforms.youtube}>
-                    youtube
+                      youtube
                       <FiArrowUpRight className="ml-1  text-[#0066ff]" />
 
                     </a>                  </td>
                   <td className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal">
                     <a className="flex items-center" href={influencer.platforms.linkedin}>
-                    linkedin
+                      linkedin
                       <FiArrowUpRight className="ml-1  text-[#0066ff]" />
 
                     </a>                  </td>
                   <td className="py-3 px-6 text-[14px] font-body font-semibold">
-                  <button className="text-[#e32828] w-[10px]">
-      Reject
-    </button>
-                    
+                    <button className="text-[#e32828] w-[10px]">
+                      Reject
+                    </button>
+
                   </td>
                   <td className="py-3 px-6 text-[14px] font-body font-semibold">
-                  <button className="bg-[#0066FF] text-[#FFFFFF] w-[100px] h-[35px] px-4 rounded-lg border border-[#384edd] font-semibold font-['Open Sans'] text-sm leading-[14px]">
-      Shortlist
-    </button>
-                    
+                    <button className="bg-[#0066FF] text-[#FFFFFF] w-[100px] h-[35px] px-4 rounded-lg border border-[#384edd] font-semibold font-['Open Sans'] text-sm leading-[14px]">
+                      Shortlist
+                    </button>
+
                   </td>
                 </tr>
               ))}
@@ -400,7 +393,7 @@ const ManageCampaign = () => {
           </div>
         </div>
 
-      
+
 
       </div>
     </div>

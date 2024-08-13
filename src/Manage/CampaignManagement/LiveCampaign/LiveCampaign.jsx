@@ -223,7 +223,6 @@ const LiveCampaign = () => {
     about:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio.",
     compensation: ["Product", "Money"], // Array of compensation types
-    targetAudience: ["Men", "Women"], // Array of target audiences
     participants: 10, // Number of participants
     location: ["New Delhi, India", "New Delhi, India", "New Delhi, India"],
   };
@@ -275,14 +274,13 @@ const LiveCampaign = () => {
 
   return (
     <div
-      class={` flex relative ${
-        !expanded
+      class={` flex relative ${!expanded
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[320px] w-[calc(100%-320px)]"
-      }  overflow-y-auto  bg-white space-y-4 p-4 `}
+        }  overflow-y-auto  bg-white space-y-4 p-4 `}
     >
-      <div className="bg-white w-full">
-        <div className="flex w-full justify-between items-center p-4 bg-white border-border">
+      <div className={`bg-white   ${expanded ? "w-[1120px]":"w-full" }`}>
+        <div className={` ${expanded ? "w-[1062px] ml-4":"w-full pr-4" } mt-5 flex  justify-between items-center  bg-white border-border`}>
           <div>
             <h1 className="text-2xl font-bold text-foreground">
               Manage Campaign
@@ -292,46 +290,42 @@ const LiveCampaign = () => {
             </p>
           </div>
           <Link to="/AddCampaign">
-          <button class={`bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
-            ${
-              location.pathname === '/AddCampaign' }`}>
+            <button class={`bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
+            ${location.pathname === '/AddCampaign'}`}>
               <span class="mr-2 text-3xl">+</span> Add Campaign
             </button>
           </Link>
 
-          
+
         </div>
-        <div className="flex border-b border-border">
+        <div class={`flex border-b border-border ${expanded ? "w-[1061px] ml-4 ":"w-full " }  mt-7`}>
           <div className="flex space-x-4">
             <Link to="/CampaignManagement">
               <button
-                className={`py-2 px-4 ${
-                  location.pathname === "/CampaignManagement"
+                className={`py-2 px-4 ${location.pathname === "/CampaignManagement"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                }`}
+                  }`}
               >
                 Live campaigns
               </button>
             </Link>
             <Link to="/PastCampaign">
               <button
-                className={`py-2 px-4 ${
-                  location.pathname === "/PastCampaign"
+                className={`py-2 px-4 ${location.pathname === "/PastCampaign"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                }`}
+                  }`}
               >
                 Past campaigns
               </button>
             </Link>
             <Link to="/DraftCampaign">
               <button
-                className={`py-2 px-4 ${
-                  location.pathname === "/DraftCampaign"
+                className={`py-2 px-4 ${location.pathname === "/DraftCampaign"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                }`}
+                  }`}
               >
                 Drafts
               </button>
@@ -342,26 +336,25 @@ const LiveCampaign = () => {
           </div>
         </div>
 
-        {/* searchbar */}
-        <div className="mr-4 ml-4 mt-[28px] ">
+         {/* Searchbar */}
+         <div className={`${expanded ? "w-[1061px]":"w-full pr-8" }   h-[60px] mr-4 ml-4 mt-[28px] `}>
           <div
-            className={` bg-[#F5F5F5] h-[60px] flex items-center rounded-lg justify-between bg-background `}
+            className={` bg-[#F5F5F5]  h-[60px] flex items-center rounded-lg justify-between bg-background `}
           >
-            <div className="relative flex items-center h-[35px] ml-[18px] w-8/12">
+            <div className="relative flex items-center   ml-[18px] p-2 ">
               <CiSearch className="absolute left-4 text-gray-500 top-1/2 transform -translate-y-1/2 size-4" />
               <input
                 type="text"
                 placeholder="Search Campaigns"
-                className="w-full bg-white py-1 px-10 rounded bg-input text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-ring"
-              />
+               className={`${expanded ? "w-[425px]":"w-[600px]"} h-[35px] bg-white py-1 px-10 rounded bg-input text-[14px] font-body font-normal border border-border focus:outline-none focus:ring-2 focus:ring-ring`}              />
             </div>
 
-            <div className="flex items-center mr-[18px] h-[40px] text-gray-500 cursor-pointer justify-between space-x-2">
+            <div className="flex items-center mr-[18px] w-[98px] h-[40px] text-gray-500 cursor-pointer justify-between space-x-2">
               <button
                 onClick={toggleModal}
-                className="flex items-center text-sm space-x-2 bg-white text-gray-500 px-4 py-2 rounded-md"
+                className="flex items-center text-[16px] font-body font-semibold space-x-2 bg-white  text-[#797A7B] px-4 py-2 rounded-md"
               >
-                <LuFilter className="mr-2 text-base text-gray-500" /> Filter
+                <LuFilter className="mr-2 text-base text-[#797A7B]" /> Filter
               </button>
 
               {isModalVisible && (
@@ -375,27 +368,29 @@ const LiveCampaign = () => {
             </div>
           </div>
         </div>
+{/* Table */}
 
-        <div className="flex flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between">
-          <table className="w-full ">
+
+<div className="flex flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between">
+<table className={`${expanded ? "w-[1051px] mr-3":"w-full mr-3"  } h-[470px] ml-4` }>
             <thead>
-              <tr className="border-b-2 h-[91px]">
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[14px] font-semibold text-start p-2">
+              <tr className="border-b-2 h-[94px]" >
+                <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
                   CAMPAIGN ID
                 </th>
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[14px] font-semibold text-start p-2">
+                <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
                   CAMPAIGN NAME
                 </th>
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[14px] font-semibold text-start p-2">
+                <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
                   STATUS
                 </th>
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[14px] font-semibold text-start p-2">
+                <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
                   PLATFORM
                 </th>
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[14px] font-semibold text-start p-2">
+                <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
                   START DATE
                 </th>
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[14px] font-semibold text-start p-2">
+                <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
                   END DATE
                 </th>
               </tr>
@@ -403,49 +398,48 @@ const LiveCampaign = () => {
             <tbody>
               {records.map((campaign, index) => (
                 <React.Fragment key={index}>
-                  <tr className="border-b-2 h-[91px]">
-                    <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+                  <tr className="border-b-2 h-[94px]">
+                    <td className=" text-[16px] font-normal font-body p-2">
                       {campaign.id}
                     </td>
-                    <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+                    <td className=" text-[16px] font-normal font-body p-2">
                       {campaign.name}
                     </td>
-                    <td className="border-zinc-300 text-[16px] font-normal p-2">
+                    <td className=" text-[14px] font-normal px-1 py-2.5 ">
                       <span
-                        className={`font-body bg-[#E3EEFF] w-[60px] text-[14px] p-1  items-center flex gap-1 rounded-full text-black `}
+                        className={`font-body bg-[#E3EEFF] w-[60px] h-[27px]  text-[14px]  items-center flex gap-1 rounded-full text-black `}
                       >
-                        <FaCircleDot className="w-[10px] ml-1 h-[14px] text-[#0066FF]" />{" "}
+                        <FaCircleDot className="  text-[#0066FF] w-[10px] h-[10px] ml-2" />{" "}
                         {campaign.status}
                       </span>
                     </td>
-                    <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+                    <td className=" text-[16px] font-normal font-body p-2">
                       {campaign.platform.length > 1
-                        ? `${campaign.platform[0]} +${
-                            campaign.platform.length - 1
-                          }`
+                        ? `${campaign.platform[0]} +${campaign.platform.length - 1
+                        }`
                         : campaign.platform[0]}
                     </td>
-                    <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+                    <td className=" text-[16px] font-normal font-body p-2">
                       {campaign.startDate}
                     </td>
-                    <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+                    <td className=" text-[16px] font-normal font-body p-2">
                       {campaign.endDate}
                     </td>
-                    <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+                    <td className=" text-[16px] font-normal font-body p-2">
                       <button className="text-[#000000] flex items-center px-6 py-2  font-body text-[14px] font-normal border border-[#B6B6B6] rounded-lg cursor-pointer">
                         Edit{" "}
                       </button>
                     </td>
-                    <td className="border-zinc-300 p-2">
+                    <td className=" p-2">
                       <button
-                        className="text-[#0066FF] flex items-center font-body text-[14px] font-normal cursor-pointer"
+                        className="text-[#0066FF] flex items-center  font-body text-[14px] gap-2 font-normal cursor-pointer"
                         onClick={() => toggleDetails(index)}
                       >
                         View more{" "}
                         {openIndex === index ? (
-                          <IoIosArrowUp />
+                          <IoIosArrowUp className="mt-[1px]" />
                         ) : (
-                          <IoIosArrowDown />
+                          <IoIosArrowDown className="mt-[1px]" />
                         )}
                       </button>
                     </td>
@@ -455,7 +449,7 @@ const LiveCampaign = () => {
                       <td colSpan="8">
                         <div className="flex flex-col md:flex-row rounded-lg p-2 overflow-hidden">
                           <div className="p-2 mb-4 space-y-4 w-full md:w-1/2">
-                            <div>
+                            <div className="w-[425px] h-[67px]">
                               <h2 className="font-body text-[#797A7B] text-[12px] font-normal">
                                 ABOUT CAMPAIGN
                               </h2>
@@ -463,11 +457,13 @@ const LiveCampaign = () => {
                                 {campaignDetails.about}
                               </p>
                             </div>
-                            <div className="mt-2">
-                              <h3 className="font-body text-[#797A7B] text-[12px] font-normal">
+
+
+                            <div className="gap-2 w-[409px] h-[55px]">
+                              <h3 className="font-body text-[#797A7B]  text-[12px] font-normal">
                                 PLATFORMS:
                               </h3>
-                              <div className="flex gap-2 flex-wrap">
+                              <div className="flex gap-3 mt-[2px] flex-wrap">
                                 {platforms.map((platform, idx) => (
                                   <div
                                     key={idx}
@@ -480,48 +476,45 @@ const LiveCampaign = () => {
                                       src={platform.icon}
                                       alt={platform.name}
                                     />
-                                    <span className="px-2 py-1 rounded-full font-body text-[16px] font-normal">
+                                    <span className="p-1 rounded-full font-body text-[16px] font-normal">
                                       {platform.name}
                                     </span>
                                   </div>
                                 ))}
                               </div>
                             </div>
+
+
                           </div>
+
                           <div className="flex flex-col md:flex-row gap-3 md:w-1/3">
                             <div className="space-y-10 ml-4">
-                              <div>
-                                <span className="font-body text-[#797A7B] text-[12px] font-normal">
-                                  COMPENSATION:
-                                </span>
-                                <p className="font-body text-[16px] font-normal">
-                                <p className="font-body text-[16px] font-normal">
-  {campaignDetails.compensation.join(', ')}
-</p>
-                                </p>
-                              </div>
-                              <div>
-                                <span className="font-body text-[#797A7B] text-[12px] font-normal">
-                                  TARGET AUDIENCE:
-                                </span>
-                             
-                                           <p className="font-body text-[16px] font-normal">
-  {campaignDetails.targetAudience.join(', ')}
-</p>
-                              </div>
-                            </div>
-                            <div className="space-y-10 ml-16">
-                              <div>
+                            <div>
                                 <span className="font-body text-[#797A7B] text-[12px] font-normal">
                                   PARTICIPANTS:
                                 </span>
-                                <p className="font-body text-[16px] font-normal">
+                                <p className="font-body text-[20px] font-semibold">
                                   <span className="text-[#0062F5]">
                                     {campaignDetails.participants}/
                                   </span>
                                   100
                                 </p>
                               </div>
+
+                              <div>
+                                <span className="font-body text-[#797A7B] text-[12px] font-normal">
+                                  COMPENSATION:
+                                </span>
+                                <p className="font-body text-[16px] font-normal">
+                                  <p className="font-body text-[16px] font-normal">
+                                    {campaignDetails.compensation.join(', ')}
+                                  </p>
+                                </p>
+                              </div>
+                           
+                            </div>
+                            <div className="space-y-10 ml-16">
+                             
                               <div>
                                 <span className="font-body text-[#797A7B] text-[12px] font-normal">
                                   LOCATION:
