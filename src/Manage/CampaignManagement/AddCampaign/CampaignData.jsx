@@ -36,8 +36,8 @@ const CampaignSummary = ({ isModalVisible, setIsModalVisible }) => {
   return (
     <>
       {isModalVisible && (
-        <div className="fixed inset-0 h-[1600px] top-6 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white absolute top-[5%] w-[550px] p-4 rounded-md">
+        <div className="fixed inset-0 top-0  z-50 flex items-center justify-center bg-[#0000004d] bg-opacity-50">
+          <div className="bg-white absolute left-[38%] top-[2%] w-[550px]  p-4 rounded-md">
             <div className="flex gap-2 items-center cursor-pointer" onClick={closeModal}>
               <IoMdArrowRoundBack />
               <span className="text-[14px] font-normal font-body">Campaign Preview</span>

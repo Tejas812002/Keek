@@ -79,55 +79,60 @@ const AddCampaign = () => {
 
   const handlechangeDate = (e) => {
     const { name, value } = e.target;
-  
+
     setFormData((prevFormData) => {
       const updatedFormData = {
         ...prevFormData,
         [name]: value,
       };
-  
+
       setErrors((prevErrors) => {
         const updatedErrors = { ...prevErrors };
-  
+
         if (name === "startDate") {
           // Clear the error for startDate only
           updatedErrors.startDate = undefined;
-  
+
           // Check if endDate needs to be re-validated (if both dates are filled)
-          if (updatedFormData.endDate && new Date(value) <= new Date(updatedFormData.endDate)) {
+          if (
+            updatedFormData.endDate &&
+            new Date(value) <= new Date(updatedFormData.endDate)
+          ) {
             updatedErrors.endDate = undefined;
           }
         }
-  
+
         if (name === "endDate") {
           // Clear the error for both startDate and endDate
           updatedErrors.startDate = undefined;
           updatedErrors.endDate = undefined;
-  
+
           // Revalidate the endDate to make sure it's not before startDate
-          if (updatedFormData.startDate && new Date(value) < new Date(updatedFormData.startDate)) {
+          if (
+            updatedFormData.startDate &&
+            new Date(value) < new Date(updatedFormData.startDate)
+          ) {
             updatedErrors.endDate = "End Date cannot be before Start Date";
           }
         }
-  
+
         return updatedErrors;
       });
-  
+
       return updatedFormData;
     });
-  
+
     if (name === "description") {
       setDescriptionCount(value.length);
     }
-  
+
     // Optionally, validate the entire form when a field changes
     // validate();
   };
-  
 
   const handleMultiSelectChange = (selectedOptions, actionMeta) => {
     const updatedErrors = { ...errors };
-  
+
     // Clear the error if any option is selected for the specified field
     if (selectedOptions.length > 0) {
       if (actionMeta.name === "selectedOptionsplatform") {
@@ -136,38 +141,36 @@ const AddCampaign = () => {
         delete updatedErrors.location;
       }
     }
-  
+
     setFormData({
       ...formData,
       [actionMeta.name]: selectedOptions,
     });
-  
+
     // Update the errors state
     setErrors(updatedErrors);
   };
-  
-  
 
   const removeSelectedOption = (optionToRemove, fieldName) => {
     const updatedOptions = formData[fieldName].filter(
       (option) => option.value !== optionToRemove.value
     );
-  
+
     setFormData({
       ...formData,
       [fieldName]: updatedOptions,
     });
-  
+
     // Re-check error if no options remain for the specified field
     if (updatedOptions.length === 0) {
       setErrors({
         ...errors,
-        [fieldName === "selectedOptionsplatform" ? "platform" : "location"]: `${fieldName === "selectedOptionsplatform" ? "Platform" : "Location"} is required`,
+        [fieldName === "selectedOptionsplatform" ? "platform" : "location"]: `${
+          fieldName === "selectedOptionsplatform" ? "Platform" : "Location"
+        } is required`,
       });
     }
   };
-  
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -259,7 +262,6 @@ const AddCampaign = () => {
     )
       errors.platform = "Platform is required";
 
-
     if (!campData.uploadData || campData.uploadData.length === 0) {
       errors.addUpload = "Upload file is required";
     }
@@ -318,7 +320,6 @@ const AddCampaign = () => {
       setIsModalVisible(!isModalVisible);
     }
   };
- 
 
   const handleCompensationSelection = (field) => {
     setFormData((prevFormData) => {
@@ -370,13 +371,13 @@ const AddCampaign = () => {
   return (
     <>
       <div
-        className={`relative max-h-[1066px] mx-6 bg-white  ${
+        className={`relative max-h-[1855px] mx-6 bg-white  ${
           !expanded
             ? "left-[90px] w-[calc(100%-150px)]"
             : "left-[320px] w-[calc(100%-350px)]"
         } rounded-xl drop-shadow-md`}
       >
-        <div className="bg-white top-28 my-4 left-[311px] w-full rounded-xl">
+        <div className={`bg-white top-28 my-4 left-[311px]  rounded-xl  `}>
           <div className="h-[64.85px]  border-b">
             <div className="flex flex-row p-6 px-[40px] items-center gap-[3.14px]">
               <Link
@@ -400,12 +401,12 @@ const AddCampaign = () => {
           </div>
           <div className="p-6 px-[40px] my-2">
             <form onSubmit={handleSubmit}>
-              <div className="mb-5">
+              <div className="my-4">
                 <label className="text-[18px] font-normal font-body">
                   Campaign Name <sup className="text-[#2463eb]">*</sup>
                 </label>
                 <input
-                  className={`border-[0.7px] mt-2  rounded-lg w-full px-[19px] py-3 gap-2.5 my-2 focus:outline-none focus:border-blue-600 ${
+                  className={`border-[0.7px] mt-2  rounded-lg w-full px-[19px] py-5 gap-2.5 my-2 focus:outline-none focus:border-[#0066FF] ${
                     errors.campaignName ? "border-red-500" : "border-[#363939]"
                   }`}
                   type="text"
@@ -425,12 +426,12 @@ const AddCampaign = () => {
                 )}
               </div>
 
-              <div className="mb-1">
+              <div className="my-4">
                 <label className="text-[18px] font-normal font-body">
                   Campaign Description <sup className="text-[#2463eb]">*</sup>
                 </label>
                 <textarea
-                  className={`border-[0.7px] mt-2 h-[120px]  rounded-lg w-full px-[19px] p-4 gap-2.5 focus:outline-none focus:border-[#384edd] ${
+                  className={`border-[0.7px] mt-2 h-[120px]  rounded-lg w-full px-[19px] py-[20px] resize-none gap-2.5 focus:outline-none focus:border-[#0066FF] ${
                     errors.description ? "border-red-500" : "border-[#363939]"
                   }`}
                   name="description"
@@ -457,130 +458,151 @@ const AddCampaign = () => {
               </div>
 
               {/* platform */}
-              <div className="mb-4 mt-4 ">
+              <div className="my-4">
                 <label className="text-[18px] font-body font-normal">
                   Select Platform <sup className="text-[#2463eb]">*</sup>
                 </label>
                 <Select
-  className={`rounded-lg w-full my-2 focus:outline-none focus:border-[#384edd] ${
-    errors.platform ? "border-red-500" : "border-[#363939]"
-  }`}
-  isMulti
-  name="selectedOptionsplatform"
-  options={platformoptions}
-  placeholder="Select Platform"
-  value={formData.selectedOptionsplatform}
-  onChange={handleMultiSelectChange}
-  components={{ MultiValue }}
-  styles={{
-    option: (baseStyles, state) => ({
-      ...baseStyles,
-      color: "black",
-      backgroundColor: state.isFocused ? "#DBE0FF" : "white",
-    }),
-    multiValue: (baseStyles) => ({
-      ...baseStyles,
-      display: "none",
-    }),
-  }}
-/>
+                  className={`rounded-lg w-full my-2 focus:outline-none focus:border-[#0066FF] ${
+                    errors.platform ? "border-red-500" : "border-[#363939]"
+                  }`}
+                  isMulti
+                  name="selectedOptionsplatform"
+                  options={platformoptions}
+                  placeholder="Select Platform"
+                  value={formData.selectedOptionsplatform}
+                  onChange={handleMultiSelectChange}
+                  components={{ MultiValue }}
+                  styles={{
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderColor: "#363939 ",
+                      border: "1px solid",
+                      padding: "19px 20px",
+                      borderRadius: "8px",
+                    }),
+                    option: (baseStyles, state) => ({
+                      ...baseStyles,
+                      color: "black",
+                      backgroundColor: state.isFocused ? "#DBE0FF" : "white",
+                    }),
+                    multiValue: (baseStyles) => ({
+                      ...baseStyles,
+                      display: "none",
+                    }),
+                  }}
+                />
 
-<div className="mt-2 flex flex-wrap">
-  {formData.selectedOptionsplatform.map((option) => (
-    <div
-      key={option.value}
-      className="inline-flex items-center px-3 py-1 mr-2 mb-2 bg-[#384EDD] text-sm text-white rounded-full"
-    >
-      <span className="mr-2">{option.label}</span>
-      <button
-        type="button"
-        className="text-white"
-        onClick={() => removeSelectedOption(option, "selectedOptionsplatform")}
-      >
-        &times;
-      </button>
-    </div>
-  ))}
-</div>
+                <div className="mt-2 flex flex-wrap">
+                  {formData.selectedOptionsplatform.map((option) => (
+                    <div
+                      key={option.value}
+                      className="inline-flex items-center px-3 py-1 mr-2 mb-2 bg-[#384EDD] text-sm text-white rounded-full"
+                    >
+                      <span className="mr-2">{option.label}</span>
+                      <button
+                        type="button"
+                        className="text-white"
+                        onClick={() =>
+                          removeSelectedOption(
+                            option,
+                            "selectedOptionsplatform"
+                          )
+                        }
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  ))}
+                </div>
 
-{errors.platform && (
-  <p className="text-red-500 text-sm flex flex-row gap-1">
-    <span>
-      <RiErrorWarningLine className="m-1" />
-    </span>
-    {errors.platform}
-  </p>
-)}
-
+                {errors.platform && (
+                  <p className="text-red-500 text-sm flex flex-row gap-1">
+                    <span>
+                      <RiErrorWarningLine className="m-1" />
+                    </span>
+                    {errors.platform}
+                  </p>
+                )}
               </div>
 
               {/* location */}
-              <div className="mb-3">
+              <div className="my-4">
                 <label className="text-[18px] font-body font-normal">
                   Select Location <sup className="text-[#2463eb]">*</sup>
                 </label>
                 <Select
-  className={`rounded-lg w-full my-2 focus:outline-none focus:border-[#384edd] ${
-    errors.location ? "border-red-500" : "border-[#363939]"
-  }`}
-  isMulti
-  name="selectedOptionslocation"
-  options={locationoptions}
-  placeholder="Select Location"
-  value={formData.selectedOptionslocation}
-  onChange={handleMultiSelectChange}
-  components={{ MultiValue }}
-  styles={{
-    option: (baseStyles, state) => ({
-      ...baseStyles,
-      backgroundColor: state.isFocused ? "#DBE0FF" : "white",
-    }),
-    multiValue: (baseStyles) => ({
-      ...baseStyles,
-      color: "white",
-      backgroundColor: "#384EDD",
-      borderRadius: "50px",
-    }),
-    multiValueLabel: (baseStyles) => ({
-      ...baseStyles,
-      color: "white",
-      textAlign: "center",
-    }),
-  }}
-/>
+                  className={`rounded-lg w-full my-2 focus:outline-none focus:border-[#384edd] ${
+                    errors.location ? "border-red-500" : "border-[#363939]"
+                  }`}
+                  isMulti
+                  name="selectedOptionslocation"
+                  options={locationoptions}
+                  placeholder="Select Location"
+                  value={formData.selectedOptionslocation}
+                  onChange={handleMultiSelectChange}
+                  components={{ MultiValue }}
+                  styles={{
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderColor: "#363939",
+                      padding: "19px 20px",
+                      borderRadius: "8px",
+                    }),
 
-<div className="mt-2 flex flex-wrap">
-  {formData.selectedOptionslocation.map((option) => (
-    <div
-      key={option.value}
-      className="inline-flex items-center px-2 py-1 mr-2 mb-2 bg-[#384EDD] text-sm text-white rounded-full"
-    >
-      <span className="mr-2">{option.label}</span>
-      <button
-        type="button"
-        className="text-white"
-        onClick={() => removeSelectedOption(option, "selectedOptionslocation")}
-      >
-        &times;
-      </button>
-    </div>
-  ))}
-</div>
+                    option: (baseStyles, state) => ({
+                      ...baseStyles,
+                      backgroundColor: state.isFocused ? "#DBE0FF" : "white",
+                    }),
+                    multiValue: (baseStyles) => ({
+                      ...baseStyles,
+                      color: "white",
+                      backgroundColor: "#384EDD",
+                      borderRadius: "50px",
+                    }),
+                    multiValueLabel: (baseStyles) => ({
+                      ...baseStyles,
+                      color: "white",
+                      textAlign: "center",
+                    }),
+                  }}
+                />
 
-{errors.location && (
-  <p className="text-red-500 text-sm flex flex-row gap-1">
-    <span>
-      <RiErrorWarningLine className="m-1" />
-    </span>
-    {errors.location}
-  </p>
-)}
+                <div className="mt-2 flex flex-wrap">
+                  {formData.selectedOptionslocation.map((option) => (
+                    <div
+                      key={option.value}
+                      className="inline-flex items-center px-2 py-1 mr-2 mb-2 bg-[#384EDD] text-sm text-white rounded-full"
+                    >
+                      <span className="mr-2">{option.label}</span>
+                      <button
+                        type="button"
+                        className="text-white"
+                        onClick={() =>
+                          removeSelectedOption(
+                            option,
+                            "selectedOptionslocation"
+                          )
+                        }
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  ))}
+                </div>
 
-
+                {errors.location && (
+                  <p className="text-red-500 text-sm flex flex-row gap-1">
+                    <span>
+                      <RiErrorWarningLine className="m-1" />
+                    </span>
+                    {errors.location}
+                  </p>
+                )}
               </div>
 
               {/* start date */}
-              <div className="flex flex-row justify-start w-full text-gray mb-5">
+              <div className="flex flex-row justify-start w-full text-gray my-4">
                 <div className="w-1/2 ">
                   <label
                     htmlFor="startDate"
@@ -594,7 +616,7 @@ const AddCampaign = () => {
                     id="startDate"
                     value={formData.startDate}
                     onChange={handlechangeDate}
-                    className={`shadow appearance-none mt-3 w-full px-3 py-2  border rounded-md text-[#B1B2B2] focus:outline-none focus:shadow-outline ${
+                    className={`shadow appearance-none mt-3 w-full px-[19px] py-[20px] border-[#363939]  border rounded-md text-[#B1B2B2] focus:outline-none focus:border-[#0066FF] ${
                       errors.startDate ? "border-red-500" : ""
                     }`}
                   />
@@ -624,7 +646,7 @@ const AddCampaign = () => {
                     id="endDate"
                     value={formData.endDate}
                     onChange={handlechangeDate}
-                    className={`shadow appearance-none mt-3 w-full px-3 py-2 border rounded-md text-[#B1B2B2] focus:outline-none focus:shadow-outline ${
+                    className={`shadow appearance-none mt-3 w-full px-[19px] py-[20px] border-[#363939]  border rounded-md text-[#B1B2B2] focus:outline-none  focus:border-[#0066FF] ${
                       errors.endDate ? "border-red-500" : ""
                     }`}
                   />
@@ -640,8 +662,8 @@ const AddCampaign = () => {
               </div>
 
               {/* post */}
-              <div>
-                <label className="text-[18px] font-normal font-body">
+              <div className="my-4">
+                <label className="text-[18px] font-normal font-body ">
                   Deliverables <sup className="text-[#2463eb]">*</sup>
                 </label>
                 <div className="flex flex-row gap-6 my-5">
@@ -651,7 +673,7 @@ const AddCampaign = () => {
                       className={
                         formData.postCount > 0
                           ? "flex flex-col border-2 border-[#0066FF] items-center justify-center w-[144px] h-[132px] bg-[#E9F2FF] rounded-[10px]"
-                          : "flex flex-col items-center border-2 border-black justify-center w-[144px] h-[132px] bg-[#F6F5F8] rounded-[10px]"
+                          : "flex flex-col items-center border-2 border-black justify-center w-[144px] h-[132px] bg-[#F6F6F6] rounded-[10px]"
                       }
                     >
                       <PiImageBold size={"24px"} className="text-[#B4B5BF]" />
@@ -684,7 +706,7 @@ const AddCampaign = () => {
                       className={
                         formData.reelCount > 0
                           ? "flex flex-col border-2 border-[#0066FF] items-center justify-center w-[144px] h-[132px] bg-[#E9F2FF] rounded-[10px]"
-                          : "flex flex-col items-center border-2 border-black justify-center w-[144px] h-[132px] bg-[#F6F5F8] rounded-[10px]"
+                          : "flex flex-col items-center border-2 border-black justify-center w-[144px] h-[132px] bg-[#F6F6F6] rounded-[10px]"
                       }
                     >
                       <SlSocialYoutube
@@ -720,7 +742,7 @@ const AddCampaign = () => {
                       className={
                         formData.storyCount > 0
                           ? "flex flex-col border-2 border-[#0066FF] items-center justify-center w-[144px] h-[132px] bg-[#E9F2FF] rounded-[10px]"
-                          : "flex flex-col items-center border-2 border-black justify-center w-[144px] h-[132px] bg-[#F6F5F8] rounded-[10px]"
+                          : "flex flex-col items-center border-2 border-black justify-center w-[144px] h-[132px] bg-[#F6F6F6] rounded-[10px]"
                       }
                     >
                       <HiOutlineVideoCamera
@@ -766,8 +788,8 @@ const AddCampaign = () => {
 
               {/* Payment */}
 
-              <div>
-                <div className="mt-[3%]">
+              <div className="my-4">
+                <div>
                   <label className="text-[18px]">
                     Select Mode of Compensation{" "}
                     <sup className="text-[#2463eb]">*</sup>
@@ -850,7 +872,7 @@ const AddCampaign = () => {
                         Enter Amount <sup className="text-[#2463eb]">*</sup>
                       </h1>
                       <input
-                        className={`border-[0.7px] w-[500px] mt-2 border-[#363939] rounded-lg px-[19px] py-3 gap-2.5 my-2 focus:outline-none focus:border-blue-600 
+                        className={`border-[0.7px] w-[500px] mt-2 border-[#363939] rounded-lg px-[19px] py-3 gap-2.5 my-2 focus:outline-none focus:border-[#0066FF] 
           ${errors.amount ? "border-red-500" : ""}`}
                         type="number"
                         name="amount"
@@ -929,7 +951,7 @@ const AddCampaign = () => {
               {/* upload file */}
               <div>
                 {/* upload display */}
-                <div className=" mt-[3%]  ">
+                <div className="my-4">
                   <h1 className="text-[18px] font-normal">
                     Upload Brand Assets<sup className="text-[#2463eb]">*</sup>
                   </h1>
@@ -994,7 +1016,7 @@ const AddCampaign = () => {
               </div>
 
               {/* additional information */}
-              <div className="mt-6">
+              <div className="my-4">
                 <h1 className="text-[18px] font-body font-normal">
                   Additional Information
                 </h1>
@@ -1003,7 +1025,7 @@ const AddCampaign = () => {
                   might want to add
                 </p>
                 <textarea
-                  className={`border-[0.7px] mt-3 h-[120px] border-[#363939] rounded-lg w-full px-[19px] p-4 gap-2.5 focus:outline-none focus:border-[#384edd] `}
+                  className={`border-[0.7px] mt-3 h-[120px] resize-none border-[#363939] rounded-lg w-full px-[19px] p-4 gap-2.5 focus:outline-none focus:border-[#0066FF] `}
                   name="addDescription"
                   id="addDescription"
                   placeholder="Write Additional information"
@@ -1035,16 +1057,19 @@ const AddCampaign = () => {
           </div>
         </div>
 
-        <div>
+       
+      </div>
+
+      <div>
           <CampaignSummary
             className={` ${isModalVisible ? "hidden" : "block"}`}
             isModalVisible={isModalVisible}
             setIsModalVisible={setIsModalVisible}
           />
         </div>
-      </div>
     </>
   );
 };
+
 
 export default AddCampaign;
