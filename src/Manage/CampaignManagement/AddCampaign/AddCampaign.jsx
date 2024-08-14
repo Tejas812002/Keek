@@ -618,7 +618,7 @@ const AddCampaign = () => {
                     id="startDate"
                     value={formData.startDate}
                     onChange={handlechangeDate}
-                    className={`shadow appearance-none mt-3 w-full px-[20px] py-[19px] border-[#363939]  border rounded-md text-[#B1B2B2] focus:outline-none focus:border-[#0066FF] ${
+                    className={`shadow appearance-none mt-3 w-full   py-[19px] border-[#363939]  border rounded-md text-[#B1B2B2] focus:outline-none focus:border-[#0066FF] ${
                       errors.startDate ? "border-red-500" : ""
                     }`}
                   />

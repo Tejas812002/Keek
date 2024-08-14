@@ -161,7 +161,7 @@ const DraftCampaign = () => {
               <input
                 type="text"
                 placeholder="Search Campaigns"
-               className={`${expanded ? "w-[425px]":"w-[600px]"} h-[35px] bg-white py-1 px-10 rounded bg-input text-[14px] font-body font-normal border border-border focus:outline-none focus:ring-2 focus:ring-ring`}              />
+               className={`${expanded ? "w-[425px]":"w-[600px]"} h-[35px] bg-white py-[8px] px-[8px] rounded bg-input text-[14px] font-body font-normal border border-border focus:outline-none focus:ring-2 focus:ring-ring`}              />
             </div>
 
             <div className="flex items-center mr-[18px] w-[98px] h-[40px] text-gray-500 cursor-pointer justify-between space-x-2">
@@ -188,7 +188,7 @@ const DraftCampaign = () => {
         <div className="flex flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between">
           <table className={`${expanded ? "w-[1043px] mr-3":"w-full mr-3"  } h-[470px] ml-4` }>
             <thead>
-              <tr className="border-b-2 h-[94px]  ">
+              <tr className="border-b-2   h-[94px] ">
                 <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">CAMPAIGN ID</th>
                 <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">CAMPAIGN NAME</th>
                 <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">STATUS</th>
@@ -197,9 +197,10 @@ const DraftCampaign = () => {
                 <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">END DATE</th>
               </tr>
             </thead>
+            
             <tbody >
               {records.map((campaign, index) => (
-                <tr key={index} className="border-b-2 h-[94px] ">
+                <tr key={index} className="border-b-2 w-[1043px]  h-[94px] ">
                   <td className=" text-[16px] font-normal font-body p-2">{campaign.id}</td>
                   <td className=" text-[16px] font-normal font-body p-2">{campaign.name}</td>
                   <td className=" text-[16px] font-normal p-2">

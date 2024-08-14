@@ -336,8 +336,8 @@ const LiveCampaign = () => {
           </div>
         </div>
 
-         {/* Searchbar */}
-         <div className={`${expanded ? "w-[1061px]":"w-full pr-8" }   h-[60px] mr-4 ml-4 mt-[28px] `}>
+     {/* Searchbar */}
+     <div className={`${expanded ? "w-[1061px]":"w-full pr-8" }   h-[60px] mr-4 ml-4 mt-[28px] `}>
           <div
             className={` bg-[#F5F5F5]  h-[60px] flex items-center rounded-lg justify-between bg-background `}
           >
@@ -346,7 +346,7 @@ const LiveCampaign = () => {
               <input
                 type="text"
                 placeholder="Search Campaigns"
-               className={`${expanded ? "w-[425px]":"w-[600px]"} h-[35px] bg-white py-1 px-10 rounded bg-input text-[14px] font-body font-normal border border-border focus:outline-none focus:ring-2 focus:ring-ring`}              />
+               className={`${expanded ? "w-[425px]":"w-[600px]"} h-[35px] bg-white py-[8px] px-[8px] rounded bg-input text-[14px] font-body font-normal border border-border focus:outline-none focus:ring-2 focus:ring-ring`}              />
             </div>
 
             <div className="flex items-center mr-[18px] w-[98px] h-[40px] text-gray-500 cursor-pointer justify-between space-x-2">
@@ -368,6 +368,8 @@ const LiveCampaign = () => {
             </div>
           </div>
         </div>
+
+
 {/* Table */}
 
 
@@ -398,7 +400,7 @@ const LiveCampaign = () => {
             <tbody>
               {records.map((campaign, index) => (
                 <React.Fragment key={index}>
-                  <tr className="border-b-2 h-[94px]">
+                  <tr className="border-b-2 w-[1051px] h-[94px]">
                     <td className=" text-[16px] font-normal font-body p-2">
                       {campaign.id}
                     </td>
