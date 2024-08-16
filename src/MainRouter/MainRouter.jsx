@@ -9,21 +9,19 @@ import ShortlistedPage from "../Manage/CampaignManagement/ManageCampaign/ManageC
 import ApprovedPage from "../Manage/CampaignManagement/ManageCampaign/ManageCampaignPages/ApprovedPage";
 import RejectedPage from "../Manage/CampaignManagement/ManageCampaign/ManageCampaignPages/RejectedPage";
 import AIRecommendPage from "../Manage/CampaignManagement/ManageCampaign/ManageCampaignPages/AIRecommendPage";
+import Dashboard from "../Manage/Dashboard/Dashboard";
+import RoiComp from "../Manage/Dashboard/RoiReport";
+import PieChartComponent from "../Manage/Dashboard/PieChartComponent";
+import InvestComp from "../Manage/Dashboard/InvestComp";
+import CampaignComponent from "../Manage/Dashboard/CampaignComponent";
+import BarGraph from "../Manage/Dashboard/BarGraph";
 
 
 const MainRouter = () => {
   return (
     <>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              Dashboard
-            </div>
-          }
-        />
+      <Route path="/Dashboard" element={<Dashboard />} />
 
         <Route
           path="/discoverInfluencers"
@@ -97,6 +95,13 @@ const MainRouter = () => {
 
         <Route path="/PastCampaign" element={<PastCampaign />} />
         <Route path="/DraftCampaign" element={<DraftCampaign />} />
+
+        <Route path="/RoiComp" element={<RoiComp />} />
+        <Route path="/InvestComp" element={<InvestComp />} />
+        <Route path="/CampaignComponent" element={<CampaignComponent />} />
+        <Route path="/BarGraph" element={<BarGraph />} />
+        <Route path="/PieChartComponent" element={<PieChartComponent />} />
+
 
        
       </Routes>

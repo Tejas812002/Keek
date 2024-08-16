@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { MoreVertical, EllipsisVertical, ChevronDown, ChevronUp } from 'lucide-react';
+import { MoreVertical, EllipsisVertical } from 'lucide-react';
 import logo from "../../../Assets/Logo.jpg";
 import white from "../../../Assets/white.jpg";
 import profile from "../../../Assets/intersect.jpg";
@@ -64,50 +64,36 @@ const SideBar = ({ children }) => {
 
 export default SideBar;
 
-export function SidebarItem({ icon, text, alert, children, customClass }) {
+export function SidebarItem({ icon, text, alert, customClass }) {
   const { expanded, selectedItem, setSelectedItem } = useContext(SidebarContext);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const isSelected = selectedItem === text;
 
   const handleClick = () => {
     setSelectedItem(text);
-    setDropdownOpen((prev) => !prev);
   };
 
   return (
-    <div className='relative'>
-      <li
-        onClick={handleClick}
-        className={`relative flex items-center mt-0.5 rounded font-medium cursor-pointer transition-colors duration-150
-          ${isSelected ? "border-r-4 border-blue-500 text-blue-500" : ""} ${expanded ? "" : "h-10"} ${customClass}`}
-        style={{ padding: expanded ? '0.25rem 0.5rem' : '0.25rem', width: expanded ? 'auto' : 'max-content' }}
-      >
-        <div className='flex items-center'>
-          <div className='flex-shrink-0' style={{ width: '20px' }}>
-            {icon}
-          </div>
-          <span className={`overflow-hidden transition-all duration-150 ${expanded ? "w-52 ml-3" : "w-0 p-0 m-0"}`}>{text}</span>
-          {alert && (
-            <span className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${expanded ? "" : "top-2"}`}></span>
-          )}
-          {expanded && text === "Dashboard" && (
-            <div className="ml-auto">
-              {dropdownOpen ? <ChevronUp /> : <ChevronDown />}
-            </div>
-          )}
+    <li
+      onClick={handleClick}
+      className={`relative flex items-center mt-0.5 rounded font-medium cursor-pointer transition-colors duration-150
+        ${isSelected ? "border-r-4 border-blue-500 text-blue-500" : ""} ${expanded ? "" : "h-10"} ${customClass}`}
+      style={{ padding: expanded ? '0.25rem 0.5rem' : '0.25rem', width: expanded ? 'auto' : 'max-content' }}
+    >
+      <div className='flex items-center'>
+        <div className='flex-shrink-0' style={{ width: '20px' }}>
+          {icon}
         </div>
-        {!expanded && (
-          <div className={`absolute left-full rounded-md px-2 py-1 ml-6 text-black text-sm invisible opacity-20 -translate-x-3 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-hover:translate-x-0`}>
-            {text}
-          </div>
+        <span className={`overflow-hidden transition-all duration-150 ${expanded ? "w-52 ml-3" : "w-0 p-0 m-0"}`}>{text}</span>
+        {alert && (
+          <span className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${expanded ? "" : "top-2"}`}></span>
         )}
-      </li>
-      {dropdownOpen && expanded && (
-        <ul className="pl-2">
-          {children}
-        </ul>
+      </div>
+      {!expanded && (
+        <div className={`absolute left-full rounded-md px-2 py-1 ml-6 text-black text-sm invisible opacity-20 -translate-x-3 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-hover:translate-x-0`}>
+          {text}
+        </div>
       )}
-    </div>
+    </li>
   );
 }

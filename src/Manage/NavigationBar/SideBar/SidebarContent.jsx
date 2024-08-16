@@ -14,18 +14,8 @@ const SidebarContent = () => {
   return (
     <div className="max-w-[340px] ">
       <SideBar>
-        <Link to={"/"}>
-          <SidebarItem
-            icon={<MdOutlineDashboardCustomize size={20} />}
-            text="Dashboard"
-          >
-            {/* <SidebarItem text="ROI Report" customClass="text-gray-600" />
-            <SidebarItem text="Audience Insights" customClass="text-gray-600" />
-            <SidebarItem
-              text="Manage Influencers"
-              customClass="text-gray-600"
-            /> */}
-          </SidebarItem>
+      <Link to={"/Dashboard"}>
+          <SidebarItem icon={<MdOutlineDashboardCustomize size={20} />} text="Dashboard" />
         </Link>
 
         <Link to={"/CampaignManagement"}>

@@ -35,7 +35,7 @@ const LiveCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Live",
-      platform: ["Facebook", "Twitter", "Instagram", "Facebook", "Twitter"],
+      platform: [ "Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24",
     },
@@ -248,6 +248,7 @@ const LiveCampaign = () => {
       icon: YT,
       bgColor: "#FFE4E1",
     },
+  
   ];
 
   const recordsPerPage = 5;
@@ -397,7 +398,7 @@ const LiveCampaign = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className={`${expanded ? "w-[1051px] mr-3":"w-full mr-3"  } h-[470px] ` }>
               {records.map((campaign, index) => (
                 <React.Fragment key={index}>
                   <tr className="border-b-2 w-[1051px] h-[94px]">
@@ -415,7 +416,7 @@ const LiveCampaign = () => {
                         {campaign.status}
                       </span>
                     </td>
-                    <td className=" text-[16px] font-normal font-body p-2">
+                    <td className=" text-[16px] h-[22px] font-normal font-body p-2">
                       {campaign.platform.length > 1
                         ? `${campaign.platform[0]} +${campaign.platform.length - 1
                         }`
@@ -434,7 +435,7 @@ const LiveCampaign = () => {
                     </td>
                     <td className=" p-2">
                       <button
-                        className="text-[#0066FF] flex items-center  font-body text-[14px] gap-2 font-normal cursor-pointer"
+                        className="text-[#0066FF] w-[86px] h-[14px] flex items-center  font-body text-[14px] font-normal cursor-pointer"
                         onClick={() => toggleDetails(index)}
                       >
                         View more{" "}
@@ -449,7 +450,7 @@ const LiveCampaign = () => {
                   {openIndex === index && (
                     <tr className="border-b-2 w-full bg-[#F6F6F6]">
                       <td colSpan="8">
-                        <div className="flex flex-col md:flex-row rounded-lg p-2 overflow-hidden">
+                        <div className="flex flex-col md:flex-row rounded-lg p-2 ">
                           <div className="p-2 mb-4 space-y-4 w-full md:w-1/2">
                             <div className="w-[425px] h-[67px]">
                               <h2 className="font-body text-[#797A7B] text-[12px] font-normal">
