@@ -21,6 +21,7 @@ const MainRouter = () => {
   return (
     <>
       <Routes>
+      <Route path="/" element={<Dashboard />} />
       <Route path="/Dashboard" element={<Dashboard />} />
 
         <Route
