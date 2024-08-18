@@ -15,6 +15,8 @@ import PieChartComponent from "../Manage/Dashboard/PieChartComponent";
 import InvestComp from "../Manage/Dashboard/InvestComp";
 import CampaignComponent from "../Manage/Dashboard/CampaignComponent";
 import BarGraph from "../Manage/Dashboard/BarGraph";
+import Payment from "../Manage/Payment/Payment";
+
 
 
 const MainRouter = () => {
@@ -37,12 +39,7 @@ const MainRouter = () => {
 
         <Route
           path="/payments"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              Payments
-            </div>
-          }
+          element={<Payment />}
         />
         <Route
           path="/Analytics"
