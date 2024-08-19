@@ -16,6 +16,9 @@ import InvestComp from "../Manage/Dashboard/InvestComp";
 import CampaignComponent from "../Manage/Dashboard/CampaignComponent";
 import BarGraph from "../Manage/Dashboard/BarGraph";
 import Payment from "../Manage/Payment/Payment";
+import Influencers from "../Manage/DiscoverInfluencers/Influencers";
+import SavedList from "../Manage/DiscoverInfluencers/SavedList";
+import FavouritesList from "../Manage/DiscoverInfluencers/FavouritesList";
 
 
 
@@ -26,15 +29,8 @@ const MainRouter = () => {
       <Route path="/" element={<Dashboard />} />
       <Route path="/Dashboard" element={<Dashboard />} />
 
-        <Route
-          path="/discoverInfluencers"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              discoverInfluencers
-            </div>
-          }
-        />
+      <Route path="/discoverInfluencers" element={<Influencers />} />
+      
         <Route path="/CampaignManagement" element={<LiveCampaign />} />
 
         <Route
@@ -100,7 +96,8 @@ const MainRouter = () => {
         <Route path="/BarGraph" element={<BarGraph />} />
         <Route path="/PieChartComponent" element={<PieChartComponent />} />
 
-
+        <Route path="/savedlist" element={<SavedList/>} />
+        <Route path="/favouriteslist" element={<FavouritesList />} />
        
       </Routes>
     </>

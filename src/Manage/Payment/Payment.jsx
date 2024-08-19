@@ -9,7 +9,6 @@ import { GoArrowUpRight } from "react-icons/go";
 import { CiWallet } from "react-icons/ci";
 import Filter from "./Filter";
 
-
 const Payment = () => {
   const contextState = useContext(Mycontext);
   const expanded = contextState.expanded;
@@ -18,6 +17,7 @@ const Payment = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [openIndex, setOpenIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedFilters, setSelectedFilters] = useState([]); // State to hold the selected filters
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
@@ -26,6 +26,8 @@ const Payment = () => {
   const toggleDetails = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+
 
   const campaigns = [
     {
@@ -105,16 +107,35 @@ const Payment = () => {
       amount: "$1200",
       totalAmount: "$10000",
     },
-
     // Add more campaigns here as needed
   ];
 
-  const recordsPerPage = 5;
+  const handleApplyFilters = (filters) => {
+    console.log("Filters Applied:", filters);
+  
+    // If "Paid" is selected, add "Completed" to the selected filters
+    if (filters.includes("Paid")) {
+      setSelectedFilters([...filters.filter(filter => filter !== "Paid"), "Completed"]);
+    } 
+    else {
+      setSelectedFilters(filters);
+    }
+  };
+  
+  const filteredCampaigns = selectedFilters.length
+    ? campaigns.filter((campaign) =>
+        selectedFilters.includes(campaign.status)
+      )
+    : campaigns;
 
+  console.log("Filtered Campaigns:", filteredCampaigns);
+
+  const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
-  const records = campaigns.slice(firstIndex, lastIndex);
-  const npage = Math.ceil(campaigns.length / recordsPerPage);
+  const records = filteredCampaigns.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(filteredCampaigns.length / recordsPerPage);
+
   const prePage = () => {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
@@ -126,6 +147,8 @@ const Payment = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  
 
   return (
     <div
@@ -163,14 +186,14 @@ const Payment = () => {
           </button>
         </div>
 
-        <div class="w-full h-[45px] justify-between items-center inline-flex ml-4 mt-2">
+        <div class="w-full h-[45px]  justify-between items-center inline-flex ml-4 mt-2">
           <div class="text-[#1f2223] text-base font-semibold font-['Open Sans'] leading-[19px]">
             Transactions :
           </div>
           <div>
             <button
               onClick={toggleModal}
-              class="px-10 py-2 bg-[#f6f6f6] rounded-[10px] justify-center items-center gap-2.5 flex"
+              class="px-10 py-2 bg-[#f6f6f6] w-[106px] h-[45px] mr-8 rounded-[10px] justify-center items-center gap-2.5 flex"
             >
               <div class="w-4 h-4 text-[#797a7b] relative">
                 <LuFilter />
@@ -180,12 +203,13 @@ const Payment = () => {
               </div>
             </button>
             {isModalVisible && (
-              <div className="absolute top-25 right-10 mt-4 z-50">
-                <Filter
-                  isModalVisible={isModalVisible}
-                  setIsModalVisible={setIsModalVisible}
-                />
-              </div>
+        <div className="absolute top-25 right-10 mt-4 z-50">
+          <Filter
+            isModalVisible={isModalVisible}
+            setIsModalVisible={setIsModalVisible}
+            onApplyFilters={handleApplyFilters} // Make sure this prop matches
+          />
+        </div>
             )}
           </div>
         </div>

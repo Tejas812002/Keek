@@ -6,7 +6,7 @@ import { TbCheckbox } from "react-icons/tb";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 
-const Filter = ({ isModalVisible, setIsModalVisible }) => {
+const Filter = ({ isModalVisible, setIsModalVisible, onApplyFilters }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [isStartDatePickerOpen, setIsStartDatePickerOpen] = useState(false);
@@ -28,6 +28,14 @@ const Filter = ({ isModalVisible, setIsModalVisible }) => {
 
   const handleCancel = () => {
     setIsFilterVisible(false);
+    setIsModalVisible(false);
+  };
+
+  const handleApply = () => {
+    const selectedFilters = Object.keys(checkedItems).filter(item => checkedItems[item]);
+    onApplyFilters(selectedFilters);
+    setIsFilterVisible(false);
+    setIsModalVisible(false);
   };
 
   return (
@@ -35,23 +43,20 @@ const Filter = ({ isModalVisible, setIsModalVisible }) => {
       {isFilterVisible && (
         <div>
           <div className="w-[323px] h-[372px] px-4 pt-[17px] pb-[18px] bg-white flex-col justify-center items-center inline-flex">
-            <div className="self-stretch h-[337px] flex-col justify-start items-start gap-10 inline-flex">
+            <div className="self-stretch h-[337px] flex-col justify-start items-center gap-10 inline-flex">
               <div className="self-stretch h-[267px] flex-col justify-start items-center gap-5 flex">
-                <div className="self-stretch h-6 flex-col justify-start items-start gap-2 flex">
-                  <div className="self-stretch h-4 p-0.5 flex-col justify-center items-end gap-2.5 flex relative">
-                    <div className="w-[289px] text-center text-[#344053] text-xs font-normal font-['Open Sans'] leading-none">
-                      Filters
-                    </div>
-                    <button
-                      className="absolute right-0 top-0 mt-0 mr-2 hover:text-[#0066ff]"
-                      onClick={handleCancel}
-                    >
-                      <RxCross2 />
-                    </button>
+                <div className="self-stretch h-6 flex-col justify-start items-end gap-2 flex relative">
+                  <div className="w-[289px] text-center text-[#344053] text-xs font-normal font-['Open Sans'] leading-none">
+                    Filters
                   </div>
-                  <div className="self-stretch h-[0px] border border-[#dedede]"></div>
+                  <button
+                    className="absolute right-0 top-0 mt-0 mr-2 hover:text-[#0066ff]"
+                    onClick={handleCancel}
+                  >
+                    <RxCross2 />
+                  </button>
                 </div>
-                <div className="h-[223px] flex-col justify-start items-start gap-5 flex">
+                <div className="self-stretch h-[223px] flex-col justify-start items-start gap-5 flex">
                   <div className="self-stretch h-[72px] flex-col justify-start items-start gap-1.5 flex">
                     <div className="self-stretch text-[#57595a] text-xs font-semibold font-['Open Sans'] leading-none">
                       Date
@@ -59,30 +64,22 @@ const Filter = ({ isModalVisible, setIsModalVisible }) => {
                     <div className="self-stretch justify-start items-center gap-6 inline-flex">
                       <div className="relative flex-col justify-start items-start gap-1.5 inline-flex">
                         <div
-                          className={`text-${
-                            startDate ? "black" : "#b1b2b2"
-                          } text-[10px] font-normal font-['Open Sans']`}
+                          className={`text-${startDate ? "black" : "#b1b2b2"} text-[10px] font-normal font-['Open Sans']`}
                         >
                           Start Date
                         </div>
                         <div
                           className="relative h-[30px] px-2.5 py-[19px] rounded-lg border border-[#b1b2b2] flex items-center cursor-pointer"
-                          onClick={() =>
-                            setIsStartDatePickerOpen(!isStartDatePickerOpen)
-                          }
+                          onClick={() => setIsStartDatePickerOpen(!isStartDatePickerOpen)}
                         >
                           <DatePicker
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
                             dateFormat="dd/MM/yyyy"
                             placeholderText="DD/MM/YYYY"
-                            className={`w-full h-full px-2 bg-transparent border-none outline-none text-${
-                              startDate ? "black" : "#b1b2b2"
-                            } text-xs font-normal font-['Open Sans']`}
+                            className={`w-full h-full px-2 bg-transparent border-none outline-none text-${startDate ? "black" : "#b1b2b2"} text-xs font-normal font-['Open Sans']`}
                             open={isStartDatePickerOpen}
-                            onClickOutside={() =>
-                              setIsStartDatePickerOpen(false)
-                            }
+                            onClickOutside={() => setIsStartDatePickerOpen(false)}
                           />
                           {isStartDatePickerOpen ? (
                             <FaChevronUp className="absolute right-2 text-[#b1b2b2]" />
@@ -93,26 +90,20 @@ const Filter = ({ isModalVisible, setIsModalVisible }) => {
                       </div>
                       <div className="relative flex-col justify-start items-start gap-1.5 inline-flex">
                         <div
-                          className={`text-${
-                            endDate ? "black" : "#b1b2b2"
-                          } text-[10px] font-normal font-['Open Sans']`}
+                          className={`text-${endDate ? "black" : "#b1b2b2"} text-[10px] font-normal font-['Open Sans']`}
                         >
                           End Date
                         </div>
                         <div
                           className="relative h-[30px] px-2.5 py-[19px] rounded-lg border border-[#b1b2b2] flex items-center cursor-pointer"
-                          onClick={() =>
-                            setIsEndDatePickerOpen(!isEndDatePickerOpen)
-                          }
+                          onClick={() => setIsEndDatePickerOpen(!isEndDatePickerOpen)}
                         >
                           <DatePicker
                             selected={endDate}
                             onChange={(date) => setEndDate(date)}
                             dateFormat="dd/MM/yyyy"
                             placeholderText="DD/MM/YYYY"
-                            className={`w-full h-full px-2 bg-transparent border-none outline-none text-${
-                              endDate ? "black" : "#b1b2b2"
-                            } text-xs font-normal font-['Open Sans']`}
+                            className={`w-full h-full px-2 bg-transparent border-none outline-none text-${endDate ? "black" : "#b1b2b2"} text-xs font-normal font-['Open Sans']`}
                             open={isEndDatePickerOpen}
                             onClickOutside={() => setIsEndDatePickerOpen(false)}
                           />
@@ -139,11 +130,7 @@ const Filter = ({ isModalVisible, setIsModalVisible }) => {
                           onClick={() => toggleCheckbox(item)}
                         >
                           <div
-                            className={`text-xs font-normal font-['Open Sans'] leading-[18.83px] ${
-                              checkedItems[item]
-                                ? "text-[#0066ff]"
-                                : "text-[#767676]"
-                            }`}
+                            className={`text-xs font-normal font-['Open Sans'] leading-[18.83px] ${checkedItems[item] ? "text-[#0066ff]" : "text-[#767676]"}`}
                           >
                             {item}
                           </div>
@@ -169,7 +156,10 @@ const Filter = ({ isModalVisible, setIsModalVisible }) => {
                     Cancel
                   </div>
                 </button>
-                <button className="w-[170px] h-[30px] px-4 bg-[#0066ff] rounded justify-center items-center gap-3 flex">
+                <button
+                  className="w-[170px] h-[30px] px-4 bg-[#0066ff] rounded justify-center items-center gap-3 flex"
+                  onClick={handleApply}
+                >
                   <div className="text-center text-white text-sm font-normal font-['Open Sans'] leading-[14px]">
                     Apply
                   </div>
