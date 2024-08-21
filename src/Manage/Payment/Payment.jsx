@@ -261,13 +261,13 @@ const Payment = () => {
                     </td>
                     <td className="border-zinc-300 text-[16px] font-normal p-2">
                       <span
-                        className={`font-body text-[14px] p-1 justify-center items-center flex gap-2 rounded-full text-black ${
+                        className={`font-body  text-[14px] p-1 justify-center items-center flex gap-2 rounded-full text-black ${
                           campaign.status === "Completed"
-                            ? "bg-green-100 text-green-700 w-[120px]"
+                            ? "bg-[#B0EDC7] text-green-700 w-[120px]"
                             : campaign.status === "Failed"
-                            ? "bg-red-100 text-red-700 w-[100px]"
+                            ? "bg-[#FFBFC3] text-red-700 w-[100px]"
                             : campaign.status === "Pending"
-                            ? "bg-yellow-100 text-yellow-700 w-[110px]"
+                            ? "bg-[#FFEAB0] text-yellow-700 w-[110px]"
                             : "bg-[#E3EEFF] text-[#0066FF] w-[90px]"
                         }`}
                       >
@@ -298,7 +298,7 @@ const Payment = () => {
 
                     <td className="border-zinc-300 p-2">
                       <button
-                        className="text-[#0066FF] flex items-center font-body text-[14px] font-normal cursor-pointer"
+                        className="text-[#0062F5] w-[84px] h-[12px] flex items-center font-body text-[14px] font-normal cursor-pointer"
                         onClick={() => toggleDetails(index)}
                       >
                         View Invoice
