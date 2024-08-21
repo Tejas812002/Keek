@@ -24,7 +24,7 @@ const RoiComp = ({expanded}) => {
     { name: "Sep", value: 70 },
     { name: "Oct", value: 72 },
     { name: "Nov", value: 70 },
-    { name: "Dec", value: 85 },
+    { name: "Dec", value: 91.51 },
   ];
 
   const yearlyData = [
@@ -43,9 +43,9 @@ const RoiComp = ({expanded}) => {
 
   return (
     <>
-    <div className={`   ${expanded ? '  w-[728px]': 'w-full' } `}>
-    <div className={` ${expanded ? '  w-[728px]': 'w-full' } mt-5 p-4 h-[328px] rounded-[14px] bg-[#ffffff] border-2 border-[#e4e4e7]`}    >
-      <div className="flex justify-between items-center p-2 h-[30px] ">
+    <div className={`   ${expanded ? '  w-[724px]': 'w-full' } `}>
+    <div className={` ${expanded ? '  w-[724px]': 'w-full' } mt-5 p-4 h-[328px] rounded-[14px] bg-[#ffffff] border-2 border-[#e4e4e7]`}    >
+      <div className="flex justify-between items-center p-2 w-[678.13px] h-[30px] ">
         <h2 className="text-[16px] font-semibold font-body ">ROI Report</h2>
         <div className="flex justify-end space-x-2 ">
           <select
@@ -62,11 +62,12 @@ const RoiComp = ({expanded}) => {
           </button>
         </div>
       </div>
-      <div className="relative h-[224px]   mt-[41px] w-full ">
+      <div className="relative h-[224px]   mt-[41px]  ">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart 
+           
             data={data}
-            margin={{ top: 10, right: 30, left: 20, bottom: 20 }}
+            margin={{ top: 10, left:10,  bottom: 20 }}
            
           >
             <XAxis  className="font-bold "
@@ -79,11 +80,12 @@ const RoiComp = ({expanded}) => {
             />
             <Tooltip formatter={(value) => `$${value}`} />
             <Area  width="200px"
+              
               type="monotone"
               dataKey="value"
               stroke="#4f46e5"
               strokeWidth={2}
-              fill="#EEF2FF80"
+              fill="#eef2ff"
             
             />
           </AreaChart>

@@ -9,7 +9,7 @@ const InvestComp = ({expanded}) => {
   };
 
   return (
-    <div  className={`${expanded ? '  w-[728px]': 'w-full' }  `}>
+    <div  className={`${expanded ? '  w-[721px]': 'w-full' }  `}>
       <div className="container  mx-auto ">
         <div className="flex  justify-between mt-3  h-[123px]  px-[32px] py-[22px] bg-white rounded-[10px]">
           <div className="text-start">
