@@ -13,6 +13,7 @@ const data = [
 ];
 const COLORS = ["#EA8389","#F9D262","#4C60E0","#DEAAEF","#CFF38D" ];
 
+
 const PieChartComponent = () => {
   const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -115,13 +116,16 @@ const PieChartComponent = () => {
             ))}
           </Pie>
         </PieChart>
-        <div className="w-[238.86px] h-[104px] grid grid-cols-2  absolute top-[270px] gap-x-8 ">
+        <div className="w-[238.86px] h-[104px] grid grid-cols-2   absolute top-[270px] gap-x-8 ">
           {data.map((entry, index) => (
-            <div key={`legend-${index}`} className="flex items-center  w-[111.93px] h-[24px]   ">
-              <span style={{ color: COLORS[index % COLORS.length],  }} >
+            <div key={`legend-${index}`} className="flex items-center     w-[111.93px] h-[24px]   ">
+              
+
+              <span   style={{ color: COLORS[index % COLORS.length],  }} >
                 <GoDotFill size={28} />
               </span>
-              <span className="text-gray-900 text-sm">{entry.name}</span>
+              <span className="w-[89.93px] h-[24px] text-gray-900 ">{entry.name}</span>
+              
             </div>
           ))}
         </div>
