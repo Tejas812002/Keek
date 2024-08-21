@@ -35,7 +35,7 @@ const LiveCampaign = () => {
       id: "C123456",
       name: "Save Trees and More",
       status: "Live",
-      platform: [ "Instagram", "Facebook", "Twitter"],
+      platform: ["Instagram", "Facebook", "Twitter"],
       startDate: "1 July 24",
       endDate: "10 July 24",
     },
@@ -248,7 +248,6 @@ const LiveCampaign = () => {
       icon: YT,
       bgColor: "#FFE4E1",
     },
-  
   ];
 
   const recordsPerPage = 5;
@@ -275,13 +274,18 @@ const LiveCampaign = () => {
 
   return (
     <div
-      class={` flex relative ${!expanded
+      class={` flex relative ${
+        !expanded
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[320px] w-[calc(100%-320px)]"
-        }  overflow-y-auto  bg-white space-y-4 p-4 `}
+      }  overflow-y-auto  bg-white space-y-4 p-4 `}
     >
-      <div className={`bg-white   ${expanded ? "w-[1120px]":"w-full" }`}>
-        <div className={` ${expanded ? "w-[1062px] ml-4":"w-full pr-4" } mt-5 flex  justify-between items-center  bg-white border-border`}>
+      <div className={`bg-white   ${expanded ? "w-[1120px]" : "w-full"}`}>
+        <div
+          className={` ${
+            expanded ? "w-[1062px] ml-4" : "w-full pr-4"
+          } mt-5 flex  justify-between items-center  bg-white border-border`}
+        >
           <div>
             <h1 className="text-2xl font-bold text-foreground">
               Manage Campaign
@@ -291,42 +295,49 @@ const LiveCampaign = () => {
             </p>
           </div>
           <Link to="/AddCampaign">
-            <button class={`bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
-            ${location.pathname === '/AddCampaign'}`}>
+            <button
+              class={`bg-[#06F] h-[40px] w-[175px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
+            ${location.pathname === "/AddCampaign"}`}
+            >
               <span class="mr-2 text-3xl">+</span> Add Campaign
             </button>
           </Link>
-
-
         </div>
-        <div class={`flex border-b border-border ${expanded ? "w-[1061px] ml-4 ":"w-full " }  mt-7`}>
+        <div
+          class={`flex border-b border-border ${
+            expanded ? "w-[1061px] ml-4 " : "w-full "
+          }  mt-7`}
+        >
           <div className="flex space-x-4">
             <Link to="/CampaignManagement">
               <button
-                className={`py-2 px-4 ${location.pathname === "/CampaignManagement"
+                className={`py-2 px-4 ${
+                  location.pathname === "/CampaignManagement"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                  }`}
+                }`}
               >
                 Live campaigns
               </button>
             </Link>
             <Link to="/PastCampaign">
               <button
-                className={`py-2 px-4 ${location.pathname === "/PastCampaign"
+                className={`py-2 px-4 ${
+                  location.pathname === "/PastCampaign"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                  }`}
+                }`}
               >
                 Past campaigns
               </button>
             </Link>
             <Link to="/DraftCampaign">
               <button
-                className={`py-2 px-4 ${location.pathname === "/DraftCampaign"
+                className={`py-2 px-4 ${
+                  location.pathname === "/DraftCampaign"
                     ? "text-primary border-b-2 border-blue-500 font-semibold"
                     : "text-muted hover:text-muted-foreground"
-                  }`}
+                }`}
               >
                 Drafts
               </button>
@@ -337,17 +348,24 @@ const LiveCampaign = () => {
           </div>
         </div>
 
-     {/* Searchbar */}
-     <div className={`${expanded ? "w-[1061px]":"w-full pr-8" }   h-[60px] mr-4 ml-4 mt-[28px] `}>
+        {/* Searchbar */}
+        <div
+          className={`${
+            expanded ? "w-[1061px]" : "w-full pr-8"
+          }   h-[60px] mr-4 ml-4 mt-[28px] `}
+        >
           <div
             className={` bg-[#F5F5F5]  h-[60px] flex items-center rounded-lg justify-between bg-background `}
           >
-            <div className="relative flex items-center   ml-[18px] p-2 ">
+            <div className="relative flex items-center    ml-[18px] p-2 ">
               <CiSearch className="absolute left-4 text-gray-500 top-1/2 transform -translate-y-1/2 size-4" />
               <input
                 type="text"
                 placeholder="Search Campaigns"
-               className={`${expanded ? "w-[425px]":"w-[600px]"} h-[35px] bg-white py-[8px] px-[8px] rounded bg-input text-[14px] font-body font-normal border border-border focus:outline-none focus:ring-2 focus:ring-ring`}              />
+                className={`${
+                  expanded ? "w-[425px]" : "w-[600px]"
+                } h-[35px] bg-white py-[8px] px-[8px] rounded bg-input text-[14px] font-body font-normal border border-border focus:outline-none focus:ring-2 focus:ring-ring placeholder:text-left pl-8`}
+              />
             </div>
 
             <div className="flex items-center mr-[18px] w-[98px] h-[40px] text-gray-500 cursor-pointer justify-between space-x-2">
@@ -370,14 +388,16 @@ const LiveCampaign = () => {
           </div>
         </div>
 
+        {/* Table */}
 
-{/* Table */}
-
-
-<div className="flex flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between">
-<table className={`${expanded ? "w-[1051px] mr-3":"w-full mr-3"  } h-[470px] ml-4` }>
+        <div className="flex flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between">
+          <table
+            className={`${
+              expanded ? "w-[1051px] mr-3" : "w-full mr-3"
+            } h-[470px] ml-4`}
+          >
             <thead>
-              <tr className="border-b-2 h-[94px]" >
+              <tr className="border-b-2 h-[94px]">
                 <th className=" font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
                   CAMPAIGN ID
                 </th>
@@ -398,7 +418,11 @@ const LiveCampaign = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className={`${expanded ? "w-[1051px] mr-3":"w-full mr-3"  } h-[470px] ` }>
+            <tbody
+              className={`${
+                expanded ? "w-[1051px] mr-3" : "w-full mr-3"
+              } h-[470px] `}
+            >
               {records.map((campaign, index) => (
                 <React.Fragment key={index}>
                   <tr className="border-b-2 w-[1051px] h-[94px]">
@@ -418,8 +442,9 @@ const LiveCampaign = () => {
                     </td>
                     <td className=" text-[16px] h-[22px] font-normal font-body p-2">
                       {campaign.platform.length > 1
-                        ? `${campaign.platform[0]} +${campaign.platform.length - 1
-                        }`
+                        ? `${campaign.platform[0]} +${
+                            campaign.platform.length - 1
+                          }`
                         : campaign.platform[0]}
                     </td>
                     <td className=" text-[16px] font-normal font-body p-2">
@@ -461,7 +486,6 @@ const LiveCampaign = () => {
                               </p>
                             </div>
 
-
                             <div className="gap-2 w-[409px] h-[55px]">
                               <h3 className="font-body text-[#797A7B]  text-[12px] font-normal">
                                 PLATFORMS:
@@ -486,13 +510,11 @@ const LiveCampaign = () => {
                                 ))}
                               </div>
                             </div>
-
-
                           </div>
 
                           <div className="flex flex-col md:flex-row gap-3 md:w-1/3">
                             <div className="space-y-10 ml-4">
-                            <div>
+                              <div>
                                 <span className="font-body text-[#797A7B] text-[12px] font-normal">
                                   PARTICIPANTS:
                                 </span>
@@ -510,14 +532,12 @@ const LiveCampaign = () => {
                                 </span>
                                 <p className="font-body text-[16px] font-normal">
                                   <p className="font-body text-[16px] font-normal">
-                                    {campaignDetails.compensation.join(', ')}
+                                    {campaignDetails.compensation.join(", ")}
                                   </p>
                                 </p>
                               </div>
-                           
                             </div>
                             <div className="space-y-10 ml-16">
-                             
                               <div>
                                 <span className="font-body text-[#797A7B] text-[12px] font-normal">
                                   LOCATION:

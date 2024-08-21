@@ -50,7 +50,7 @@ const SidebarContent = () => {
           <SidebarItem icon={<Settings size={20} />} text="Settings" />
         </Link>
         <Link to={"/Support"}>
-          <SidebarItem icon={<Headphones size={20} />} text="Support" />
+          <SidebarItem icon={<Headphones size={20} />} text="Help & Support" />
         </Link>
        
       </SideBar>
