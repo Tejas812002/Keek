@@ -30,8 +30,8 @@ const SideBar = ({ children }) => {
 
   return (
     <div>
-      <aside className={`fixed h-screen max-w-[340px] z-10 transition-all duration-150 ease-in-out`}>
-        <nav className={`h-full flex flex-col bg-white text-left border-r shadow-sm ${expanded ? "w-[315px]" : "w-20"}`}>
+      <aside className={`fixed h-screen max-w-[311px] z-10 transition-all duration-150 ease-in-out`}>
+        <nav className={`h-full flex flex-col bg-white text-left border-r shadow-sm ${expanded ? "w-[311px]" : "w-20"}`}>
           <div className='p-4 pb-2 mt-2 flex items-center'>
             <div className={`relative flex-shrink-0 overflow-hidden transition-all duration-150 ${expanded ? "w-6" : "w-6"}`}>
               <img src={logo} className='block w-full h-auto' alt="Logo" />

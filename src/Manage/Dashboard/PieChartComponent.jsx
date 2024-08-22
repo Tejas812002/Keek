@@ -5,10 +5,10 @@ import { GoDotFill } from "react-icons/go";
 const data = [
  
   
-  { name: "Instagram", value: 48 },
+  { name: "Instagram", value: 54 },
   { name: "Snapchat", value:  90 },
-  { name: "Linkedin", value: 46 },
-  { name: "Instagram", value: 60 },
+  { name: "Linkedin", value: 50 },
+  { name: "Instagram", value: 76 },
   { name: "Instagram", value: 30 },
 ];
 const COLORS = ["#EA8389","#F9D262","#4C60E0","#DEAAEF","#CFF38D" ];
@@ -97,10 +97,10 @@ const PieChartComponent = () => {
         >
           <Pie
             data={data}
-            cx={100}
-            cy={90}
+            cx={98}
+            cy={95}
             innerRadius={60}
-            outerRadius={95}
+            outerRadius={97}
             fill="#8884d8"
             paddingAngle={4}
             dataKey="value"

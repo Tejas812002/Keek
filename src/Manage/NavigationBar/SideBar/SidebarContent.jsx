@@ -12,7 +12,7 @@ import { LuPieChart } from "react-icons/lu";
 
 const SidebarContent = () => {
   return (
-    <div className="max-w-[340px] ">
+    <div className="max-w-[311px]  ">
       <SideBar>
       <Link to={"/Dashboard"}>
           <SidebarItem icon={<MdOutlineDashboardCustomize size={20} />} text="Dashboard" />
