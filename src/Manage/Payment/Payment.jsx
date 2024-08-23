@@ -8,6 +8,8 @@ import { FaCircleDot } from "react-icons/fa6";
 import { GoArrowUpRight } from "react-icons/go";
 import { CiWallet } from "react-icons/ci";
 import Filter from "./Filter";
+import { GoDotFill } from "react-icons/go";
+
 
 const Payment = () => {
   const contextState = useContext(Mycontext);
@@ -261,17 +263,18 @@ const Payment = () => {
                     </td>
                     <td className="border-zinc-300 text-[16px] font-normal p-2">
                       <span
-                        className={`font-body  text-[14px] p-1 justify-center items-center flex gap-2 rounded-full text-black ${
+                        className={`font-body   text-[10px] p-1 justify-center items-center flex gap-1 rounded-full text-black ${
                           campaign.status === "Completed"
-                            ? "bg-[#B0EDC7] text-green-700 w-[120px]"
+                            ? "bg-[#B0EDC7] text-green-700 w-[80px] h-[20px]"
                             : campaign.status === "Failed"
-                            ? "bg-[#FFBFC3] text-red-700 w-[100px]"
+                            ? "bg-[#FFBFC3] text-red-700 w-[63px] h-[20px]"
                             : campaign.status === "Pending"
-                            ? "bg-[#FFEAB0] text-yellow-700 w-[110px]"
-                            : "bg-[#E3EEFF] text-[#0066FF] w-[90px]"
+                            ? "bg-[#FFEAB0] text-yellow-700 w-[63px] h-[20px]"
+                            : "bg-[#E3EEFF] text-[#0066FF] w-[120px]"
                         }`}
                       >
-                        <FaCircleDot
+                        
+                        <GoDotFill
                           className={`w-[10px] h-[10px] ${
                             campaign.status === "Completed"
                               ? "text-green-700"

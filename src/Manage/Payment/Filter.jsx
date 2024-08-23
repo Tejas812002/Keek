@@ -17,6 +17,19 @@ const Filter = ({ isModalVisible, setIsModalVisible, onApplyFilters }) => {
     Failed: false,
     Pending: false,
   });
+
+  const [filterData, setFilterData] = useState({
+    startDate: "",
+    endDate: "",
+
+  });
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setFilterData({ ...filterData, [name]: value });
+  };
+
+
   const [isFilterVisible, setIsFilterVisible] = useState(true);
 
   const toggleCheckbox = (item) => {
@@ -61,7 +74,7 @@ const Filter = ({ isModalVisible, setIsModalVisible, onApplyFilters }) => {
                     <div className="self-stretch text-[#57595a] text-xs font-semibold font-['Open Sans'] leading-none">
                       Date
                     </div>
-                    <div className="self-stretch justify-start items-center gap-6 inline-flex">
+                    {/* <div className="self-stretch justify-start items-center gap-6 inline-flex">
                       <div className="relative flex-col justify-start items-start gap-1.5 inline-flex">
                         <div
                           className={`text-${startDate ? "black" : "#b1b2b2"} text-[10px] font-normal font-['Open Sans']`}
@@ -114,7 +127,33 @@ const Filter = ({ isModalVisible, setIsModalVisible, onApplyFilters }) => {
                           )}
                         </div>
                       </div>
-                    </div>
+                    </div> */}
+
+<div className="flex flex-row justify-between w-full">
+              <div className="mb-2 ">
+                <label className="text-[10px]">Start Date</label>
+                <input
+                  className="w-[124px] h-[30px] mt-2 border-[0.7px] text-[#B1B2B2] border-[#B1B2B2]  p-1 rounded-lg"
+                  placeholder="DD/MM/YYYY"
+                  type="date"
+                  name="startDate"
+                  value={filterData.startDate}
+                  onChange={handleInput}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="text-[10px]">End Date</label>
+                <input
+                  className="w-[124px] h-[30px] mt-2 border-[0.7px] text-[#B1B2B2]  border-[#B1B2B2] p-1 rounded-lg"
+                  placeholder="DD/MM/YYYY"
+                  type="date"
+                  name="endDate"
+                  value={filterData.endDate}
+                  onChange={handleInput}
+                />
+              </div>
+            </div>
+
                   </div>
                   <div className="self-stretch h-[131px] flex-col justify-start items-start gap-3 flex">
                     <div className="self-stretch justify-between items-center inline-flex">

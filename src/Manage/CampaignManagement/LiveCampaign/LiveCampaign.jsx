@@ -377,7 +377,8 @@ const LiveCampaign = () => {
               </button>
 
               {isModalVisible && (
-                <div className="absolute top-52 right-10 mt-4 z-50">
+                // <div className="absolute top-52 right-10 mt-4 z-50">
+                  <div className="absolute top-56 right-20 mt-4 z-50">
                   <CampaignFilterOptions
                     isModalVisible={isModalVisible}
                     setIsModalVisible={setIsModalVisible}
