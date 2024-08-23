@@ -74,66 +74,13 @@ const Filter = ({ isModalVisible, setIsModalVisible, onApplyFilters }) => {
                     <div className="self-stretch text-[#57595a] text-xs font-semibold font-['Open Sans'] leading-none">
                       Date
                     </div>
-                    {/* <div className="self-stretch justify-start items-center gap-6 inline-flex">
-                      <div className="relative flex-col justify-start items-start gap-1.5 inline-flex">
-                        <div
-                          className={`text-${startDate ? "black" : "#b1b2b2"} text-[10px] font-normal font-['Open Sans']`}
-                        >
-                          Start Date
-                        </div>
-                        <div
-                          className="relative h-[30px] px-2.5 py-[19px] rounded-lg border border-[#b1b2b2] flex items-center cursor-pointer"
-                          onClick={() => setIsStartDatePickerOpen(!isStartDatePickerOpen)}
-                        >
-                          <DatePicker
-                            selected={startDate}
-                            onChange={(date) => setStartDate(date)}
-                            dateFormat="dd/MM/yyyy"
-                            placeholderText="DD/MM/YYYY"
-                            className={`w-full h-full px-2 bg-transparent border-none outline-none text-${startDate ? "black" : "#b1b2b2"} text-xs font-normal font-['Open Sans']`}
-                            open={isStartDatePickerOpen}
-                            onClickOutside={() => setIsStartDatePickerOpen(false)}
-                          />
-                          {isStartDatePickerOpen ? (
-                            <FaChevronUp className="absolute right-2 text-[#b1b2b2]" />
-                          ) : (
-                            <FaChevronDown className="absolute right-2 text-[#b1b2b2]" />
-                          )}
-                        </div>
-                      </div>
-                      <div className="relative flex-col justify-start items-start gap-1.5 inline-flex">
-                        <div
-                          className={`text-${endDate ? "black" : "#b1b2b2"} text-[10px] font-normal font-['Open Sans']`}
-                        >
-                          End Date
-                        </div>
-                        <div
-                          className="relative h-[30px] px-2.5 py-[19px] rounded-lg border border-[#b1b2b2] flex items-center cursor-pointer"
-                          onClick={() => setIsEndDatePickerOpen(!isEndDatePickerOpen)}
-                        >
-                          <DatePicker
-                            selected={endDate}
-                            onChange={(date) => setEndDate(date)}
-                            dateFormat="dd/MM/yyyy"
-                            placeholderText="DD/MM/YYYY"
-                            className={`w-full h-full px-2 bg-transparent border-none outline-none text-${endDate ? "black" : "#b1b2b2"} text-xs font-normal font-['Open Sans']`}
-                            open={isEndDatePickerOpen}
-                            onClickOutside={() => setIsEndDatePickerOpen(false)}
-                          />
-                          {isEndDatePickerOpen ? (
-                            <FaChevronUp className="absolute right-2 text-[#b1b2b2]" />
-                          ) : (
-                            <FaChevronDown className="absolute right-2 text-[#b1b2b2]" />
-                          )}
-                        </div>
-                      </div>
-                    </div> */}
+
 
 <div className="flex flex-row justify-between w-full">
               <div className="mb-2 ">
                 <label className="text-[10px]">Start Date</label>
                 <input
-                  className="w-[124px] h-[30px] mt-2 border-[0.7px] text-[#B1B2B2] border-[#B1B2B2]  p-1 rounded-lg"
+                  className="w-[124px] h-[30px] mt-2 border-[0.7px] text-sm text-[#B1B2B2] border-[#B1B2B2] uppercase  p-1 rounded-lg"
                   placeholder="DD/MM/YYYY"
                   type="date"
                   name="startDate"
@@ -144,7 +91,7 @@ const Filter = ({ isModalVisible, setIsModalVisible, onApplyFilters }) => {
               <div className="mb-2">
                 <label className="text-[10px]">End Date</label>
                 <input
-                  className="w-[124px] h-[30px] mt-2 border-[0.7px] text-[#B1B2B2]  border-[#B1B2B2] p-1 rounded-lg"
+                  className="w-[124px] h-[30px] mt-2 border-[0.7px] text-sm text-[#B1B2B2]  border-[#B1B2B2]  uppercase p-1 rounded-lg"
                   placeholder="DD/MM/YYYY"
                   type="date"
                   name="endDate"
