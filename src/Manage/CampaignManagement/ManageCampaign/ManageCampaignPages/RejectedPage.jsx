@@ -8,8 +8,11 @@ import { Mycontext } from "../../../../utils/Context";
 import { MdChevronRight } from "react-icons/md";
 import ReadMore from "../../Components/ReadMoreComponent";
 import { FiArrowUpRight } from "react-icons/fi";
-
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import Profile from '../../../BrandsProfile/Profile';
+
+
+
 
 const RejectedPage = () => {
   const contextState = useContext(Mycontext);
@@ -18,6 +21,23 @@ const RejectedPage = () => {
   const currentPath = location.pathname;
 
   const [currentPage, setCurrentPage] = useState(1);
+
+
+    // Added state management for the profile popup
+    const [isProfileVisible, setProfileVisible] = useState(false);
+    const [selectedProfile, setSelectedProfile] = useState(null);
+  
+    // New function to handle the profile click
+    const handleProfileOpen = (profile) => {
+      setSelectedProfile(profile);
+      setProfileVisible(true);
+    };
+    
+    
+    const handleProfileClose = () => {
+      setProfileVisible(false);
+      setSelectedProfile(null);
+    };
 
   const campaignDetails = {
     about:
@@ -315,7 +335,12 @@ const RejectedPage = () => {
             <tbody class=" "  >
               {records.map((influencer, index) => (
                 <tr className="border-b" key={index} style={{ height: "85px" }}>
-                  <td className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal">{influencer.name}</td>
+                  <td
+              className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal cursor-pointer"
+              onClick={() => handleProfileOpen(influencers)} // Profile click handler
+            >
+                    {influencer.name}
+                  </td>
                   <td className="py-3 px-4 text-[#191D23] text-[16px] font-body font-normal">
                     {influencer.niche.length > 2
                       ? `${influencer.niche.slice(0, 2).join(', ')} +${influencer.niche.length - 2}`
@@ -383,6 +408,28 @@ const RejectedPage = () => {
           </div>
 
       </div>
+
+        {/* Added Profile component with props */}
+  {isProfileVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="relative bg-white p-5 rounded-lg shadow-lg w-[90%] md:w-[60%] lg:w-[40%]">
+            <button
+              onClick={handleProfileClose}
+              className="absolute top-2 right-2 text-red-500 font-bold"
+            >
+              Close
+            </button>
+            {isProfileVisible && (
+  <Profile 
+    isOpen={isProfileVisible} 
+    setIsOpen={setProfileVisible} 
+    selectData={selectedProfile} 
+  />
+)}
+          </div>
+        </div>
+      )}
+      
     </div>
   );
 };

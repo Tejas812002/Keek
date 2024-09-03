@@ -19,7 +19,8 @@ import Payment from "../Manage/Payment/Payment";
 import Influencers from "../Manage/DiscoverInfluencers/Influencers";
 import SavedList from "../Manage/DiscoverInfluencers/SavedList";
 import FavouritesList from "../Manage/DiscoverInfluencers/FavouritesList";
-
+import BrandsProfile from "../Manage/BrandsProfile/BrandsProfile";
+import Profile from "../Manage/BrandsProfile/Profile";
 
 
 const MainRouter = () => {
@@ -99,6 +100,24 @@ const MainRouter = () => {
         <Route path="/savedlist" element={<SavedList/>} />
         <Route path="/favouriteslist" element={<FavouritesList />} />
        
+
+{/* Brand */}
+
+<Route
+          path="/BrandsProfile"
+          element={
+            <BrandsProfile />
+          }
+        /> 
+
+
+<Route
+          path="/Profile"
+          element={
+            <Profile />
+          }
+        /> 
+
       </Routes>
     </>
   );

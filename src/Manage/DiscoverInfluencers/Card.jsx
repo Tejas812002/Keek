@@ -6,6 +6,7 @@ import FaceBook from "../../Assets/Facebook.svg";
 import YouTube from "../../Assets/YouTube.svg";
 import { IoMdStar } from "react-icons/io";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
+import Profile from "../BrandsProfile/Profile";
 
 const Card = ({ setCampaignVisible, setShowLikedDiv }) => {
   const [cardData, setCardData] = useState([
@@ -151,6 +152,9 @@ const Card = ({ setCampaignVisible, setShowLikedDiv }) => {
     },
   ]);
 
+  const [isProfileVisible, setProfileVisible] = useState(false);
+  const [selectedProfile, setSelectedProfile] = useState(null);
+
   const handleLikeToggle = (index) => {
     setCardData((prevCardData) =>
       prevCardData.map((card, i) =>
@@ -165,6 +169,16 @@ const Card = ({ setCampaignVisible, setShowLikedDiv }) => {
     }
   };
 
+  const handleProfileOpen = (profile) => {
+    setSelectedProfile(profile);
+    setProfileVisible(true);
+  };
+
+  const handleProfileClose = () => {
+    setProfileVisible(false);
+    setSelectedProfile(null);
+  };
+
   return (
     <>
       {cardData?.map((item, cardIndex) => {
@@ -173,16 +187,20 @@ const Card = ({ setCampaignVisible, setShowLikedDiv }) => {
             key={cardIndex}
             className="flex flex-col w-[233px] h-[301px] p-[14px] px-[20px] gap-1 rounded-[10px] bg-white shadow-[2px_4px_14px_2px_rgba(0,0,0,0.25)]"
           >
-            <h3 className="font-semibold">
+            <h3 
+              className="font-semibold cursor-pointer"
+              onClick={() => handleProfileOpen(item)}
+            >
               {item.name}
               {item.verified && (
                 <MdVerified className="inline-block text-[#4DC4FF] ml-1" />
               )}
             </h3>
             <img
-              className="h-[135px] rounded-[4px] overflow-hidden self-stretch"
+              className="h-[135px] rounded-[4px] overflow-hidden self-stretch cursor-pointer"
               src={item.img}
               alt="InfluencerImg"
+              onClick={() => handleProfileOpen(item)}
             />
             <div className="flex mt-1 items-center gap-1 h-5">
               <span className="flex items-center text-[#2563EB]">
@@ -204,7 +222,7 @@ const Card = ({ setCampaignVisible, setShowLikedDiv }) => {
               {item.platforms.map((social, index) => (
                 <div key={index} className="rounded bg-[#F6F6F6]">
                   <span className="flex shrink-0 w-[61px] h-[18px] text-[8px] text-[#1F2223] p-1 justify-center items-center gap-1">
-                    <img className="w-3 h-3" src={social.img} alt="" />{" "}
+                    <img className="w-3 h-3" src={social.img} alt="" /> 
                     {social.name}
                   </span>
                 </div>
@@ -231,6 +249,27 @@ const Card = ({ setCampaignVisible, setShowLikedDiv }) => {
           </div>
         );
       })}
+
+      {/* Profile Popup */}
+      {isProfileVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="relative bg-white p-5 rounded-lg shadow-lg w-[90%] md:w-[60%] lg:w-[40%]">
+            <button
+              onClick={handleProfileClose}
+              className="absolute top-2 right-2 text-red-500 font-bold"
+            >
+              Close
+            </button>
+            {isProfileVisible && (
+  <Profile 
+    isOpen={isProfileVisible} 
+    setIsOpen={setProfileVisible} 
+    selectData={selectedProfile} 
+  />
+)}
+          </div>
+        </div>
+      )}
     </>
   );
 };

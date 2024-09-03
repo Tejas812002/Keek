@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { LuFilter } from "react-icons/lu";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
-import { FaCircleDot } from "react-icons/fa6";
+// import { FaCircleDot } from "react-icons/fa6";
 import { GoArrowUpRight } from "react-icons/go";
 import { CiWallet } from "react-icons/ci";
 import Filter from "./Filter";
@@ -163,8 +163,8 @@ const Payment = () => {
       <div className="bg-white w-full">
         <div className="flex w-full justify-between items-center p-4 bg-white border-border">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Payment</h1>
-            <p className="text-muted-foreground text-sm">
+            <h1 className="text-2xl text-[#101828] font-bold text-foreground">Payment</h1>
+            <p className="text-muted-foreground text-[#57595A] text-sm">
               Manage your transactions effortlessly—secure, seamless payments
               with ease!
             </p>
@@ -188,14 +188,14 @@ const Payment = () => {
           </button>
         </div>
 
-        <div class="w-full h-[45px]  justify-between items-center inline-flex ml-4 mt-2">
+        <div class="max-w-full min-w-[1037px] h-[45px]  justify-between items-center inline-flex ml-4 mt-2">
           <div class="text-[#1f2223] text-base font-semibold font-['Open Sans'] leading-[19px]">
             Transactions :
           </div>
           <div>
             <button
               onClick={toggleModal}
-              class="px-10 py-2 bg-[#f6f6f6] w-[106px] h-[45px] mr-8 rounded-[10px] justify-center items-center gap-2.5 flex"
+              class="px-[16px] py-[8px] bg-[#f6f6f6] w-[106px] h-[45px] mr-8 rounded-[10px] justify-center items-center gap-2.5 flex"
             >
               <div class="w-4 h-4 text-[#797a7b] relative">
                 <LuFilter />
