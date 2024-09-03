@@ -1,7 +1,7 @@
+// ManageCampaign.jsx
 import React, { useContext, useState } from "react";
 import Instagram from "../../../Assets/instagram.png";
 import Facebook from "../../../Assets/Facebook.png";
-// import X from "../../../Assets/X.png";
 import YT from "../../../Assets/yt.png";
 import { Mycontext } from "../../../utils/Context";
 import { Link, useLocation } from "react-router-dom";
@@ -9,7 +9,9 @@ import { MdChevronRight } from "react-icons/md";
 import ReadMore from "../Components/ReadMoreComponent";
 import { FiArrowUpRight } from "react-icons/fi";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import Profile from '../../BrandsProfile/Profile';
+import Profile from '../../CampaignManagement/ManageCampaign/Profile'; // Correct import path
+
+
 
 const ManageCampaign = () => {
   const contextState = useContext(Mycontext);
@@ -17,22 +19,14 @@ const ManageCampaign = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // Added state management for the profile popup
+   // State management for the profile popup
   const [isProfileVisible, setProfileVisible] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
 
-  // New function to handle the profile click
-  const handleProfileOpen = (profile) => {
-    setSelectedProfile(profile);
-    setProfileVisible(true);
-  };
-  
-  
-  const handleProfileClose = () => {
-    setProfileVisible(false);
-    setSelectedProfile(null);
-  };
-  
+
+
+
+  // Campaign details and platform data
   const campaignDetails = {
     about:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio.",
@@ -63,12 +57,7 @@ const ManageCampaign = () => {
       bgColor: "#FFE4E1",
     },
   ];
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
 
-  const toggleModal = () => {
-    setIsModalVisible(!isModalVisible);
-  };
 
   const influencers = [
     {
@@ -125,13 +114,13 @@ const ManageCampaign = () => {
     // Add more influencers here as needed
   ];
 
+  const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 4;
-
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const records = influencers.slice(firstIndex, lastIndex);
   const totalPages = Math.ceil(influencers.length / recordsPerPage);
-  const itemsPerPage = 4; // Number of influencers to display per page
+  const itemsPerPage = 4;
 
   const handlePrevClick = () => {
     if (currentPage > 1) {
@@ -144,13 +133,22 @@ const ManageCampaign = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+// Function to handle the profile click
+const handleProfileOpen = (influencer) => {
+  setSelectedProfile(influencer);
+  setProfileVisible(true);
+};
+
+const handleProfileClose = () => {
+  setProfileVisible(false);
+  setSelectedProfile(null);
+};
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const selectedInfluencers = influencers.slice(
     startIndex,
     startIndex + itemsPerPage
   );
-
   return (
     <div
       class={` flex relative ${
@@ -347,12 +345,12 @@ const ManageCampaign = () => {
             <tbody class=" ">
               {records.map((influencer, index) => (
                 <tr className="border-b" key={index} style={{ height: "85px" }}>
-                  <td
-              className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal cursor-pointer"
-              onClick={() => handleProfileOpen(influencers)} // Profile click handler
-            >
-                    {influencer.name}
-                  </td>
+                <td
+  className="py-3 px-6 text-[#191D23] text-[16px] font-body font-normal cursor-pointer"
+  onClick={() => handleProfileOpen(influencer)} // Pass the current influencer
+>
+  {influencer.name}
+</td>
 
                   <td className="py-3 px-4 text-[#191D23]  text-[16px] font-body font-normal">
                     {influencer.niche.length > 2
@@ -443,23 +441,18 @@ const ManageCampaign = () => {
 
       </div>
 
-  {/* Added Profile component with props */}
-  {isProfileVisible && (
+             {/* Added Profile component with props */}
+             {isProfileVisible && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="relative bg-white p-5 rounded-lg shadow-lg w-[90%] md:w-[60%] lg:w-[40%]">
-            <button
-              onClick={handleProfileClose}
-              className="absolute top-2 right-2 text-red-500 font-bold"
-            >
-              Close
-            </button>
-            {isProfileVisible && (
-  <Profile 
-    isOpen={isProfileVisible} 
-    setIsOpen={setProfileVisible} 
-    selectData={selectedProfile} 
-  />
-)}
+            <button onClick={handleProfileClose} className="absolute top-2 right-2 text-red-500 font-bold">Close</button>
+            {selectedProfile && (
+              <Profile 
+                isOpen={isProfileVisible} 
+                setIsOpen={setProfileVisible} 
+                selectData={selectedProfile} 
+              />
+            )}
           </div>
         </div>
       )}
