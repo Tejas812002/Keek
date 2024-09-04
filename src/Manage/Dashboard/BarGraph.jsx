@@ -56,7 +56,7 @@ const BarGraph = ({expanded}) => {
           <select
             value={timeFrame}
             onChange={(e) => setTimeFrame(e.target.value)}
-            className="border-2 border-[#b1b2b2] w-[86px] h-[30px] bg-white rounded-md px-[8px] py-1 text-[12px] font-semibold font-body "
+            className="border-2 border-[#b1b2b2] w-[86px] h-[30px] bg-white rounded-md px-[7px] py-1 text-[12px] font-semibold font-body "
           >
             <option>Weeks</option>
             <option>Months</option>
