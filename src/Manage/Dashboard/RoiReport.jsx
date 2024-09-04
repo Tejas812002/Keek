@@ -51,13 +51,13 @@ const RoiComp = ({expanded}) => {
           <select
             value={view}
             onChange={(e) => setView(e.target.value)}
-            className=" px-2  py-1 rounded-[5px] w-[90px] text-[12px] font-semibold font-body  bg-white border-2 border-[#b1b2b2]"
+            className=" px-2  py-1 rounded-[5px] w-[90px]  h-[30px] text-[12px] font-semibold font-body  bg-white border-2 border-[#b1b2b2]"
           >
             <option value="monthly">Months</option>
             <option value="yearly">Year</option>
           </select>
-          <button className=" px-4  flex items-center gap-1 py-1 rounded-[5px] text-[12px] font-semibold font-body  bg-white border-2 border-[#b1b2b2]">
-            <span><HiOutlineDocumentDownload  className="text-[18px]"/></span>
+          <button className="border-2 flex w-[104.84px] h-[30px]  items-center  border-[#b1b2b2] rounded-md gap-1 px-[10px] py-1 text-[11px] font-semibold font-body ">
+          <HiOutlineDocumentDownload  className="w-[17.12px] h-[14.55px]   "/>
             Export PDF
           </button>
         </div>
