@@ -22,7 +22,7 @@ const Influencers = () => {
           : "left-[320px] w-[calc(100%-320px)] "
       }  overflow-y-auto bg-white space-y-4 p-4 pr-[14px]`}
     >
-      <div className="max-w-[1440px]  w-full h-full">
+      <div className="max-w-[1440px] w-full h-full">
         <div className="pt-[18px] px-2 pb-8">
           <h1 className="text-[24px] font-semibold text-[#101828]">
             Discover Influencer
@@ -48,7 +48,7 @@ const Influencers = () => {
           </nav>
         </div>
         <div
-          className={`flex gap-[110px]  mb-[10px] relative ${
+          className={`flex gap-[110px] mb-[10px] relative ${
             expanded ? "w-[1037px]" : "w-[1237px]"
           }`}
         >
@@ -79,7 +79,7 @@ const Influencers = () => {
         </div>
 
         <div
-          className={`mt-4   w-[1046px] h-[967px] flex ${
+          className={`mt-4 flex ${
             expanded ? "gap-x-[38px] gap-y-[32px]" : "gap-[18px]"
           } flex-wrap`}
         >

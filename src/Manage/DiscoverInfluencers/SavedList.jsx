@@ -9,10 +9,9 @@ const SavedList = () => {
   const expanded = contextState.expanded;
 
   const [addList, setAddList] = useState([
-    { name: "Food", influencersCount: 20 },
-    { name: "Work", influencersCount: 40 },
+    { name: "Work", influencersCount: 15 },
     { name: "Travel", influencersCount: 15 },
-    { name: "Fashion", influencersCount: 20 },
+    { name: "Fashion", influencersCount: 15 },
   ]);
 
   const [openIndex, setOpenIndex] = useState(null);
@@ -99,13 +98,15 @@ const SavedList = () => {
           <div className="flex flex-row mt-[47px] flex-wrap gap-x-[18px] gap-y-[37px] items-center">
             <Link to={"/favouriteslist"}>
               <div className="flex box-border items-center h-[90px] w-[250px] rounded-[10px] bg-white shadow-[2px_4px_14px_2px_rgba(0,0,0,0.25)]">
-                <div className="flex items-center space-x-6 px-[32px] py-[25px]">
+                <div className="flex box-content items-center justify-center w-[179px] h-[40px] space-x-6 px-[32px] py-[25px]">
                   <span className="mt-1 scale-150 text-red-600">
                     <FaHeart size={"1.3em"} aria-hidden="true" />
                   </span>
-                  <div className="flex flex-col items-center border-l border-border">
-                    <h3 className="text-sm ml-[19px]">Favorites</h3>
-                    <p className="text-[10px] text-[#797A7B]">Influencer</p>
+                  <div className="flex flex-col items-center border-l">
+                    <h3 className="text-sm  ml-[19px]">Favorites</h3>
+                    <p className="text-[10px] text-[#797A7B]  ml-[19px]">
+                      15 Influencers
+                    </p>
                   </div>
                 </div>
               </div>

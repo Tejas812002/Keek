@@ -150,7 +150,9 @@ const FavouritesList = () => {
           className={`grid gap-[38px] mt-[31px] ${
             expanded ? "grid-cols-4" : "grid-cols-5"
           }`}
-        >
+        ></div>
+      </div>
+        <div className="flex max-w-[1046px] flex-wrap gap-x-[38px] gap-y-[32px]">
           {influencerDetails.map((influencer) => (
             <div
               key={influencer.id}
@@ -218,7 +220,6 @@ const FavouritesList = () => {
             </div>
           ))}
         </div>
-      </div>
     </div>
   );
 };
