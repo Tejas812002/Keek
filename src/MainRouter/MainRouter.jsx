@@ -18,7 +18,8 @@ import BarGraph from "../Manage/Dashboard/BarGraph";
 import Payment from "../Manage/Payment/Payment";
 import Influencers from "../Manage/DiscoverInfluencers/Influencers";
 import SavedList from "../Manage/DiscoverInfluencers/SavedList";
-import FavouritesList from "../Manage/DiscoverInfluencers/FavouritesList";
+import SavedListCards from "../Manage/DiscoverInfluencers/SavedListCards";
+
 import BrandsProfile from "../Manage/BrandsProfile/BrandsProfile";
 import Profile from "../Manage/BrandsProfile/Profile";
 
@@ -98,7 +99,7 @@ const MainRouter = () => {
         <Route path="/PieChartComponent" element={<PieChartComponent />} />
 
         <Route path="/savedlist" element={<SavedList/>} />
-        <Route path="/favouriteslist" element={<FavouritesList />} />
+        <Route path="/savedlist/:name" element={<SavedListCards/>} />
        
 
 {/* Brand */}

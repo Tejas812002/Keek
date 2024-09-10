@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Mycontext } from "../../utils/Context";
 import { FiFilter } from "react-icons/fi";
 import Card from "./Card";
 import Filter from "./Filter";
-import Favourites from "./Favourites";
+import Favorites from "./Favorites";
 import { Link } from "react-router-dom";
 import Campaign from "./Campaign";
+import { listItem } from "./InfluencerData";
 
 const Influencers = () => {
   const contextState = useContext(Mycontext);
@@ -13,6 +14,51 @@ const Influencers = () => {
   const [filterVisible, setFilterVisible] = useState(false);
   const [campaignVisible, setCampaignVisible] = useState(false);
   const [showLikedDiv, setShowLikedDiv] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+  const timeoutRef = useRef(null);
+
+  // Function to handle adding/removing IDs in favorites
+  const handleToggleFavorite = (id) => {
+    setFavorites(
+      (prevFavorites) =>
+        prevFavorites.includes(id)
+          ? prevFavorites.filter((favId) => favId !== id) // Remove if exists
+          : [...prevFavorites, id] // Add if doesn't exist
+    );
+    handleToggleFavoritesVisibility();
+  };
+
+  // Function to add influencer ID to a specific list
+  const handleAddToList = (listName, id) => {
+    const list = listItem.find((item) => item.name === listName);
+    if (list && !list.influencers.includes(id)) {
+      list.influencers.push(id);
+    }
+  };
+
+  // Function to toggle the visibility of the Favorites component
+  const handleToggleFavoritesVisibility = () => {
+    setShowLikedDiv(true);
+    startHideTimer();
+  };
+
+  // Function to start the timer to hide the Favorites component
+  const startHideTimer = () => {
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setShowLikedDiv(false);
+    }, 3000); // 3 seconds timer
+  };
+
+  // Function to stop the timer when mouse enters Favorites
+  const handleMouseEnter = () => {
+    clearTimeout(timeoutRef.current);
+  };
+
+  // Function to restart the timer when mouse leaves Favorites
+  const handleMouseLeave = () => {
+    startHideTimer();
+  };
 
   return (
     <div
@@ -28,7 +74,7 @@ const Influencers = () => {
             Discover Influencer
           </h1>
           <span className="text-sm text-[#57595A]">
-            Discover the perfect influencer to elevate your brand- Connect &
+            Discover the perfect influencer to elevate your brand - Connect &
             Collaborate
           </span>
         </div>
@@ -64,7 +110,14 @@ const Influencers = () => {
             <FiFilter className="inline-block" /> Filters
           </button>
           {filterVisible && <Filter setFilterVisible={setFilterVisible} />}
-          {showLikedDiv && <Favourites />}
+          {showLikedDiv && (
+            <Favorites
+              favorites={favorites}
+              handleAddToList={handleAddToList}
+              onMouseEnter={handleMouseEnter} // Handle mouse enter
+              onMouseLeave={handleMouseLeave} // Handle mouse leave
+            />
+          )}
           {campaignVisible && (
             <Campaign setCampaignVisible={setCampaignVisible} />
           )}
@@ -84,6 +137,7 @@ const Influencers = () => {
           } flex-wrap`}
         >
           <Card
+            handleToggleFavorite={handleToggleFavorite}
             setCampaignVisible={setCampaignVisible}
             setShowLikedDiv={setShowLikedDiv}
           />
