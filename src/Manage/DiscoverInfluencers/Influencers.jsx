@@ -6,16 +6,18 @@ import Filter from "./Filter";
 import Favorites from "./Favorites";
 import { Link } from "react-router-dom";
 import Campaign from "./Campaign";
-import { listItem } from "./InfluencerData";
 
 const Influencers = () => {
+  
   const contextState = useContext(Mycontext);
   const expanded = contextState.expanded;
+  const listItem = contextState.listItemData;
   const [filterVisible, setFilterVisible] = useState(false);
   const [campaignVisible, setCampaignVisible] = useState(false);
   const [showLikedDiv, setShowLikedDiv] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const timeoutRef = useRef(null);
+  const influencersRef = useRef(null);
 
   // Function to handle adding/removing IDs in favorites
   const handleToggleFavorite = (id) => {
@@ -67,6 +69,7 @@ const Influencers = () => {
           ? "left-[90px] w-[calc(100%-90px)]"
           : "left-[320px] w-[calc(100%-320px)] "
       }  overflow-y-auto bg-white space-y-4 p-4 pr-[14px]`}
+      ref={influencersRef}
     >
       <div className="max-w-[1440px] w-full h-full">
         <div className="pt-[18px] px-2 pb-8">
@@ -116,6 +119,7 @@ const Influencers = () => {
               handleAddToList={handleAddToList}
               onMouseEnter={handleMouseEnter} // Handle mouse enter
               onMouseLeave={handleMouseLeave} // Handle mouse leave
+              influencersRef={influencersRef}
             />
           )}
           {campaignVisible && (

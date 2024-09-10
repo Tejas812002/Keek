@@ -1,15 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { GoKebabHorizontal } from "react-icons/go";
 import { FaHeart, FaPlus } from "react-icons/fa6";
-import { listItem } from "./InfluencerData";
+import { Mycontext } from "../../utils/Context";
 
 const Favorites = ({
   favorites,
   handleAddToList,
   onMouseEnter,
   onMouseLeave,
+  influencersRef, // Pass the Influencers component reference here
 }) => {
-  const [addList, setAddList] = useState(listItem);
+  const contextState = useContext(Mycontext);
+  const listItem = contextState.listItemData;
+  const setListItem = contextState.setListItemData;
   const [progress, setProgress] = useState(100);
   const [openIndex, setOpenIndex] = useState(null);
   const [editableIndex, setEditableIndex] = useState(null); // Track which list is being edited
@@ -17,48 +21,65 @@ const Favorites = ({
   const intervalRef = useRef(null);
   const favoritesRef = useRef(null);
 
+  // Function to add a new list with editable input
   const addNewCard = () => {
     const newCard = {
       name: "", // Start with an empty name to show an input box
       influencers: [],
     };
-    setAddList([...addList, newCard]);
-    setEditableIndex(addList.length); // Set the last index as editable
+    setListItem([...listItem, newCard]);
+    setEditableIndex(listItem.length); // Set the last index as editable
     setInputValue(""); // Clear the input value
   };
 
+  // Start the progress timer
   const startTimer = () => {
     intervalRef.current = setInterval(() => {
       setProgress((prev) => (prev > 0 ? prev - 1 : 0));
     }, 30);
   };
 
+  // Stop the progress timer
   const stopTimer = () => {
     clearInterval(intervalRef.current);
   };
 
-  const handleClickOutside = (event) => {
-    if (favoritesRef.current && !favoritesRef.current.contains(event.target)) {
-      setOpenIndex(null);
-      setEditableIndex(null); // Close the editable input if clicked outside
-    }
-  };
-
+  // Handle input change to update the input value state
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
+  // Save input value or remove the new card if the input is empty
   const handleInputBlur = (index) => {
-    // Save the input value to the list name when input loses focus
     if (inputValue.trim() !== "") {
-      const updatedList = [...addList];
+      const updatedList = [...listItem];
       updatedList[index].name = inputValue;
-      setAddList(updatedList);
+      setListItem(updatedList);
     } else {
       // If input is empty, remove the new card
-      setAddList(addList.filter((_, i) => i !== index));
+      setListItem(listItem.filter((_, i) => i !== index));
     }
     setEditableIndex(null);
+  };
+
+  // Handle click outside of Favorites component
+  const handleClickOutside = (event) => {
+    const clickedInsideFavorites =
+      favoritesRef.current && favoritesRef.current.contains(event.target);
+    const clickedInsideInfluencers =
+      influencersRef?.current && influencersRef.current.contains(event.target);
+
+    if (!clickedInsideFavorites && !clickedInsideInfluencers) {
+      // Save the current input value before closing
+      if (editableIndex !== null) {
+        handleInputBlur(editableIndex);
+      }
+      setOpenIndex(null);
+      setEditableIndex(null);
+    } else if (clickedInsideInfluencers && editableIndex !== null) {
+      // If clicked inside Influencers, save data as well
+      handleInputBlur(editableIndex);
+    }
   };
 
   useEffect(() => {
@@ -102,7 +123,7 @@ const Favorites = ({
         </button>
       </div>
 
-      {addList?.map((item, index) => (
+      {listItem?.map((item, index) => (
         <div key={index}>
           {item.name !== "Favorites" && (
             <div className="flex w-full px-3 py-[10px] items-center justify-between rounded-[10px] border border-[#777]">
@@ -119,7 +140,7 @@ const Favorites = ({
                   />
                 ) : (
                   <>
-                    {item.name}                   
+                    {item.name}
                     <button
                       onClick={() =>
                         setOpenIndex((prev) => (prev === index ? null : index))
@@ -145,7 +166,7 @@ const Favorites = ({
                       className="text-[#D30B0B]"
                       aria-label="Delete"
                       onClick={() =>
-                        setAddList(addList.filter((_, i) => i !== index))
+                        setListItem(listItem.filter((_, i) => i !== index))
                       }
                     >
                       Delete

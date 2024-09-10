@@ -9,7 +9,7 @@ import { GoArrowUpRight } from "react-icons/go";
 import { CiWallet } from "react-icons/ci";
 import Filter from "./Filter";
 import { GoDotFill } from "react-icons/go";
-
+import { FaPlus } from "react-icons/fa6";
 
 const Payment = () => {
   const contextState = useContext(Mycontext);
@@ -115,14 +115,19 @@ const Payment = () => {
   const handleApplyFilters = (filters) => {
     console.log("Filters Applied:", filters);
   
-    // If "Paid" is selected, add "Completed" to the selected filters
-    if (filters.includes("Paid")) {
-      setSelectedFilters([...filters.filter(filter => filter !== "Paid"), "Completed"]);
-    } 
-    else {
+    // Check if "Paid" or "Deposit" is selected
+    if (filters.includes("Paid") || filters.includes("Deposit")) {
+      // Remove "Paid" and "Deposit" from the filters and add "Completed"
+      const updatedFilters = filters.filter(
+        (filter) => filter !== "Paid" && filter !== "Deposit"
+      );
+      setSelectedFilters([...updatedFilters, "Completed"]);
+    } else {
+      // Otherwise, just set the selected filters as they are
       setSelectedFilters(filters);
     }
   };
+  
   
   const filteredCampaigns = selectedFilters.length
     ? campaigns.filter((campaign) =>
@@ -158,51 +163,56 @@ const Payment = () => {
         !expanded
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[320px] w-[calc(100%-320px)]"
-      }  overflow-y-auto  bg-white space-y-4 p-4 `}
+      }  overflow-y-auto  bg-white  space-y-4 p-4 `}
     >
-      <div className="bg-white w-full">
-        <div className="flex w-full justify-between items-center p-4 bg-white border-border">
-          <div>
-            <h1 className="text-2xl text-[#101828] font-bold text-foreground">Payment</h1>
+       <div className={`bg-white w-full  ${expanded ? "w-[1120px]" : "w-full"}`}>
+        <div className= {`flex  justify-between items-center ml-8 mt-8  ${expanded ? "w-[1037px] " : "w-full"}   h-[52px] `}>
+          <div className="w-[507px] h-[52px] gap-[24px] ">
+            <h1 className="text-2xl text-[#101828] font-bold text-foreground w-[115px] h-[28px] ">Payment</h1>
             <p className="text-muted-foreground text-[#57595A] text-sm">
               Manage your transactions effortlessly—secure, seamless payments
               with ease!
             </p>
           </div>
-          <button>
-            <div class="w-[126px] h-10 ml-[324px] bg-neutral-100 rounded-lg justify-center items-center gap-3 inline-flex">
+          <div className={`flex   gap-[24px] w-[294px] h-[40px] ${expanded ? "mr-0" : "mr-6"} `}>
+            
+         
+            <div class="w-[126px] h-10  bg-neutral-100 rounded-lg justify-center items-center gap-3 inline-flex">
               <div class=" relative mt-1 ml-1 text-black ">
-                <CiWallet />
+                <CiWallet className="w-[21.66px] h-[20px] " />
               </div>
-              <div class="text-black text-base font-semibold font-['Open Sans']">
+              <div class="text-black w-[46px] h-[22px] text-[16px]  text-base font-semibold font-['Open Sans']">
                 $5000
               </div>
             </div>
-          </button>
 
           <button
-            class={`bg-[#06F] h-[40px] w-[144px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
-            ${location.pathname === "/AddCampaign"}`}
-          >
-            <span class="mr-2 text-3xl">+</span> Add Funds
+            class={`bg-[#06F] h-[40px] w-[144px] gap-[10px] text-white px-4 py-2.5 text-primary-foreground flex items-center hover:bg-primary/80  rounded-lg 
+              ${location.pathname === "/AddCampaign"}`}
+              >
+            <FaPlus className="w-[20px] h-[20px] " /> 
+            <span className="w-[82px] h-[20px] text-[16px] ">
+
+            Add Funds
+            </span>
           </button>
+          </div>
         </div>
 
-        <div class="max-w-full min-w-[1037px] h-[45px]  justify-between items-center inline-flex ml-4 mt-2">
-          <div class="text-[#1f2223] text-base font-semibold font-['Open Sans'] leading-[19px]">
+        <div class={` ${expanded ? "w-[1037px]" : "w-full"}  h-[45px]   justify-between items-center inline-flex ml-8 mt-6`}>
+          <div class="text-[#1f2223] text-base font-semibold font-['Open Sans'] w-[108px] h-[19px]">
             Transactions :
           </div>
-          <div>
             <button
               onClick={toggleModal}
-              class="px-[16px] py-[8px] bg-[#f6f6f6] w-[106px] h-[45px] mr-8 rounded-[10px] justify-center items-center gap-2.5 flex"
+              class={`px-[16px] py-[8px] bg-[#f6f6f6] w-[106px] h-[45px] ${expanded ? "mr-0" : "mr-6"}    rounded-[10px] justify-center items-center gap-2.5 flex`}
             >
               <div class="w-4 h-4 text-[#797a7b] relative">
-                <LuFilter />
+                <LuFilter className="size-[16px] " />
               </div>
-              <div class="text-[#797a7b] text-base font-semibold font-['Open Sans']">
+              <div class="text-[#797a7b] w-[48px] h-[22px] text-[16px]  text-base font-semibold font-['Open Sans']">
                 Filters
-              </div>
+              </div>  
             </button>
             {isModalVisible && (
         <div className="absolute top-25 right-10 mt-4 z-50">
@@ -213,31 +223,54 @@ const Payment = () => {
           />
         </div>
             )}
-          </div>
         </div>
 
-        <div className="flex flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between ml-2">
-          <table className="w-full ">
-            <thead>
-              <tr className="border-b-2 h-[91px]">
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
+
+<span className= {`  ${expanded ? "w-[1037px]" : "w-full"} h-[575px]`}>
+        <div className={` flex  ${expanded ? "w-[1037px]" : "w-full"}   flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between ml-2 `}>
+          <table className="w-full ml-4 ">
+          <thead>
+              <tr class="bg-card border-b h-[60px]  text-left">
+                <th class="py-2 px-4 text-[12px] font-semibold font-body text-[#797A7B] ">
+                <div className=' w-[103px] h-[16px]'>
                   INVOICE NUMBER
-                </th>
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
+                  </div>
+                  
+                  </th>
+                <th class=" py-2 px-4 text-[12px] font-semibold font-body text-[#797A7B]">
+                  <div className=' w-[122px] h-[16px]'>
+
                   TRANSACTION NAME
-                </th>
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
+                  </div>
+                  
+                  </th>
+
+                <th class="py-2 px-4 text-[12px] font-semibold font-body text-[#797A7B]">
+                <div className=' w-[80px] h-[16px]'>
+                  
                   BILLING DATE
-                </th>
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
-                  TIME
-                </th>
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
+                  </div>
+                  
+                  </th>
+                  <th class="py-2 px-4 text-[12px] font-semibold font-body text-[#797A7B]">
+                <div className=' w-[29px] h-[16px]'>
+                  Time
+                  </div>
+                  
+                  </th>
+
+                <th class="py-2 px-4 text-[12px] font-semibold font-body text-[#797A7B]">
+                <div className=' w-[44px] h-[16px]'>
                   STATUS
-                </th>
-                <th className="border-zinc-300 font-body text-[#797A7B] text-[12px] font-semibold text-start p-2">
+                  </div>
+                  
+                  </th>
+                <th class="py-2 px-4 text-[12px] font-semibold font-body text-[#797A7B]">
+                <div className=' w-[54px] h-[16px]'>
+                  
                   AMOUNT
-                </th>
+                  </div>
+                  </th>
               </tr>
             </thead>
             <tbody>
@@ -245,58 +278,76 @@ const Payment = () => {
                 <React.Fragment key={index}>
                   <tr className="border-b-2 h-[91px]">
                     <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+                      <div className="w-[84px] h-[22px] ">
+
                       {campaign.id}
-                    </td>
-                    <td className=" border-zinc-300 text-[16px] font-normal font-body p-2">
-                      <div class="text-[#191d23] text-base font-semibold mt-2">
-                        {campaign.name}
                       </div>
-                      <div class="h-3 text-[#797a7b] text-xs ">
+                    </td>
+                    <td className=" border-zinc-300  text-[16px] font-normal font-body p-2">
+                      <div class="text-[#191d23] w-[164px] h-[22px] text-base font-semibold mt-2">
+                        <span className="w-[136px] ">
+                          
+                        {campaign.name}
+                        </span>
+
+                      </div>
+                      <div class="h-[12px] w-[136px] text-[#797a7b]  text-xs ">
                         {campaign.description}
                       </div>
                     </td>
                     <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+                      <div className="w-[94px] h-[22px] ">
+
                       {campaign.billDate}
+                      </div>
                     </td>
                     <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
+                      <div className="w-[42px] h-[22px] ">
+
                       {campaign.time}
+                      </div>
                     </td>
                     <td className="border-zinc-300 text-[16px] font-normal p-2">
                       <span
-                        className={`font-body   text-[10px] p-1 justify-center items-center flex gap-1 rounded-full text-black ${
+                        className={`font-body   text-[10px]  justify-center items-center flex gap-1 rounded-full text-black ${
                           campaign.status === "Completed"
-                            ? "bg-[#B0EDC7] text-green-700 w-[80px] h-[20px]"
-                            : campaign.status === "Failed"
-                            ? "bg-[#FFBFC3] text-red-700 w-[63px] h-[20px]"
-                            : campaign.status === "Pending"
-                            ? "bg-[#FFEAB0] text-yellow-700 w-[63px] h-[20px]"
-                            : "bg-[#E3EEFF] text-[#0066FF] w-[120px]"
+                          ? "bg-[#B0EDC7] text-green-700 w-[80px] h-[20px] px-[8px] py-[0px]"
+                          : campaign.status === "Failed"
+                          ? "bg-[#FFBFC3] text-red-700 w-[63px] h-[20px] px-[6px] py-[0px]"
+                          : campaign.status === "Pending"
+                          ? "bg-[#FFEAB0] text-yellow-700 w-[63px] h-[20px] px-[6px] py-[0px]"
+                          : "bg-[#E3EEFF] text-[#0066FF] w-[120px]"
                         }`}
                       >
                         
                         <GoDotFill
                           className={`w-[10px] h-[10px] ${
                             campaign.status === "Completed"
-                              ? "text-green-700"
-                              : campaign.status === "Failed"
-                              ? "text-red-700"
+                            ? "text-green-700"
+                            : campaign.status === "Failed"
+                            ? "text-red-700"
                               : campaign.status === "Pending"
                               ? "text-yellow-700"
                               : "text-[#0066FF]"
                           }`}
-                        />
+                          />
                         {campaign.status}
                       </span>
                     </td>
 
-                    <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
-                      <div className="flex text-[#191d23] text-base font-semibold mt-2">
+                    <td className="border-zinc-300 text-[16px]  font-normal font-body p-2">
+                      <div className="w-[92px] h-[42px]">
+
+                      <div className="flex w-[92px] h-[22px] text-[#191d23] text-base font-semibold mt-2">
+
                         {campaign.amount}
                         <GoArrowUpRight className="w-[22px] h-[22px] text-[#797a7b] relative mt-[2px]" />
                       </div>
                       <div class="text-[#797a7b] text-xs ">
                         Balance: {campaign.totalAmount}
                       </div>
+                      </div>
+
                     </td>
 
                     <td className="border-zinc-300 p-2">
@@ -313,9 +364,10 @@ const Payment = () => {
             </tbody>
           </table>
         </div>
+              </span>
 
-        <nav className=" flex mt-6 items-center justify-end space-x-4 p-4">
-          <ul className="pagination flex space-x-2">
+        <nav className=" flex left-[83%] relative w-[130px] h-[20px]   text-[14px] mt-6 items-center   p-4">
+          <ul className="pagination flex ">
             <li className="page-item">
               <button
                 onClick={prePage}
@@ -327,7 +379,7 @@ const Payment = () => {
                 </span>
               </button>
             </li>
-            <span className="mt-1">
+            <span className="mt-1   flex flex-row">
               {currentPage} of {npage}
             </span>
 
@@ -337,7 +389,7 @@ const Payment = () => {
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg"
               >
                 <span>
-                  <IoIosArrowForward />
+                  <IoIosArrowForward  />
                 </span>
               </button>
             </li>

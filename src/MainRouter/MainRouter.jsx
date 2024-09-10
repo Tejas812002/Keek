@@ -19,7 +19,6 @@ import Payment from "../Manage/Payment/Payment";
 import Influencers from "../Manage/DiscoverInfluencers/Influencers";
 import SavedList from "../Manage/DiscoverInfluencers/SavedList";
 import SavedListCards from "../Manage/DiscoverInfluencers/SavedListCards";
-
 import BrandsProfile from "../Manage/BrandsProfile/BrandsProfile";
 import Profile from "../Manage/BrandsProfile/Profile";
 

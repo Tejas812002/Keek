@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect, useContext } from "react";
 import { MdVerified } from "react-icons/md";
 import { IoMdStar } from "react-icons/io";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
-import { influencersData, listItem } from "./InfluencerData";
+import { Mycontext } from "../../utils/Context";
 
 const Card = ({
   setCampaignVisible,
@@ -10,10 +11,12 @@ const Card = ({
   handleToggleFavorite,
 }) => {
   const [cardData, setCardData] = useState([]);
-
+  const contextState = useContext(Mycontext);
+  const listData = contextState.listItemData;
+  const influencersData = contextState.influencersItemData;
   // Initialize card data with liked status based on the Favorites list
   useEffect(() => {
-    const favoritesList = listItem.find((list) => list.name === "Favorites");
+    const favoritesList = listData.find((list) => list.name === "Favorites");
 
     // Map through influencersData to set liked status
     const updatedData = influencersData.map((influencer) => ({
@@ -36,7 +39,7 @@ const Card = ({
       )
     );
 
-    const favoritesList = listItem.find((list) => list.name === "Favorites");
+    const favoritesList = listData.find((list) => list.name === "Favorites");
 
     if (!wasLiked) {
       // Add influencer ID to Favorites, ensuring no duplicates
@@ -52,8 +55,8 @@ const Card = ({
         (id) => id !== influencer.id
       );
 
-      // Remove influencer ID from all other lists in listItem
-      listItem.forEach((list) => {
+      // Remove influencer ID from all other lists in listData
+      listData.forEach((list) => {
         if (list.name !== "Favorites") {
           list.influencers = list.influencers.filter(
             (id) => id !== influencer.id

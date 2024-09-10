@@ -1,22 +1,23 @@
 import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { listItem, influencersData } from "./InfluencerData";
 import SavedCard from "./SavedCard";
 import { FaAngleRight } from "react-icons/fa";
 import Campaign from "./Campaign";
 import { Mycontext } from "../../utils/Context";
+// import { listItem, influencersData } from "./InfluencerData";
 
 const SavedListCards = () => {
   const contextState = useContext(Mycontext);
   const expanded = contextState.expanded;
+    const listData = contextState.listItemData;
+    const setListData = contextState.setListItemData;
+    const influencersData = contextState.influencersItemData;
   const [campaignVisible, setCampaignVisible] = useState(false);
-  const [influencerDetails, setInfluencerDetails] = useState(listItem);
+  // const [influencerDetails, setInfluencerDetails] = useState(listItem);
   const { name } = useParams();
 
   // Find the selected list item based on the `name` from the URL params
-  const selectedList = influencerDetails.find(
-    (listData) => listData.name === name
-  );
+  const selectedList = listData.find((listData) => listData.name === name);
 
   // Get influencers data based on the IDs in the selected list
   const influencers =
@@ -26,7 +27,7 @@ const SavedListCards = () => {
     );
   // Function to remove an influencer from the selected list
   const removeInfluencer = (id) => {
-    setInfluencerDetails((prevDetails) =>
+    setListData((prevDetails) =>
       prevDetails.map((list) =>
         list.name === name
           ? {

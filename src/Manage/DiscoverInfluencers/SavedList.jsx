@@ -2,33 +2,34 @@ import React, { useContext, useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Mycontext } from "../../utils/Context";
 import InfluencerCard from "./InfluencerCard";
-import { listItem } from "./InfluencerData";
 
 const SavedList = () => {
   const contextState = useContext(Mycontext);
   const expanded = contextState.expanded;
+  const listData = contextState.listItemData;
+  const setListData = contextState.setListItemData;
 
-  const [addList, setAddList] = useState(listItem);
+  // const [addList, setAddList] = useState(listItem);
   const [openIndex, setOpenIndex] = useState(null);
 
   const addNewCard = () => {
     const newCard = {
-      name: `Add List Name ${addList.length + 1}`,
+      name: `Add List Name ${listData.length + 1}`,
       influencers: [],
     };
-    setAddList([...addList, newCard]);
+    setListData([...listData, newCard]);
   };
 
   const handleRename = (oldName, newName) => {
-    setAddList(
-      addList.map((item) =>
+    setListData(
+      listData.map((item) =>
         item.name === oldName ? { ...item, name: newName } : item
       )
     );
   };
 
   const handleDelete = (name) => {
-    setAddList(addList.filter((item) => item.name !== name));
+    setListData(listData.filter((item) => item.name !== name));
   };
 
   const handleOpenIndex = useCallback((index) => {
@@ -91,7 +92,7 @@ const SavedList = () => {
 
         <div className="flex space-x-4">
           <div className="flex flex-row mt-[47px] flex-wrap gap-x-[18px] gap-y-[37px] items-center">
-            {addList.map((list, index) => (
+            {listData.map((list, index) => (
               <InfluencerCard
                 key={list.name} // Use list.name or a unique ID if available
                 name={list.name}
