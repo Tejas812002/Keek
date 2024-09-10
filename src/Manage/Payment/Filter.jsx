@@ -59,7 +59,7 @@ const Filter = ({ isModalVisible, setIsModalVisible, onApplyFilters }) => {
         <div className= {` w-[323px] max-h-[372px] px-4 pt-[17px] pb-[18px]  ${expanded ? "right-[40%]" : "right-[0%]"}  top-[30vh]  relative bg-[#FFFFFF] overflow-y-auto flex flex-col items-center`}>
           <div className="w-full flex flex-col gap-5">
             <div className="flex justify-between items-center  w-[291px] h-[16px] relative">
-              <div className="text-center text-[#344053] text-xs justify-center ml-[40%] font-normal font-['Open Sans']">
+              <div className="text-center text-[#344054] text-xs justify-center ml-[40%] font-normal font-['Open Sans']">
                 Filters
               </div>
               <button
