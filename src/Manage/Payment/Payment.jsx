@@ -177,7 +177,7 @@ const Payment = () => {
           <div className={`flex   gap-[24px] w-[294px] h-[40px] ${expanded ? "mr-0" : "mr-6"} `}>
             
          
-            <div class="w-[126px] h-10  bg-neutral-100 rounded-lg justify-center items-center gap-3 inline-flex">
+            <div class="w-[126px] h-[40px] py-[14px] px-[20px]  bg-neutral-100 rounded-lg justify-center items-center gap-3 inline-flex">
               <div class=" relative mt-1 ml-1 text-black ">
                 <CiWallet className="w-[21.66px] h-[20px] " />
               </div>
@@ -227,7 +227,7 @@ const Payment = () => {
 
 
 <span className= {`  ${expanded ? "w-[1037px]" : "w-full"} h-[575px]`}>
-        <div className={` flex  ${expanded ? "w-[1037px]" : "w-full"}   flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between ml-2 `}>
+        <div className={` flex  ${expanded ? "w-[1037px]" : "w-full"}  flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between ml-2 `}>
           <table className="w-full ml-4 ">
           <thead>
               <tr class="bg-card border-b h-[60px]  text-left">
