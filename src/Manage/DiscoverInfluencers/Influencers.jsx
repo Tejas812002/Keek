@@ -68,11 +68,11 @@ const Influencers = () => {
         !expanded
           ? "left-[90px] w-[calc(100%-90px)]"
           : "left-[320px] w-[calc(100%-320px)] "
-      }  overflow-y-auto bg-white space-y-4 p-4 pr-[14px]`}
+      }  overflow-y-auto  space-y-4 p-4 pr-[14px]`}
       ref={influencersRef}
     >
-      <div className="max-w-[1440px] w-full h-full">
-        <div className="pt-[18px] px-2 pb-8">
+      <div className={` ${expanded ? "w-[1120px] h-[1253px] " : "w-full h-full "}  bg-white  `}>
+        <div className="pt-[18px] ml-4 px-2 pb-8">
           <h1 className="text-[24px] font-semibold text-[#101828]">
             Discover Influencer
           </h1>
@@ -81,7 +81,7 @@ const Influencers = () => {
             Collaborate
           </span>
         </div>
-        <div>
+        <div className={` ${expanded ? "  w-[1037px]" : " "} ml-4 `}>
           <nav className="mb-[27px]">
             <ul className="flex gap-5">
               <Link to={"/discoverInfluencers"}>
@@ -97,7 +97,7 @@ const Influencers = () => {
           </nav>
         </div>
         <div
-          className={`flex gap-[110px] mb-[10px] relative ${
+          className={`flex gap-[110px]  ml-4 mb-[10px] relative ${
             expanded ? "w-[1037px]" : "w-[1237px]"
           }`}
         >
@@ -126,7 +126,7 @@ const Influencers = () => {
             <Campaign setCampaignVisible={setCampaignVisible} />
           )}
         </div>
-        <div className="flex items-center gap-[10px]">
+        <div className="flex ml-4 items-center gap-[10px]">
           <button className="px-4 py-2 text-white text-center text-xs rounded-[50px] bg-[#06F]">
             All Influencers
           </button>
@@ -136,7 +136,7 @@ const Influencers = () => {
         </div>
 
         <div
-          className={`mt-4 flex ${
+          className={`mt-4 ml-4 flex ${
             expanded ? "gap-x-[38px] gap-y-[32px]" : "gap-[18px]"
           } flex-wrap`}
         >

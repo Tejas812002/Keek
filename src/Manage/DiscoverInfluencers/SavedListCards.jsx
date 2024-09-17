@@ -44,15 +44,16 @@ const SavedListCards = () => {
   return (
     <div
       className={`flex flex-wrap relative 
-        w-{1069px}
+        w-[1091px]
         ${
           !expanded
             ? "left-[100px] w-[calc(100%-120px)]"
             : "left-[320px] w-[calc(100%-340px)]"
-        }  overflow-hidden  bg-white space-y-4 p-4 ml-[20px]`}
+        }  overflow-hidden   space-y-4 p-4 ml-[20px]`}
     >
+<div className=" bg-white">
       <div>
-        <div className="w-[1091px] relative h-[47px] flex-col justify-start items-start gap-7 inline-flex">
+        <div className={` ${expanded ? "w-[1069px] " : "w-full "} top-[39px] relative h-[47px] flex-col justify-start items-start gap-7 inline-flex`}>
           <div className="px-[18px] justify-start items-center gap-2 inline-flex">
             <Link to={"/discoverInfluencers"}>
               <div className="justify-center items-center gap-0.5 flex">
@@ -89,17 +90,18 @@ const SavedListCards = () => {
           )}
           <div
             className={`${
-              expanded ? "w-[calc(100%-10px)]" : "w-[1320px]"
-            } h-[0px] border border-[#d2d3d3]`}
+              expanded ? "w-[1049px]" : "w-[1320px]"
+            } ml-2 h-[0px] border-[1px] border-[#d2d3d3]`}
           ></div>
         </div>
         <div
-          className={`grid gap-[38px] mt-[31px] ${
+          className={` grid gap-[38px] mt-[31px] ${
             expanded ? "grid-cols-4" : "grid-cols-5"
           }`}
         ></div>
+        
       </div>
-      <div className="flex min-h-screen flex-wrap gap-x-[38px] gap-y-[32px]">
+      <div className="flex ml-4 mt-10 min-h-screen flex-wrap gap-x-[38px] gap-y-[32px]">
         {influencers && influencers.length > 0 ? (
           influencers.map((item) => (
             <div key={item.id}>
@@ -115,6 +117,8 @@ const SavedListCards = () => {
             No influencers found for this category.
           </div>
         )}
+      </div>
+
       </div>
     </div>
   );

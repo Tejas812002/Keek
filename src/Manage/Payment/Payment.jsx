@@ -163,9 +163,9 @@ const Payment = () => {
         !expanded
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[320px] w-[calc(100%-320px)]"
-      }  overflow-y-auto  bg-white  space-y-4 p-4 `}
+      }  overflow-y-auto    space-y-4  `}
     >
-       <div className={`bg-white w-full  ${expanded ? "w-[1120px]" : "w-full"}`}>
+       <div className={`bg-white   ${expanded ? "w-[1120px]" : "w-screen overflow-y-hidden "}`}>
         <div className= {`flex  justify-between items-center ml-8 mt-8  ${expanded ? "w-[1037px] " : "w-full"}   h-[52px] `}>
           <div className="w-[507px] h-[52px] gap-[24px] ">
             <h1 className="text-2xl text-[#101828] font-bold text-foreground w-[115px] h-[28px] ">Payment</h1>
@@ -174,7 +174,7 @@ const Payment = () => {
               with ease!
             </p>
           </div>
-          <div className={`flex   gap-[24px] w-[294px] h-[40px] ${expanded ? "mr-0" : "mr-6"} `}>
+          <div className={`flex   gap-[24px] w-[294px] h-[40px] ${expanded ? "mr-0" : "mr-16"} `}>
             
          
             <div class="w-[126px] h-[40px] py-[14px] px-[20px]  bg-neutral-100 rounded-lg justify-center items-center gap-3 inline-flex">
@@ -205,7 +205,7 @@ const Payment = () => {
           </div>
             <button
               onClick={toggleModal}
-              class={`px-[16px] py-[8px] bg-[#f6f6f6] w-[106px] h-[45px] ${expanded ? "mr-0" : "mr-6"}    rounded-[10px] justify-center items-center gap-2.5 flex`}
+              class={`px-[16px] py-[8px] bg-[#f6f6f6] w-[106px] h-[45px] ${expanded ? "mr-0" : "mr-16 "}    rounded-[10px] justify-center items-center gap-2.5 flex`}
             >
               <div class="w-4 h-4 text-[#797a7b] relative">
                 <LuFilter className="size-[16px] " />
@@ -227,11 +227,11 @@ const Payment = () => {
 
 
 <span className= {`  ${expanded ? "w-[1037px]" : "w-full"} h-[575px]`}>
-        <div className={` flex  ${expanded ? "w-[1037px]" : "w-full"}  flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between ml-2 `}>
-          <table className="w-full ml-4 ">
+        <div className={` flex   flex-col md:flex-row mt-4 text-start items-start md:items-center justify-between ml-4 `}>
+          <table className="w-full  ">
           <thead>
-              <tr class="bg-card border-b h-[60px]  text-left">
-                <th class="py-2 px-4 text-[12px] font-semibold font-body text-[#797A7B] ">
+              <tr class=" bg-card border-b h-[60px]  text-left">
+                <th class=" py-2 px-4 text-[12px] font-semibold font-body text-[#797A7B] ">
                 <div className=' w-[103px] h-[16px]'>
                   INVOICE NUMBER
                   </div>
@@ -276,7 +276,7 @@ const Payment = () => {
             <tbody>
               {records.map((campaign, index) => (
                 <React.Fragment key={index}>
-                  <tr className="border-b-2 h-[91px]">
+                  <tr className="border-b-2  h-[91px]">
                     <td className="border-zinc-300 text-[16px] font-normal font-body p-2">
                       <div className="w-[84px] h-[22px] ">
 
@@ -374,7 +374,6 @@ const Payment = () => {
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg"
               >
                 <span>
-                  {" "}
                   <IoIosArrowBack className="text-[#797A7B]" />
                 </span>
               </button>

@@ -23,7 +23,7 @@ export const Settings = () => {
         !expanded
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[320px] w-[calc(100%-320px)]"
-      } overflow-y-auto bg-white space-y-4 p-4`}
+      } overflow-y-auto  space-y-4 p-4`}
     >
        <div className={`bg-white h-[918px] -top-[5px] relative  ${expanded ? "w-[1120px]" : "w-full"} `}>
 
@@ -37,7 +37,7 @@ export const Settings = () => {
       </div>
 
 
-        <div className={`${expanded ? "w-[1072px]" : "w-full"} h-[612px] mt-[7%] ml-4 flex-col justify-start items-start inline-flex`}>
+        <div className={`${expanded ? "w-[1072px] ml-4 " : "w-full px-2 "} h-[612px] mt-[7%]  flex-col justify-start items-start inline-flex`}>
           {settingsItems.map((item, index) => (
             <button
               key={item.id}

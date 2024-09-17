@@ -92,13 +92,13 @@ const DraftCampaign = () => {
         !expanded
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[320px] w-[calc(100%-320px)]"
-      }  overflow-y-auto  bg-white space-y-4 p-4 `}
+      }  overflow-y-auto  bg space-y-4 p-4 `}
     >
-      <div className={`bg-white w-full  ${expanded ? "w-[1120px]" : "w-full"}`}>
-        <div
+      <div className={`bg-white   ${expanded ? "w-[1120px]" : "w-full"}`}>
+      <div
           className={` ${
-            expanded ? "w-[1062px] ml-4" : "w-full pr-4"
-          } mt-5 flex  justify-between items-center  bg-white border-border`}
+            expanded ? "w-[1062px] " : "w-full pr-4"
+          } mt-5 flex px-4  justify-between items-center  bg-white border-border`}
         >
           <div>
             <h1 class="text-2xl font-bold text-foreground">Manage Campaign</h1>
@@ -189,7 +189,7 @@ const DraftCampaign = () => {
               </button>
 
               {isModalVisible && (
-                <div className="absolute top-52 right-10 mt-4 z-50">
+                <div className="absolute top-52 right-[10%] mt-4 z-50">
                   <CampaignFilterOptions
                     isModalVisible={isModalVisible}
                     setIsModalVisible={setIsModalVisible}

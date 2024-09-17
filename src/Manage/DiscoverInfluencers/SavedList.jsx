@@ -53,11 +53,11 @@ const SavedList = () => {
         !expanded
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[320px] w-[calc(100%-320px)]"
-      } overflow-y-auto bg-white space-y-4 p-4`}
+      } overflow-y-auto  space-y-4 p-4`}
     >
-      <div className="bg-white w-full">
+      <div className={ `bg-white ${expanded ? "w-[1120px] h-[897px]" : "w-full "} `}>
         <div className="flex w-full justify-between items-center bg-white border-border">
-          <div className="pt-[18px] px-2 pb-8">
+          <div className="pt-[18px] ml-4 px-2 pb-8">
             <h1 className="text-[24px] font-semibold text-[#101828]">
               Discover Influencer
             </h1>
@@ -76,8 +76,8 @@ const SavedList = () => {
           </button>
         </div>
 
-        <nav className="mb-[27px]">
-          <ul className="flex gap-5">
+        <nav className={`mb-[27px] ml-4 ${expanded ?" w-[1050px] " : " " }`}>
+          <ul className="flex gap-5"> 
             <Link to={"/discoverInfluencers"}>
               <li className="text-[#57595A]">Influencers</li>
             </Link>
@@ -90,7 +90,7 @@ const SavedList = () => {
           <hr className="h-[2px] w-full" />
         </nav>
 
-        <div className="flex space-x-4">
+        <div className="flex ml-4 space-x-4">
           <div className="flex flex-row mt-[47px] flex-wrap gap-x-[18px] gap-y-[37px] items-center">
             {listData.map((list, index) => (
               <InfluencerCard

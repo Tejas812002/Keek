@@ -155,9 +155,9 @@ const handleProfileClose = () => {
         !expanded
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[320px] w-[calc(100%-320px)]"
-      }  overflow-y-auto  bg-white space-y-4 p-4 `}
+      }  overflow-y-auto   space-y-4 p-4 `}
     >
-      <div className="flex flex-col">
+      <div className="flex bg-white flex-col">
         <div className="flex flex-row w-[1086px] h-[86px] p-5 items-center  border-b-2 gap-[3.14px]">
           <Link
             to="/CampaignManagement"
