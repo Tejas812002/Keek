@@ -21,7 +21,7 @@ import SavedList from "../Manage/DiscoverInfluencers/SavedList";
 import SavedListCards from "../Manage/DiscoverInfluencers/SavedListCards";
 import BrandsProfile from "../Manage/BrandsProfile/BrandsProfile";
 import Profile from "../Manage/BrandsProfile/Profile";
-
+import Settings from "../Manage/Settings/Settings";
 
 const MainRouter = () => {
   return (
@@ -68,12 +68,8 @@ const MainRouter = () => {
         />
         <Route
           path="/settings"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              Settings
-            </div>
-          }
+        
+          element={<Settings />}
         />
         <Route
           path="/Support"
