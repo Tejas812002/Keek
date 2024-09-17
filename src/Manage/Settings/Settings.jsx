@@ -23,7 +23,7 @@ export const Settings = () => {
         !expanded
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[320px] w-[calc(100%-320px)]"
-      } overflow-y-auto bg space-y-4 p-4`}
+      } overflow-y-auto bg-white space-y-4 p-4`}
     >
        <div className={`bg-white h-[918px] -top-[5px] relative  ${expanded ? "w-[1120px]" : "w-full"} `}>
 
